@@ -518,11 +518,15 @@ class App {
     const spentMonth=txs.filter(t=>t.type==='expense'&&new Date(t.date)>=mStart&&!isGoal(t)).reduce((s,t)=>s+t.amount,0);
     const todaySpent=txs.filter(t=>t.type==='expense'&&t.date.startsWith(todayStr)&&!isGoal(t)).reduce((s,t)=>s+t.amount,0);
 
-    const budRem=Math.max(0,budgetCap-(spentMonth-todaySpent));
-    const dailyBudget=budRem/dRem;
-    const remainToday=dailyBudget-todaySpent;
-    const exceeded=remainToday<0;
-    const freeCash=Math.max(0,balance-budRem);
+    const budgetEnabled = budgetCap > 0;
+let budRem = 0, dailyBudget = 0, remainToday = 0, exceeded = false;
+if (budgetEnabled) {
+  budRem = Math.max(0, budgetCap - (spentMonth - todaySpent));
+  dailyBudget = budRem / dRem;
+  remainToday = dailyBudget - todaySpent;
+  exceeded = remainToday < 0;
+}
+const freeCash = budgetEnabled ? Math.max(0, balance - budRem) : 0;
 
     // Balance card
     const balCard=this._card(' pink-card');
@@ -532,7 +536,7 @@ class App {
         <div class="big ${bCol}">${fmt(balance)} ₽</div>
         <button class="btn p2" id="set-bal">✏ Изменить</button>
       </div>
-      ${exceeded?`<div class="reminder" style="margin-top:10px">⚠️ Сегодняшний лимит превышен на ${fmt(Math.abs(remainToday))} ₽</div>`:''}
+      ${budgetEnabled && exceeded ? `<div class="reminder" style="margin-top:10px">⚠️ Сегодняшний лимит превышен на ${fmt(Math.abs(remainToday))} ₽</div>` : ''}
       ${freeCash>500?`<div class="free-cash">✨ Свободных денег: <b>${fmt(freeCash)} ₽</b> — можно на цели!</div>`:''}
       <div id="bal-ed"></div>`;
     c.appendChild(balCard);
@@ -547,7 +551,7 @@ class App {
     const dayCol=remainToday<0?'var(--red)':remainToday<200?'var(--peach)':'var(--green)';
     const budCard=this._card();
     budCard.innerHTML=`<div class="card-title">📊 Бюджет месяца</div>
-      <div class="b-row"><div class="b-key">Остаток на сегодня</div><div class="b-val" style="color:${dayCol}">${fmt(remainToday)} ₽ <span style="opacity:.5;font-size:10px">/ ${fmt(dailyBudget)}</span></div></div>
+      ${budgetEnabled ? `<div class="b-row"><div class="b-key">Остаток на сегодня</div><div class="b-val" style="color:${dayCol}">${fmt(remainToday)} ₽ <span style="opacity:.5;font-size:10px">/ ${fmt(dailyBudget)}</span></div></div>` : ''}
       <div class="b-row"><div class="b-key">Потрачено сегодня</div><div class="b-val">${fmt(todaySpent)} ₽</div></div>
       <div class="b-row"><div class="b-key">За этот месяц</div><div class="b-val" style="color:${spentMonth>budgetCap?'var(--red)':'var(--pink-d)'}">${fmt(spentMonth)} / ${fmtI(budgetCap)} ₽</div></div>
       <details><summary>⚙ Настройки бюджета</summary>
@@ -555,10 +559,13 @@ class App {
         <button class="btn p full" id="bud-save">Сохранить 💾</button>
       </details>`;
     c.appendChild(budCard);
-    budCard.querySelector('#bud-save').onclick=async()=>{
-      const cap=parseFloat(budCard.querySelector('#budcap').value);
-      if(cap>0){await this.db.setCfg('monthlyBudgetCap',cap);this._render();}
-    };
+   budCard.querySelector('#bud-save').onclick=async()=>{
+  let cap=parseFloat(budCard.querySelector('#budcap').value);
+  if (isNaN(cap)) cap = 0;
+  cap = Math.max(0, cap);  // не ниже нуля
+  await this.db.setCfg('monthlyBudgetCap', cap);
+  this._render();
+};
 
     // Goals mini
     if(goals.length){
