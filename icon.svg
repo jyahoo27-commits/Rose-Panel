@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#fce4ec" rx="100"/>
+  <!-- Flower petals -->
+  <ellipse cx="256" cy="170" rx="38" ry="65" fill="#f8bbd0" opacity="0.8"/>
+  <ellipse cx="256" cy="342" rx="38" ry="65" fill="#f8bbd0" opacity="0.8"/>
+  <ellipse cx="170" cy="256" rx="65" ry="38" fill="#f8bbd0" opacity="0.8"/>
+  <ellipse cx="342" cy="256" rx="65" ry="38" fill="#f8bbd0" opacity="0.8"/>
+  <ellipse cx="196" cy="196" rx="38" ry="65" fill="#f48fb1" opacity="0.7" transform="rotate(-45 196 196)"/>
+  <ellipse cx="316" cy="196" rx="38" ry="65" fill="#f48fb1" opacity="0.7" transform="rotate(45 316 196)"/>
+  <ellipse cx="196" cy="316" rx="38" ry="65" fill="#f48fb1" opacity="0.7" transform="rotate(45 196 316)"/>
+  <ellipse cx="316" cy="316" rx="38" ry="65" fill="#f48fb1" opacity="0.7" transform="rotate(-45 316 316)"/>
+  <!-- Center -->
+  <circle cx="256" cy="256" r="60" fill="#e91e8c"/>
+  <circle cx="256" cy="256" r="42" fill="#f06292"/>
+  <circle cx="256" cy="256" r="28" fill="#fce4ec"/>
+  <!-- Heart in center -->
+  <text x="256" y="270" text-anchor="middle" font-size="28" fill="#e91e8c">♥</text>
+</svg>
