@@ -41,9 +41,9 @@ body{padding-bottom:calc(env(safe-area-inset-bottom) + 20px)}
 /* ── BG DECOR ── */
 #bg-decor{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:hidden}
 
-/* ── LOGO ── */
-@keyframes logo-glow{0%,100%{filter:hue-rotate(0deg) brightness(1)}50%{filter:hue-rotate(20deg) brightness(1.1)}}
-.logo{font-family:'Dancing Script',cursive;font-size:22px;font-weight:700;background:linear-gradient(135deg,#e8749a,#c45a7e,#d4a0c7,#e8749a);background-size:250%;animation:logo-glow 4s ease infinite;-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:1px}
+/* ── LOGO — flowing rose/beige/pink ── */
+@keyframes logo-flow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.logo{font-family:'Dancing Script',cursive;font-size:22px;font-weight:700;background:linear-gradient(90deg,#e8749a,#c45a7e,#d4a0c7,#e8b88a,#f4c8b0,#bf7fa0,#e8749a,#d4a0c7);background-size:400%;animation:logo-flow 6s ease infinite;-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:1px}
 
 /* ── HEADER ── */
 #app-header{position:sticky;top:0;z-index:100;background:rgba(255,245,248,.92);border-bottom:1px solid var(--border2);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:10px 15px 0;padding-top:calc(10px + env(safe-area-inset-top))}
@@ -106,6 +106,17 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 
+/* ── INCOME PANEL ── */
+.income-panel{margin-top:0}
+.filter-chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.chip{padding:6px 12px;border-radius:20px;font-size:10px;font-weight:800;cursor:pointer;border:1.5px solid var(--border2);color:var(--muted);background:var(--bg2);transition:all .2s;font-family:'Nunito',sans-serif;white-space:nowrap}
+.chip.on{background:linear-gradient(135deg,var(--pink-l),var(--pink));border-color:var(--pink);color:#fff;box-shadow:0 3px 10px rgba(232,116,154,.3)}
+.custom-dates{display:flex;gap:8px;margin-bottom:10px}
+.custom-dates input{flex:1;font-size:12px;padding:8px 10px}
+.inc-list-item{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border2);font-size:12px;font-weight:600}
+.inc-list-item:last-child{border-bottom:none}
+.inc-total{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:linear-gradient(135deg,rgba(109,191,141,.08),rgba(109,191,141,.04));border-radius:14px;border:1px solid rgba(109,191,141,.2);margin-bottom:8px}
+
 /* ── STAT BOXES ── */
 .stat{background:var(--bg2);border:1px solid var(--border2);border-radius:16px;padding:12px;text-align:center}
 .stat .v{font-size:17px;font-weight:900;color:var(--pink);margin-bottom:3px}
@@ -135,6 +146,21 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 /* ── GOAL CARD ── */
 .goal-mini{margin-bottom:13px}
 .goal-mini-title{display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;align-items:center;font-weight:700}
+
+/* ── ALIGNER ── */
+.aligner-num{font-family:'Dancing Script',cursive;font-size:64px;font-weight:700;color:var(--pink);line-height:1;text-align:center}
+.aligner-sub{text-align:center;font-size:11px;color:var(--muted);font-weight:600;margin-top:2px}
+.aligner-badge{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,var(--pink),var(--pink-d));color:#fff;padding:7px 16px;border-radius:22px;font-size:11px;font-weight:800;box-shadow:0 3px 12px rgba(232,116,154,.4)}
+.notify-box{border-radius:16px;padding:12px;margin-bottom:10px;font-size:12px;line-height:1.65;font-weight:600}
+.notify-box.warn{background:rgba(255,179,179,.1);border:1.5px solid rgba(224,112,112,.3);color:var(--red)}
+.notify-box.pink{background:rgba(232,116,154,.07);border:1.5px solid var(--border2);color:var(--pink)}
+.notify-box.ok{background:rgba(109,191,141,.08);border:1.5px solid rgba(109,191,141,.25);color:var(--green)}
+.notify-box.info{background:rgba(212,160,199,.08);border:1.5px solid rgba(212,160,199,.3);color:var(--lilac)}
+.pair-row{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:12px;font-size:12px;margin-bottom:4px;font-weight:700;transition:all .15s}
+.pair-row.done{background:rgba(109,191,141,.08);color:#5aaa7a}
+.pair-row.done.partial{background:rgba(212,160,199,.1);color:var(--lilac)}
+.pair-row.current{background:linear-gradient(90deg,rgba(232,116,154,.12),rgba(212,160,199,.1));color:var(--pink);border:1.5px solid var(--border)}
+.pair-row.future{background:var(--bg2);color:var(--muted);font-weight:600}
 
 /* ── COLOR DOTS ── */
 .color-dot{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .2s;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,.1)}
@@ -272,7 +298,7 @@ details[open] summary::before{transform:rotate(90deg)}
    КОНФИГ
 ═══════════════════════════════════ */
 const DB_NAME = 'RosePlannerV1';
-const DB_VER  = 1;
+const DB_VER  = 2;   // bumped → seed pair 3
 const S = { TX:'transactions', CFG:'settings', GOALS:'goals', ALIGNERS:'aligners' };
 
 const ALIGNER_START = new Date('2026-03-12T22:00:00'); // Первая капа
@@ -322,15 +348,19 @@ class DB {
     for(const [k,v] of Object.entries(DEFAULTS)){
       if(await this.get(S.CFG,k)===null) await this.set(S.CFG,{key:k,value:v});
     }
-    // Seed confirmed aligners based on known history
+    // Ensure known confirmed pairs exist (idempotent — checks each before adding)
     const existing = await this.all(S.ALIGNERS);
-    if(!existing.length){
-      // Pair 1 confirmed March 12
-      await this.add(S.ALIGNERS,{pair:1,type:'upper',confirmedAt:'2026-03-12T22:00:00.000Z',note:'Первая капа'});
-      await this.add(S.ALIGNERS,{pair:1,type:'lower',confirmedAt:'2026-03-12T22:00:00.000Z',note:'Первая капа'});
-      // Pair 2 confirmed March 25
-      await this.add(S.ALIGNERS,{pair:2,type:'upper',confirmedAt:'2026-03-25T22:00:00.000Z',note:''});
-      await this.add(S.ALIGNERS,{pair:2,type:'lower',confirmedAt:'2026-03-25T22:00:00.000Z',note:''});
+    const doneKey = new Set(existing.map(p=>p.pair+'_'+p.type));
+    const seedData = [
+      {pair:1,type:'upper',confirmedAt:'2026-03-12T19:00:00.000Z',note:'Первая капа'},
+      {pair:1,type:'lower',confirmedAt:'2026-03-12T19:00:00.000Z',note:'Первая капа'},
+      {pair:2,type:'upper',confirmedAt:'2026-03-25T19:00:00.000Z',note:''},
+      {pair:2,type:'lower',confirmedAt:'2026-03-25T19:00:00.000Z',note:''},
+      {pair:3,type:'upper',confirmedAt:'2026-04-08T19:00:00.000Z',note:''},
+      {pair:3,type:'lower',confirmedAt:'2026-04-08T19:00:00.000Z',note:''},
+    ];
+    for(const p of seedData){
+      if(!doneKey.has(p.pair+'_'+p.type)) await this.add(S.ALIGNERS,p);
     }
   }
   _st(n,m='readonly'){return this.db.transaction(n,m).objectStore(n);}
@@ -359,57 +389,45 @@ function confirmDel(btn,cb){
   setTimeout(()=>{if(!btn._ok){btn._c=false;btn.textContent=orig;btn.style.color='';btn.style.borderColor='';btn.onclick=()=>confirmDel(btn,cb);}},3000);
 }
 
+// ── Aligner schedule constants ──
+const ALIGNER_PAIR2_BASE  = new Date(2026, 2, 25, 22, 0, 0); // March 25
+const ALIGNER_INTERVAL_MS = 14 * 86400000;
+const ALIGNER_BTN_LEAD_MS = 2 * 3600000; // 2 hours before = 20:00
+
 // Aligner logic
 function getAlignerSchedule(){
-  // Pair 1: March 12
-  // Pair 2: March 25 (not +14 days from pair 1 — it was moved slightly, so we treat each pair start as confirmed date)
-  // We compute based on fixed pairs: pair N starts from ALIGNER_START + (N-1)*14 days
-  // But pair 2 was confirmed March 25 (13 days after, not 14) — we'll use the DB confirmed dates
+  // Pair 1 = March 12 2026, Pair 2 = March 25 2026
+  // Pair N (N≥3) = March 25 + (N-2)*14 days at 22:00
   const schedule = [];
-  // Start from pair 1 = March 12
-  // The schedule: pair 1 = March 12, pair 2 = March 25 (user confirmed), pair 3 = April 8, etc.
-  // We compute dynamically: use ALIGNER_START for pair 1, then +14 days each
-  // But pair 2 was March 25 not March 26 — we'll honor the DB and for future use +14 from pair 2 date
-  // Simple approach: pair 1 base = March 12, interval = 14 days
-  const base = new Date(ALIGNER_START);
-  base.setHours(ALIGNER_CHANGE_HOUR,0,0,0);
-  for(let i=1; i<=Math.max(ALIGNER_UPPER_TOTAL, ALIGNER_LOWER_TOTAL); i++){
-    let d;
-    if(i===1){ d = new Date(2026,2,12,22,0,0); }
-    else if(i===2){ d = new Date(2026,2,25,22,0,0); }
-    else {
-      // From pair 2 date (March 25) + (i-2)*14
-      const pair2 = new Date(2026,2,25,22,0,0);
-      d = new Date(pair2.getTime() + (i-2)*14*86400000);
-    }
-    schedule.push({pair:i, date:d});
+  schedule.push({pair:1, date:new Date(2026,2,12,22,0,0)});
+  schedule.push({pair:2, date:new Date(2026,2,25,22,0,0)});
+  const maxPair = Math.max(ALIGNER_UPPER_TOTAL, ALIGNER_LOWER_TOTAL);
+  for(let n=3; n<=maxPair; n++){
+    const d = new Date(ALIGNER_PAIR2_BASE.getTime() + (n-2)*ALIGNER_INTERVAL_MS);
+    schedule.push({pair:n, date:d});
   }
   return schedule;
 }
 
-function getCurrentAlignerInfo(){
-  const schedule = getAlignerSchedule();
+function getAlignerStatus(schedule){
+  // wearingPair = last scheduled pair whose date has already passed
   const now = new Date();
-  let currentPair = 1;
-  for(let i=0; i<schedule.length; i++){
-    if(now >= schedule[i].date){
-      currentPair = schedule[i].pair;
-    }
+  let wearingPair = 1, wearingEntry = schedule[0];
+  for(const s of schedule){
+    if(now >= s.date){ wearingPair = s.pair; wearingEntry = s; }
   }
-  const currentEntry = schedule.find(s=>s.pair===currentPair);
-  const nextEntry = schedule.find(s=>s.pair===currentPair+1);
-  const msLeft = nextEntry ? nextEntry.date - now : null;
-  const daysLeft = msLeft ? Math.max(0, Math.ceil(msLeft/86400000)) : null;
-  const hoursLeft = msLeft ? Math.max(0, Math.floor((msLeft%(86400000))/3600000)) : null;
-  // Check if today is change day
-  const isChangeDay = nextEntry && (
-    nextEntry.date.getDate()===now.getDate() &&
-    nextEntry.date.getMonth()===now.getMonth() &&
-    nextEntry.date.getFullYear()===now.getFullYear()
-  );
-  // Check if overdue (nextEntry is in the past and hasn't been confirmed)
-  const isOverdue = nextEntry && now > nextEntry.date;
-  return {currentPair, currentEntry, nextEntry, daysLeft, hoursLeft, isChangeDay, isOverdue, schedule};
+  const nextPair  = wearingPair + 1;
+  const nextEntry = schedule.find(s=>s.pair===nextPair)||null;
+  // Button visible 2h before next scheduled change (from 20:00)
+  const btnAvailAt = nextEntry ? new Date(nextEntry.date.getTime()-ALIGNER_BTN_LEAD_MS) : null;
+  const isBtnVisible = btnAvailAt ? now >= btnAvailAt : false;
+  const isOverdue    = nextEntry ? now > nextEntry.date : false;
+  let msTillNext = nextEntry ? nextEntry.date - now : null;
+  if(msTillNext!==null && msTillNext<0) msTillNext=0;
+  const daysLeft  = msTillNext!==null ? Math.max(0,Math.floor(msTillNext/86400000)) : null;
+  const hoursLeft = msTillNext!==null ? Math.max(0,Math.floor((msTillNext%86400000)/3600000)) : null;
+  const minsLeft  = msTillNext!==null ? Math.max(0,Math.floor((msTillNext%3600000)/60000)) : null;
+  return {wearingPair, wearingEntry, nextPair, nextEntry, isBtnVisible, isOverdue, daysLeft, hoursLeft, minsLeft};
 }
 
 /* ═══════════════════════════════════
@@ -424,17 +442,13 @@ async function requestNotifPerms(){
 function scheduleAlignerNotif(nextDate){
   if(!('Notification' in window)||Notification.permission!=='granted') return;
   const now = new Date();
-  const ms = nextDate - now;
-  if(ms<=0||ms>2*86400000) return; // only if within 2 days
-  // Immediate if today
-  const today9pm = new Date(nextDate); today9pm.setHours(21,0,0,0);
-  const todayNow = new Date();
-  if(todayNow < today9pm){
-    const delay = today9pm - todayNow;
-    setTimeout(()=>{
-      new Notification('🦷 Rosé Planner',{body:'Через час нужно поменять элайнеры! Не забудь! 🌸',icon:'icon.svg'});
-    },delay);
-  }
+  // Notify at 20:00 (2h before 22:00) and at 22:00 on the change day
+  const at20 = new Date(nextDate.getTime()-ALIGNER_BTN_LEAD_MS);
+  const at22 = new Date(nextDate);
+  [[at20,'Через 2 часа нужно поменять элайнеры! Готовься 🌸'],[at22,'Время менять элайнеры на следующую пару! 🦷']].forEach(([t,msg])=>{
+    const ms = t - now;
+    if(ms>0 && ms<2*86400000) setTimeout(()=>new Notification('🦷 Rosé Planner',{body:msg,icon:'icon.svg'}),ms);
+  });
 }
 
 /* ═══════════════════════════════════
@@ -448,6 +462,10 @@ class App {
     this.tab = 'finance';
     this.statsStart = null; this.statsEnd = null;
     this._swipeDir = null;
+    this._incFilter = 'month';
+    this._incCustomS = null; this._incCustomE = null;
+  this._incOpen = false;
+    this._schedShowAll = false;
     this.db.ready.then(()=>this._init()).catch(e=>console.error('[Rosé]',e));
   }
   _init(){
@@ -518,40 +536,56 @@ class App {
     const spentMonth=txs.filter(t=>t.type==='expense'&&new Date(t.date)>=mStart&&!isGoal(t)).reduce((s,t)=>s+t.amount,0);
     const todaySpent=txs.filter(t=>t.type==='expense'&&t.date.startsWith(todayStr)&&!isGoal(t)).reduce((s,t)=>s+t.amount,0);
 
-    const budgetEnabled = budgetCap > 0;
-let budRem = 0, dailyBudget = 0, remainToday = 0, exceeded = false;
-if (budgetEnabled) {
-  budRem = Math.max(0, budgetCap - (spentMonth - todaySpent));
-  dailyBudget = budRem / dRem;
-  remainToday = dailyBudget - todaySpent;
-  exceeded = remainToday < 0;
-}
-const freeCash = budgetEnabled ? Math.max(0, balance - budRem) : 0;
+    const budRem=Math.max(0,budgetCap-(spentMonth-todaySpent));
+    const dailyBudget=budRem/dRem;
+    const remainToday=dailyBudget-todaySpent;
+    const exceeded=remainToday<0;
+    const freeCash=Math.max(0,balance-budRem);
 
-    // Balance card
-    const balCard=this._card(' pink-card');
-    const bCol=balance<=0?'bad':balance<budRem?'warn':'ok';
-    balCard.innerHTML=`<div class="card-title">💳 Мой баланс</div>
+      // Balance card с кнопкой свернуть/развернуть для доходов
+    const balCard = this._card(' pink-card');
+    const bCol = balance <= 0 ? 'bad' : balance < budRem ? 'warn' : 'ok';
+        balCard.innerHTML = `<div class="card-title">💳 Мой баланс</div>
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
         <div class="big ${bCol}">${fmt(balance)} ₽</div>
         <button class="btn p2" id="set-bal">✏ Изменить</button>
       </div>
-      ${budgetEnabled && exceeded ? `<div class="reminder" style="margin-top:10px">⚠️ Сегодняшний лимит превышен на ${fmt(Math.abs(remainToday))} ₽</div>` : ''}
-      ${freeCash>500?`<div class="free-cash">✨ Свободных денег: <b>${fmt(freeCash)} ₽</b> — можно на цели!</div>`:''}
-      <div id="bal-ed"></div>`;
+      ${exceeded ? `<div class="reminder" style="margin-top:10px">⚠️ Сегодняшний лимит превышен на ${fmt(Math.abs(remainToday))} ₽</div>` : ''}
+      ${freeCash > 500 ? `<div class="free-cash">✨ Свободных денег: <b>${fmt(freeCash)} ₽</b> — можно на цели!</div>` : ''}
+      <div id="bal-ed"></div>
+      <div style="margin-top:14px; padding-top:12px; border-top:1px dashed var(--border2)">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+         <div style="font-size:12px; font-weight:800; color:var(--text2)">💰 Доходы: <span id="income-total-amount" style="color:var(--green); font-weight:900">+${fmt(txs.filter(t=>t.type==='income').reduce((s,t)=>s+t.amount,0))} ₽</span></div>
+          <button class="btn p2" id="inc-toggle" style="padding:5px 14px; font-size:10px">${this._incOpen ? '▲ Свернуть' : '▼ Развернуть'}</button>
+        </div>
+        <div id="income-panel" style="display:${this._incOpen ? 'block' : 'none'}; margin-top:8px"></div>
+      </div>`;
     c.appendChild(balCard);
-    balCard.querySelector('#set-bal').onclick=()=>{
-      const ed=balCard.querySelector('#bal-ed');
-      if(ed.innerHTML){ed.innerHTML='';return;}
-      ed.innerHTML=`<div style="display:flex;gap:8px;margin-top:12px"><input type="number" id="bi" step="0.01" value="${balance}" style="flex:1"><button class="btn p" id="bs">OK ✓</button></div>`;
-      ed.querySelector('#bs').onclick=async()=>{const v=parseFloat(ed.querySelector('#bi').value);if(!isNaN(v)){await this.db.setCfg('balance',v);this._render();}};
+
+    // Рендерим панель доходов (упрощённую)
+    this._renderIncomePanel(balCard.querySelector('#income-panel'), txs);
+
+    // Обработчик кнопки сворачивания
+    balCard.querySelector('#inc-toggle').onclick = () => {
+      this._incOpen = !this._incOpen;
+      balCard.querySelector('#inc-toggle').textContent = this._incOpen ? '▲ Свернуть' : '▼ Развернуть';
+      const panel = balCard.querySelector('#income-panel');
+      panel.style.display = this._incOpen ? 'block' : 'none';
+      if (this._incOpen) this._renderIncomePanel(panel, txs);
+    };
+
+    balCard.querySelector('#set-bal').onclick = () => {
+      const ed = balCard.querySelector('#bal-ed');
+      if (ed.innerHTML) { ed.innerHTML = ''; return; }
+      ed.innerHTML = `<div style="display:flex;gap:8px;margin-top:12px"><input type="number" id="bi" step="0.01" value="${balance}" style="flex:1"><button class="btn p" id="bs">OK ✓</button></div>`;
+      ed.querySelector('#bs').onclick = async () => { const v = parseFloat(ed.querySelector('#bi').value); if (!isNaN(v)) { await this.db.setCfg('balance', v); this._render(); } };
     };
 
     // Budget card
     const dayCol=remainToday<0?'var(--red)':remainToday<200?'var(--peach)':'var(--green)';
     const budCard=this._card();
     budCard.innerHTML=`<div class="card-title">📊 Бюджет месяца</div>
-      ${budgetEnabled ? `<div class="b-row"><div class="b-key">Остаток на сегодня</div><div class="b-val" style="color:${dayCol}">${fmt(remainToday)} ₽ <span style="opacity:.5;font-size:10px">/ ${fmt(dailyBudget)}</span></div></div>` : ''}
+      <div class="b-row"><div class="b-key">Остаток на сегодня</div><div class="b-val" style="color:${dayCol}">${fmt(remainToday)} ₽ <span style="opacity:.5;font-size:10px">/ ${fmt(dailyBudget)}</span></div></div>
       <div class="b-row"><div class="b-key">Потрачено сегодня</div><div class="b-val">${fmt(todaySpent)} ₽</div></div>
       <div class="b-row"><div class="b-key">За этот месяц</div><div class="b-val" style="color:${spentMonth>budgetCap?'var(--red)':'var(--pink-d)'}">${fmt(spentMonth)} / ${fmtI(budgetCap)} ₽</div></div>
       <details><summary>⚙ Настройки бюджета</summary>
@@ -559,13 +593,10 @@ const freeCash = budgetEnabled ? Math.max(0, balance - budRem) : 0;
         <button class="btn p full" id="bud-save">Сохранить 💾</button>
       </details>`;
     c.appendChild(budCard);
-   budCard.querySelector('#bud-save').onclick=async()=>{
-  let cap=parseFloat(budCard.querySelector('#budcap').value);
-  if (isNaN(cap)) cap = 0;
-  cap = Math.max(0, cap);  // не ниже нуля
-  await this.db.setCfg('monthlyBudgetCap', cap);
-  this._render();
-};
+    budCard.querySelector('#bud-save').onclick=async()=>{
+      const cap=parseFloat(budCard.querySelector('#budcap').value);
+      if(cap>0){await this.db.setCfg('monthlyBudgetCap',cap);this._render();}
+    };
 
     // Goals mini
     if(goals.length){
@@ -650,6 +681,43 @@ const freeCash = budgetEnabled ? Math.max(0, balance - budRem) : 0;
     histCard.querySelector('#tx-fc').onchange=e=>renderList(histCard.querySelector('#tx-q').value.toLowerCase(),e.target.value);
   }
 
+
+    // ── Панель доходов: только фильтры, обновляет основную строку ──
+  _renderIncomePanel(panel, txs) {
+    const now = new Date();
+    const f = this._incFilter || 'month';
+    let s0, e0;
+    if (f === 'today') { s0 = new Date(now.getFullYear(), now.getMonth(), now.getDate()); e0 = new Date(s0.getTime() + 86400000 - 1); }
+    else if (f === 'month') { s0 = new Date(now.getFullYear(), now.getMonth(), 1); e0 = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59); }
+    else if (f === 'year') { s0 = new Date(now.getFullYear(), 0, 1); e0 = new Date(now.getFullYear(), 11, 31, 23, 59, 59); }
+    else if (f === 'all') { s0 = new Date(0); e0 = new Date(9999, 0, 1); }
+    else if (f === 'custom' && this._incCustomS && this._incCustomE) { s0 = new Date(this._incCustomS + 'T00:00:00'); e0 = new Date(this._incCustomE + 'T23:59:59'); }
+    else { s0 = new Date(now.getFullYear(), now.getMonth(), 1); e0 = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59); }
+
+    const incTxs = txs.filter(t => { const d = new Date(t.date); return t.type === 'income' && d >= s0 && d <= e0; });
+    const total = incTxs.reduce((s, t) => s + t.amount, 0);
+
+    // Обновляем основную строку с суммой доходов
+    const incomeSpan = document.getElementById('income-total-amount');
+    if (incomeSpan) incomeSpan.innerHTML = `+${fmt(total)} ₽`;
+
+    const chips = [{ id: 'today', l: 'Сегодня' }, { id: 'month', l: 'Месяц' }, { id: 'year', l: 'Год' }, { id: 'all', l: 'Всё время' }, { id: 'custom', l: 'Свой период' }];
+    let html = `<div class="filter-chips">${chips.map(ch => `<div class="chip${f === ch.id ? ' on' : ''}" data-f="${ch.id}">${ch.l}</div>`).join('')}</div>`;
+    if (f === 'custom') html += `<div class="custom-dates"><input type="date" id="ics" value="${this._incCustomS || today()}"><input type="date" id="ice" value="${this._incCustomE || today()}"></div>`;
+    // Без inc-total — никакой второй строки "Итого доходов"
+    panel.innerHTML = html;
+
+    panel.querySelectorAll('.chip').forEach(el => {
+      el.onclick = () => {
+        this._incFilter = el.dataset.f;
+        if (el.dataset.f !== 'custom') { this._incCustomS = null; this._incCustomE = null; }
+        this._renderIncomePanel(panel, txs);
+      };
+    });
+    const ics = panel.querySelector('#ics'), ice = panel.querySelector('#ice');
+    if (ics) ics.oninput = () => { this._incCustomS = ics.value; if (this._incCustomE) this._renderIncomePanel(panel, txs); };
+    if (ice) ice.oninput = () => { this._incCustomE = ice.value; if (this._incCustomS) this._renderIncomePanel(panel, txs); };
+  }
   /* ═══ GOALS ═══ */
   async _goals(c){
     const txs=await this.db.all(S.TX);
@@ -786,40 +854,45 @@ const freeCash = budgetEnabled ? Math.max(0, balance - budRem) : 0;
 
   /* ═══ ALIGNERS ═══ */
   async _aligners(c){
-    const info = getCurrentAlignerInfo();
+    const schedule       = getAlignerSchedule();
     const confirmedPairs = await this.db.all(S.ALIGNERS);
-    const confirmedUpperPairs = [...new Set(confirmedPairs.filter(p=>p.type==='upper').map(p=>p.pair))].sort((a,b)=>a-b);
-    const confirmedLowerPairs = [...new Set(confirmedPairs.filter(p=>p.type==='lower').map(p=>p.pair))].sort((a,b)=>a-b);
-    const maxConfUpper = confirmedUpperPairs.length>0?Math.max(...confirmedUpperPairs):0;
-    const maxConfLower = confirmedLowerPairs.length>0?Math.max(...confirmedLowerPairs):0;
-    const now = new Date();
+    const now            = new Date();
 
-    // What pair is expected now
-    const expectedPair = info.currentPair;
-    const isCurrentConfirmedUpper = maxConfUpper >= expectedPair;
-    const isCurrentConfirmedLower = maxConfLower >= expectedPair;
+    const confUSet = new Set(confirmedPairs.filter(p=>p.type==='upper').map(p=>p.pair));
+    const confLSet = new Set(confirmedPairs.filter(p=>p.type==='lower').map(p=>p.pair));
+    const maxConfU = confUSet.size>0?Math.max(...confUSet):0;
+    const maxConfL = confLSet.size>0?Math.max(...confLSet):0;
 
-    // Is next change day today or overdue
-    const nextPair = expectedPair + 1;
-    const nextDate = info.nextEntry ? info.nextEntry.date : null;
-    const isOverdueForNext = nextDate && now > nextDate && (maxConfUpper < nextPair || maxConfLower < nextPair);
+    const st = getAlignerStatus(schedule);
+    const {wearingPair,nextPair,nextEntry,isBtnVisible,isOverdue,daysLeft,hoursLeft,minsLeft} = st;
 
-    // Main aligner status card
+    const upperDone = Math.min(maxConfU,ALIGNER_UPPER_TOTAL);
+    const lowerDone = Math.min(maxConfL,ALIGNER_LOWER_TOTAL);
+    const upperPct  = Math.round((upperDone/ALIGNER_UPPER_TOTAL)*100);
+    const lowerPct  = Math.round((lowerDone/ALIGNER_LOWER_TOTAL)*100);
+
+    // Does the current wearing pair need confirmation?
+    const needConfirmU = !confUSet.has(wearingPair);
+    const needConfirmL = !confLSet.has(wearingPair);
+    const pairConfirmed = !needConfirmU && !needConfirmL;
+
+    let timeStr='';
+    if(daysLeft!==null){
+      if(daysLeft>0) timeStr=daysLeft+' дн. '+hoursLeft+' ч.';
+      else if(hoursLeft>0) timeStr=hoursLeft+' ч. '+minsLeft+' мин.';
+      else if(minsLeft>0) timeStr=minsLeft+' мин.';
+      else timeStr='Прямо сейчас!';
+    }
+
     const ac = this._card(' pink-card');
-    const upperDone = Math.min(maxConfUpper, ALIGNER_UPPER_TOTAL);
-    const lowerDone = Math.min(maxConfLower, ALIGNER_LOWER_TOTAL);
-    const upperPct = Math.round((upperDone/ALIGNER_UPPER_TOTAL)*100);
-    const lowerPct = Math.round((lowerDone/ALIGNER_LOWER_TOTAL)*100);
-
     ac.innerHTML=`<div class="card-title">🦷 Элайнеры</div>
       <div style="text-align:center;margin-bottom:16px">
         <div style="font-size:11px;color:var(--muted);font-weight:700;margin-bottom:4px;letter-spacing:.5px">ТЕКУЩАЯ ПАРА</div>
-        <div class="aligner-num">${expectedPair}</div>
+        <div class="aligner-num">${wearingPair}</div>
         <div class="aligner-sub">из ${ALIGNER_UPPER_TOTAL} верхних / ${ALIGNER_LOWER_TOTAL} нижних</div>
-        ${nextDate?`<div style="margin-top:12px"><span class="aligner-badge">🕙 Следующая замена: ${dStr(nextDate)} в 22:00</span></div>`:''}
-        ${info.daysLeft!==null&&info.daysLeft>0?`<div style="font-size:11px;color:var(--muted);margin-top:8px;font-weight:600">Осталось: <b style="color:var(--pink)">${info.daysLeft} дн. ${info.hoursLeft} ч.</b></div>`:''}
+        ${nextEntry?`<div style="margin-top:12px"><span class="aligner-badge">🕙 Следующая замена: ${dStr(nextEntry.date)} в 22:00</span></div>`:`<div style="margin-top:12px"><span class="aligner-badge" style="background:linear-gradient(135deg,var(--green),#4a9e6d)">🎉 Все пройдены!</span></div>`}
+        ${timeStr?`<div style="font-size:11px;color:var(--muted);margin-top:8px;font-weight:600">Осталось: <b style="color:var(--pink)">${timeStr}</b></div>`:''}
       </div>
-
       <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700;margin-bottom:4px">
         <span>🦷 Верхние</span><span style="color:var(--pink)">${upperDone} / ${ALIGNER_UPPER_TOTAL} (${upperPct}%)</span>
       </div>
@@ -829,140 +902,131 @@ const freeCash = budgetEnabled ? Math.max(0, balance - budRem) : 0;
       </div>
       <div class="prog-track"><div class="prog-fill" style="width:${lowerPct}%;background:linear-gradient(90deg,var(--lilac),var(--pink-d))"></div></div>`;
 
-    // Status / confirmation section
-    const today10pm = nextDate ? new Date(nextDate.getFullYear(), nextDate.getMonth(), nextDate.getDate(), 22, 0, 0) : null;
-    const isChangeDayNow = nextDate && now.toDateString() === nextDate.toDateString();
-    const isAfterChange = nextDate && now >= nextDate;
-
-    if(isOverdueForNext){
-      ac.insertAdjacentHTML('beforeend',`<div class="notify-box" style="margin-top:14px">
-        ⚠️ Пора менять ${maxConfUpper<nextPair&&maxConfLower<nextPair?'верхние и нижние':maxConfUpper<nextPair?'верхние':'нижние'} элайнеры!
-        Дата замены ${nextDate?dStr(nextDate):''} уже прошла. Ты поменяла? Подтверди ниже 👇
-      </div>`);
-    } else if(isChangeDayNow && isAfterChange){
-      ac.insertAdjacentHTML('beforeend',`<div class="notify-box pink" style="margin-top:14px">
-        🌸 Сегодня вечером нужно поменять элайнеры на пару ${nextPair}! Не забудь в 22:00 🕙
-      </div>`);
-    } else if(isChangeDayNow){
-      ac.insertAdjacentHTML('beforeend',`<div class="notify-box pink" style="margin-top:14px">
-        🌸 Сегодня день замены! Вечером в 22:00 надо поменять на пару ${nextPair} ✨
-      </div>`);
+    if(pairConfirmed && nextEntry){
+      const isTodayChange = nextEntry.date.toDateString()===now.toDateString();
+      const before20 = now < new Date(nextEntry.date.getTime()-ALIGNER_BTN_LEAD_MS);
+      if(isTodayChange && before20){
+        ac.insertAdjacentHTML('beforeend',`<div class="notify-box pink" style="margin-top:14px">🌸 Сегодня день замены! С 20:00 появится кнопка подтверждения. Надевай пару ${nextPair} в 22:00 🕙</div>`);
+      } else if(isTodayChange && !before20){
+        // button should appear for NEXT pair — handled below
+      } else {
+        ac.insertAdjacentHTML('beforeend',`<div class="notify-box ok" style="margin-top:14px">✅ Пара ${wearingPair} установлена! Следующая смена — ${dStr(nextEntry.date)} в 22:00 🌸</div>`);
+      }
+    } else if(!pairConfirmed){
+      if(isBtnVisible||isOverdue){
+        ac.insertAdjacentHTML('beforeend',`<div class="notify-box warn" style="margin-top:14px">${isOverdue?'⚠️ Время смены уже прошло! Подтверди, что поменяла пару '+wearingPair+' 👇':'🌸 Время менять элайнеры на пару '+wearingPair+'! Подтверди ниже 👇'}</div>`);
+      } else {
+        ac.insertAdjacentHTML('beforeend',`<div class="notify-box info" style="margin-top:14px">ℹ️ Кнопка подтверждения появится с 20:00 в день замены</div>`);
+      }
     }
 
-    // Confirmation buttons for current/overdue pair
-    if(maxConfUpper < nextPair || maxConfLower < nextPair){
-      if(isAfterChange || isOverdueForNext){
-        ac.insertAdjacentHTML('beforeend',`<div style="margin-top:14px">
-          <div style="font-size:11px;color:var(--muted);font-weight:700;margin-bottom:8px">Подтверди замену на пару ${nextPair}:</div>
-          <div class="btn-row">
-            ${maxConfUpper<nextPair?`<button class="btn p" id="conf-upper">✓ Верхние поменяла</button>`:'<button class="btn g" disabled>✓ Верхние ок</button>'}
-            ${maxConfLower<nextPair?`<button class="btn li" id="conf-lower">✓ Нижние поменяла</button>`:'<button class="btn g" disabled>✓ Нижние ок</button>'}
-          </div>
-        </div>`);
-      }
-    } else {
-      ac.insertAdjacentHTML('beforeend',`<div class="notify-box green" style="margin-top:14px">
-        ✅ Пара ${expectedPair} установлена — верхние и нижние! Отличная работа 💪
+    // Also show confirm button when pairConfirmed but today IS the day and it's after 20:00 for NEXT pair
+    const todayIsNextChangeDay = nextEntry && nextEntry.date.toDateString()===now.toDateString();
+    const isAfter20ForNext = nextEntry && now >= new Date(nextEntry.date.getTime()-ALIGNER_BTN_LEAD_MS);
+    const needConfNextU = !confUSet.has(nextPair);
+    const needConfNextL = !confLSet.has(nextPair);
+    const showNextConfirm = pairConfirmed && todayIsNextChangeDay && isAfter20ForNext && (needConfNextU||needConfNextL);
+
+    // Show confirmation buttons
+    const showConfirmCurrent = (!pairConfirmed) && (isBtnVisible||isOverdue);
+    if(showConfirmCurrent){
+      const confPair = wearingPair;
+      ac.insertAdjacentHTML('beforeend',`<div style="background:rgba(232,116,154,.06);border:1.5px solid var(--border);border-radius:18px;padding:14px;margin-top:14px">
+        <div style="font-size:11px;color:var(--text2);font-weight:800;margin-bottom:10px;text-align:center">Подтверди — пара ${confPair} надета:</div>
+        <div class="btn-row" style="justify-content:center">
+          ${needConfirmU?`<button class="btn p" id="conf-upper">🔼 Верхние надела</button>`:'<button class="btn g" disabled style="font-size:11px">✓ Верхние ок</button>'}
+          ${needConfirmL?`<button class="btn li" id="conf-lower">🔽 Нижние надела</button>`:'<button class="btn g" disabled style="font-size:11px">✓ Нижние ок</button>'}
+        </div>
+      </div>`);
+    } else if(showNextConfirm){
+      ac.insertAdjacentHTML('beforeend',`<div style="background:rgba(232,116,154,.06);border:1.5px solid var(--border);border-radius:18px;padding:14px;margin-top:14px">
+        <div style="font-size:11px;color:var(--text2);font-weight:800;margin-bottom:10px;text-align:center">Подтверди — пара ${nextPair} надета:</div>
+        <div class="btn-row" style="justify-content:center">
+          ${needConfNextU?`<button class="btn p" id="conf-upper-n">🔼 Верхние надела</button>`:'<button class="btn g" disabled style="font-size:11px">✓ Верхние ок</button>'}
+          ${needConfNextL?`<button class="btn li" id="conf-lower-n">🔽 Нижние надела</button>`:'<button class="btn g" disabled style="font-size:11px">✓ Нижние ок</button>'}
+        </div>
       </div>`);
     }
 
     c.appendChild(ac);
 
-    // Event handlers for confirmation
-    const confUpper = ac.querySelector('#conf-upper');
-    const confLower = ac.querySelector('#conf-lower');
-    if(confUpper) confUpper.onclick=async()=>{
-      const confirmDate = nextDate || new Date();
-      await this.db.add(S.ALIGNERS,{pair:nextPair,type:'upper',confirmedAt:confirmDate.toISOString(),note:''});
-      // Show notification
-      if(Notification.permission==='granted') new Notification('🦷 Отлично!',{body:`Верхние элайнеры пары ${nextPair} подтверждены 🌸`,icon:'icon.svg'});
+    // Confirmation handlers
+    const cU  = ac.querySelector('#conf-upper');
+    const cL  = ac.querySelector('#conf-lower');
+    const cUn = ac.querySelector('#conf-upper-n');
+    const cLn = ac.querySelector('#conf-lower-n');
+    const doConfirm = async (pair, type) => {
+      await this.db.add(S.ALIGNERS,{pair,type,confirmedAt:new Date().toISOString(),note:''});
+      if(Notification.permission==='granted') new Notification('🦷 Отлично!',{body:`${type==='upper'?'Верхние':'Нижние'} элайнеры пары ${pair} подтверждены 🌸`,icon:'icon.svg'});
+      if(nextEntry) scheduleAlignerNotif(nextEntry.date);
       this._render();
     };
-    if(confLower) confLower.onclick=async()=>{
-      const confirmDate = nextDate || new Date();
-      await this.db.add(S.ALIGNERS,{pair:nextPair,type:'lower',confirmedAt:confirmDate.toISOString(),note:''});
-      if(Notification.permission==='granted') new Notification('🦷 Отлично!',{body:`Нижние элайнеры пары ${nextPair} подтверждены 🌸`,icon:'icon.svg'});
-      this._render();
-    };
+    if(cU)  cU.onclick  = ()=>doConfirm(wearingPair,'upper');
+    if(cL)  cL.onclick  = ()=>doConfirm(wearingPair,'lower');
+    if(cUn) cUn.onclick = ()=>doConfirm(nextPair,'upper');
+    if(cLn) cLn.onclick = ()=>doConfirm(nextPair,'lower');
 
-    // Notification permission request
-    if(Notification.permission !== 'granted'){
-      const notifCard = this._card();
-      notifCard.innerHTML=`<div class="card-title">🔔 Уведомления</div>
-        <div style="font-size:12px;color:var(--text2);margin-bottom:12px;font-weight:600;line-height:1.6">Разреши уведомления — и Rosé Planner будет напоминать тебе о смене элайнеров в 21:00 🌸</div>
+    // Notification permission
+    if(Notification.permission!=='granted'){
+      const nCard=this._card();
+      nCard.innerHTML=`<div class="card-title">🔔 Уведомления</div>
+        <div style="font-size:12px;color:var(--text2);margin-bottom:12px;font-weight:600;line-height:1.6">Разреши уведомления — Rosé Planner напомнит в <b>20:00</b> (за 2 часа) и в <b>22:00</b> в день замены 🌸</div>
         <button class="btn p full" id="req-notif">🔔 Разрешить уведомления</button>`;
-      c.appendChild(notifCard);
-      notifCard.querySelector('#req-notif').onclick=async()=>{
-        const granted=await requestNotifPerms();
-        if(granted){if(info.nextEntry)scheduleAlignerNotif(info.nextEntry.date);}
+      c.appendChild(nCard);
+      nCard.querySelector('#req-notif').onclick=async()=>{
+        const ok=await requestNotifPerms();
+        if(ok&&nextEntry) scheduleAlignerNotif(nextEntry.date);
         this._render();
       };
     }
 
-    // Schedule overview — show upcoming pairs
-    const schedCard = this._card();
+    // Schedule card — all pairs with show more/less
+    const showAll = this._schedShowAll||false;
+    const schedCard=this._card();
     schedCard.innerHTML=`<div class="card-title">📅 Расписание замен</div>`;
-
-    const schedule = info.schedule;
-    // Show past 1 and next 5
-    const startIdx = Math.max(0, expectedPair - 2);
-    const endIdx = Math.min(schedule.length, expectedPair + 5);
-
-    for(let i=startIdx; i<endIdx; i++){
-      const s = schedule[i];
-      if(!s) continue;
-      const isPast = s.pair < expectedPair;
-      const isCurrent = s.pair === expectedPair;
-      const isFuture = s.pair > expectedPair;
-      const confU = maxConfUpper >= s.pair;
-      const confL = maxConfLower >= s.pair;
-
-      const cls = isCurrent?'current':isPast?'done':'future';
-      const icon = confU&&confL?'✅':confU?'🔼':confL?'🔽':isPast?'⚪':isCurrent?'🌸':'⏳';
-
-      let pairInfo = `Пара ${s.pair}`;
-      if(s.pair <= ALIGNER_UPPER_TOTAL && s.pair <= ALIGNER_LOWER_TOTAL) pairInfo += ' (верх. + ниж.)';
-      else if(s.pair <= ALIGNER_UPPER_TOTAL) pairInfo += ' (только верх.)';
-      else pairInfo += ' (только ниж.)';
-
-      schedCard.insertAdjacentHTML('beforeend',`<div class="pair-row ${cls}">
-        <span>${icon} ${pairInfo}</span>
-        <span style="font-size:10px">${dStr(s.date)}</span>
-      </div>`);
+    const maxShow = showAll ? schedule.length : Math.min(schedule.length, wearingPair+5);
+    for(let i=0;i<maxShow;i++){
+      const s=schedule[i]; if(!s) continue;
+      const isPast=s.pair<wearingPair, isCurr=s.pair===wearingPair;
+      const cu=confUSet.has(s.pair), cl=confLSet.has(s.pair);
+      let cls=isCurr?'current':isPast?'done':'future';
+      if(isPast&&!(cu&&cl)) cls='done partial';
+      const icon=cu&&cl?'✅':cu?'🔼':cl?'🔽':isCurr?'🌸':isPast?'⚪':'⏳';
+      let pInfo=`Пара ${s.pair}`;
+      if(s.pair<=ALIGNER_UPPER_TOTAL&&s.pair<=ALIGNER_LOWER_TOTAL) pInfo+=' (верх. + ниж.)';
+      else if(s.pair<=ALIGNER_UPPER_TOTAL) pInfo+=' (только верхние)';
+      else pInfo+=' (только нижние)';
+      schedCard.insertAdjacentHTML('beforeend',`<div class="pair-row ${cls}"><span>${icon} ${pInfo}</span><span style="font-size:10px">${dStr(s.date)}</span></div>`);
+    }
+    if(schedule.length>wearingPair+5){
+      schedCard.insertAdjacentHTML('beforeend',`<div style="text-align:center;margin-top:10px"><button class="btn p2" id="sched-more" style="font-size:10px;padding:6px 16px">${showAll?'▲ Свернуть':'▼ Показать все ('+schedule.length+' пар)'}</button></div>`);
+      schedCard.querySelector('#sched-more').onclick=()=>{this._schedShowAll=!this._schedShowAll;this._render();};
     }
     c.appendChild(schedCard);
 
-    // History of confirmed changes
-    if(confirmedPairs.length > 0){
-      const histCard = this._card();
+    // History
+    if(confirmedPairs.length>0){
+      const histCard=this._card();
       histCard.innerHTML=`<div class="card-title">📜 История подтверждений</div>`;
-      const grouped = {};
-      confirmedPairs.forEach(p=>{
-        if(!grouped[p.pair]) grouped[p.pair]={pair:p.pair,upper:null,lower:null};
-        grouped[p.pair][p.type]=p.confirmedAt;
-      });
-      Object.values(grouped).sort((a,b)=>b.pair-a.pair).slice(0,10).forEach(g=>{
-        histCard.insertAdjacentHTML('beforeend',`<div class="log-row">
-          <div style="min-width:0;flex:1">
-            <div style="font-weight:800;color:var(--pink)">Пара ${g.pair}</div>
-            <div class="log-meta">${g.upper?'🔼 Верх: '+dStr(g.upper):''}${g.lower?' · 🔽 Низ: '+dStr(g.lower):''}</div>
-          </div>
-          <span style="color:var(--green);font-size:18px">✓</span>
-        </div>`);
+      const grouped={};
+      confirmedPairs.forEach(p=>{if(!grouped[p.pair])grouped[p.pair]={pair:p.pair,upper:null,lower:null};grouped[p.pair][p.type]=p.confirmedAt;});
+      Object.values(grouped).sort((a,b)=>b.pair-a.pair).forEach(g=>{
+        histCard.insertAdjacentHTML('beforeend',`<div class="log-row"><div style="min-width:0;flex:1"><div style="font-weight:800;color:var(--pink)">Пара ${g.pair}</div><div class="log-meta">${g.upper?'🔼 Верх: '+dStr(g.upper):''}${g.lower?' · 🔽 Низ: '+dStr(g.lower):''}</div></div><span style="color:var(--green);font-size:18px">${g.upper&&g.lower?'✓':'½'}</span></div>`);
       });
       c.appendChild(histCard);
     }
 
-    // Notes
-    const noteCard = this._card();
-    noteCard.innerHTML=`<div class="card-title">💡 Напоминание</div>
-      <div style="font-size:12px;color:var(--text2);line-height:1.7;font-weight:600">
-        🦷 Меняй элайнеры каждые <b>2 недели</b> в <b>22:00</b> (перед сном)<br>
-        📅 Всего: <b>${ALIGNER_UPPER_TOTAL} верхних</b> пар и <b>${ALIGNER_LOWER_TOTAL} нижних</b> пар<br>
-        🧼 Перед установкой — чисти зубы и полоскай элайнеры<br>
-        💧 Носи не менее 20–22 часов в сутки для лучшего результата
+    // Tips
+    const tipCard=this._card();
+    tipCard.innerHTML=`<div class="card-title">💡 Памятка</div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.8;font-weight:600">
+        🦷 Меняй каждые <b>2 недели в 22:00</b> (перед сном)<br>
+        🔔 Кнопка появляется с <b>20:00</b> в день замены (за 2 часа)<br>
+        📅 Всего: <b>${ALIGNER_UPPER_TOTAL} верхних</b> и <b>${ALIGNER_LOWER_TOTAL} нижних</b> пар<br>
+        🧼 Чисти зубы и полоскай капы перед установкой<br>
+        💧 Носи не менее <b>20–22 часов</b> в сутки
       </div>`;
-    c.appendChild(noteCard);
+    c.appendChild(tipCard);
   }
 
   /* ═══ STATS ═══ */
