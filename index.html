@@ -341,14 +341,16 @@ async function requestNotifPerms(){
   const p = await Notification.requestPermission();
   return p==='granted';
 }
-function scheduleAlignerNotif(nextDate){
-  if(!('Notification' in window)||Notification.permission!=='granted') return;
-  const now = new Date();
-  const at20 = new Date(nextDate.getTime()-ALIGNER_BTN_LEAD_MS);
-  const at22 = new Date(nextDate);
-  [[at20,'Через 2 часа нужно поменять элайнеры! Готовься 🌸'],[at22,'Время менять элайнеры на следующую пару! 🦷']].forEach(([t,msg])=>{
-    const ms = t - now;
-    if(ms>0 && ms<2*86400000) setTimeout(()=>new Notification('🦷 Rosé Planner',{body:msg,icon:'icon.svg'}),ms);
+
+// Новая функция — отправляет сообщение в Service Worker для планирования уведомлений
+function scheduleAlignerNotif(nextDate) {
+  if (!('serviceWorker' in navigator) || !navigator.serviceWorker.controller) return;
+  const at20 = new Date(nextDate.getTime() - ALIGNER_BTN_LEAD_MS).getTime();
+  const at22 = new Date(nextDate).getTime();
+  navigator.serviceWorker.controller.postMessage({
+    action: 'scheduleAlignerNotifs',
+    at20,
+    at22
   });
 }
 
@@ -386,6 +388,50 @@ class App {
     requestNotifPerms();
     const info = getAlignerStatus(getAlignerSchedule());
     if(info.nextEntry) scheduleAlignerNotif(info.nextEntry.date);
+
+    // Регистрация Service Worker и планировщик бэкапов
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js', { scope: '/' })
+        .then(reg => {
+          console.log('SW registered', reg);
+          navigator.serviceWorker.addEventListener('message', event => {
+            if (event.data && event.data.action === 'backup-now') {
+              this._export(true);
+            }
+          });
+          // Если SW контроллер готов, сразу отправляем расписание элайнеров
+          if (navigator.serviceWorker.controller) {
+            const alignerInfo = getAlignerStatus(getAlignerSchedule());
+            if (alignerInfo.nextEntry) scheduleAlignerNotif(alignerInfo.nextEntry.date);
+          }
+          this._scheduleBackupReminder();
+        })
+        .catch(err => console.warn('SW registration failed', err));
+    }
+
+    // Если приложение открыто по уведомлению бэкапа — запускаем сохранение
+    if (new URLSearchParams(location.search).has('backup')) {
+      setTimeout(() => {
+        this._export(true);
+        if (history.replaceState) {
+          const url = new URL(location);
+          url.searchParams.delete('backup');
+          history.replaceState(null, '', url);
+        }
+      }, 1000);
+    }
+
+    // Дополнительная проверка: не пропущена ли замена, пока приложение было закрыто
+    const checkInfo = getAlignerStatus(getAlignerSchedule());
+    if (checkInfo.nextEntry && new Date() >= checkInfo.nextEntry.date) {
+      if (Notification.permission === 'granted') {
+        new Notification('🦷 Rosé Planner', {
+          body: 'Время менять элайнеры на следующую пару! 🦷',
+          icon: 'icon.svg',
+          tag: 'rose-aligner'
+        });
+      }
+    }
   }
   _scrollTab(t){
     const el=document.querySelector(`.tab[data-tab="${t}"]`);
@@ -867,7 +913,7 @@ class App {
     const nc=this._card(' lilac-card');
     let newColor=GOAL_COLORS[0];
     nc.innerHTML=`<div class="card-title">💖 Новая цель</div>
-      <div class="ig"><label class="lbl">Мечта / цель</label><input id="ng-n" placeholder="Путешествие, телефон, курс..."></div>
+      <div class="ig"><label class="lbl">💖 Мечта / цель</label><input id="ng-n" style="border-color: var(--pink-l); box-shadow: 0 0 10px rgba(232,116,154,0.25);" placeholder="Путешествие, телефон, курс..."></div>
       <div class="g2">
         <div class="ig"><label class="lbl">Сумма (₽)</label><input type="number" id="ng-t" placeholder="50000"></div>
         <div class="ig"><label class="lbl">Дедлайн</label><input type="date" id="ng-d" value="2026-12-31"></div>
@@ -1218,16 +1264,71 @@ class App {
   }
 
   /* ═══ EXPORT / IMPORT ═══ */
-  async _export(){
-    const data={version:1,exportedAt:new Date().toISOString(),
-      transactions:await this.db.all(S.TX),goals:await this.db.all(S.GOALS),
-      aligners:await this.db.all(S.ALIGNERS),settings:await this.db.all(S.CFG),
-      shopping:await this.db.all(S.SHOP)};
-    const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement('a');a.href=url;a.download=`rose-planner-backup-${today()}.json`;
-    document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+  _scheduleBackupReminder() {
+    const BACKUP_DAY = 0; // воскресенье
+    const BACKUP_HOUR = 20;
+    const BACKUP_MIN = 0;
+
+    const scheduleNext = () => {
+      const now = new Date();
+      const next = new Date(now);
+      next.setDate(now.getDate() + ((BACKUP_DAY + 7 - now.getDay()) % 7));
+      next.setHours(BACKUP_HOUR, BACKUP_MIN, 0, 0);
+      if (next <= now) next.setDate(next.getDate() + 7);
+      const ms = next - now;
+      if (ms > 0 && ms < 7 * 86400000) {
+        setTimeout(() => {
+          if (Notification.permission === 'granted') {
+            navigator.serviceWorker.ready.then(reg => {
+              reg.showNotification('🌸 Rosé Planner', {
+                body: 'Пора сделать резервную копию! Нажми на уведомление, чтобы сохранить бэкап.',
+                icon: 'icon.svg',
+                badge: 'icon.svg',
+                tag: 'rose-backup-weekly',
+                requireInteraction: true,
+                vibrate: [200, 100, 200]
+              });
+            });
+          }
+          scheduleNext();
+        }, ms);
+      }
+    };
+
+    scheduleNext();
   }
+
+  async _export(forceDownload = false){
+    const data = {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      transactions: await this.db.all(S.TX),
+      goals: await this.db.all(S.GOALS),
+      aligners: await this.db.all(S.ALIGNERS),
+      settings: await this.db.all(S.CFG),
+      shopping: await this.db.all(S.SHOP)
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const filename = `rose-planner-backup-${today()}.json`;
+
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (isIOS) {
+      if (confirm('Резервная копия готова! Нажмите «ОК», чтобы скачать файл (откроется новое окно, сохраните его вручную).')) {
+        window.open(url, '_blank');
+      }
+      return;
+    }
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
   async _import(file){
     if(!file)return;
     const text=await file.text();let data;
