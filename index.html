@@ -15,119 +15,76 @@
 
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
 :root{
-  --bg:#fff5f8;
-  --bg2:#ffeef4;
-  --card:#fff;
-  --card2:rgba(255,255,255,.85);
-  --border:#f9b8d0;
-  --border2:#fcd8e6;
-  --pink:#e8749a;
-  --pink-l:#f4a7c0;
-  --pink-d:#c45a7e;
-  --rose:#ff8fb1;
-  --lilac:#d4a0c7;
-  --mint:#b2dfdb;
-  --peach:#ffb5a7;
-  --text:#4a2535;
-  --text2:#7a4a5e;
-  --muted:#b08898;
-  --green:#6dbf8d;
-  --red:#e07070;
+  --bg:#fff5f8; --bg2:#ffeef4; --card:#fff; --card2:rgba(255,255,255,.85);
+  --border:#f9b8d0; --border2:#fcd8e6; --pink:#e8749a; --pink-l:#f4a7c0; --pink-d:#c45a7e;
+  --rose:#ff8fb1; --lilac:#d4a0c7; --mint:#b2dfdb; --peach:#ffb5a7;
+  --text:#4a2535; --text2:#7a4a5e; --muted:#b08898; --green:#6dbf8d; --red:#e07070;
   --shadow:rgba(232,116,154,.18);
 }
 html,body{background:var(--bg);color:var(--text);font-family:'Nunito',system-ui,sans-serif;font-size:14px;min-height:100vh;overflow-x:hidden}
 body{padding-bottom:calc(env(safe-area-inset-bottom) + 20px)}
 
-/* ── BG DECOR ── */
 #bg-decor{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:hidden}
 
-/* ── LOGO — flowing rose/beige/pink ── */
 @keyframes logo-flow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 .logo{font-family:'Dancing Script',cursive;font-size:22px;font-weight:700;background:linear-gradient(90deg,#e8749a,#c45a7e,#d4a0c7,#e8b88a,#f4c8b0,#bf7fa0,#e8749a,#d4a0c7);background-size:400%;animation:logo-flow 6s ease infinite;-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:1px}
 
-/* ── HEADER ── */
 #app-header{position:sticky;top:0;z-index:100;background:rgba(255,245,248,.92);border-bottom:1px solid var(--border2);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:10px 15px 0;padding-top:calc(10px + env(safe-area-inset-top))}
 .header-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .header-acts{display:flex;gap:7px}
 .hdr-btn{background:rgba(232,116,154,.1);border:1px solid var(--border);border-radius:20px;color:var(--pink);padding:5px 12px;font-size:10px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif}
-.hdr-btn:active{background:rgba(232,116,154,.2)}
 
-/* ── TABS ── */
 .tabs{display:flex;overflow-x:auto;scrollbar-width:none;gap:2px;padding-bottom:1px}
 .tabs::-webkit-scrollbar{display:none}
 .tab{flex:0 0 auto;padding:8px 14px;font-size:10px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);border-bottom:2.5px solid transparent;cursor:pointer;white-space:nowrap;transition:all .2s;font-family:'Nunito',sans-serif}
 .tab.active{color:var(--pink);border-color:var(--pink)}
 
-/* ── PAGE TRANSITION ── */
 .page-in-l{animation:pil .22s ease forwards}
 .page-in-r{animation:pir .22s ease forwards}
 @keyframes pil{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
 @keyframes pir{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
 
-/* ── CONTENT ── */
 #app-content{padding:14px 14px 20px;position:relative;z-index:1}
 
-/* ── CARD ── */
 .card{background:var(--card);border:1px solid var(--border2);border-radius:22px;padding:16px;margin-bottom:14px;box-shadow:0 4px 20px var(--shadow)}
 .card.pink-card{background:linear-gradient(135deg,#fff,#fff5f8)}
 .card.mint-card{background:linear-gradient(135deg,#f0faf8,#fff)}
 .card.lilac-card{background:linear-gradient(135deg,#faf0fc,#fff)}
-.card.peach-card{background:linear-gradient(135deg,#fff8f0,#fff)}
 .card-title{font-family:'Dancing Script',cursive;font-size:18px;font-weight:700;color:var(--pink);margin-bottom:13px;display:flex;align-items:center;gap:7px}
-.card-title-s{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--pink-l);margin-bottom:12px;display:flex;align-items:center;gap:6px}
 
-/* ── BIG NUMBER ── */
 .big{font-size:30px;font-weight:900;color:var(--pink);letter-spacing:-1px;line-height:1;font-family:'Nunito',sans-serif}
 .big.ok{color:var(--green)}.big.warn{color:var(--peach)}.big.bad{color:var(--red)}
-.sub{font-size:11px;color:var(--muted);margin-top:4px}
 
-/* ── INPUTS ── */
-input,select,textarea{width:100%;padding:11px 14px;background:#fff;border:1.5px solid var(--border2);border-radius:14px;color:var(--text);font-size:14px;outline:none;font-family:'Nunito',sans-serif;transition:border-color .2s;-webkit-appearance:none}
-input:focus,select:focus,textarea:focus{border-color:var(--pink)}
-select option{background:#fff;color:var(--text)}
-textarea{resize:vertical;min-height:80px;line-height:1.6}
+input[type="text"],input[type="number"],input[type="date"],select,textarea{width:100%;padding:11px 14px;background:#fff;border:1.5px solid var(--border2);border-radius:14px;color:var(--text);font-size:14px;outline:none;font-family:'Nunito',sans-serif;transition:border-color .2s;-webkit-appearance:none}
+input:focus,select:focus{border-color:var(--pink)}
 .lbl{display:block;font-size:10px;font-weight:800;color:var(--muted);margin-bottom:5px;letter-spacing:.5px;text-transform:uppercase}
 .ig{margin-bottom:10px}
 
-/* ── BUTTONS ── */
 .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 20px;font-size:12px;font-weight:800;border-radius:30px;cursor:pointer;border:none;font-family:'Nunito',sans-serif;transition:all .2s;white-space:nowrap;letter-spacing:.3px}
 .btn.p{background:linear-gradient(135deg,var(--pink),var(--pink-d));color:#fff;box-shadow:0 4px 14px rgba(232,116,154,.4)}
-.btn.p:active{transform:scale(.97)}
 .btn.p2{background:rgba(232,116,154,.12);border:1.5px solid var(--border);color:var(--pink)}
-.btn.p2:active{background:rgba(232,116,154,.22)}
 .btn.li{background:rgba(212,160,199,.12);border:1.5px solid #e8d0f0;color:var(--lilac)}
 .btn.g{background:rgba(109,191,141,.12);border:1.5px solid #b8e0c8;color:var(--green)}
-.btn.r{background:rgba(224,112,112,.1);border:1.5px solid #f0c0c0;color:var(--red)}
 .btn.full{width:100%;margin-top:10px}
-.btn:disabled{opacity:.4;pointer-events:none}
+.btn:disabled{opacity:.6;cursor:not-allowed}
 .btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 
-/* ── GRID ── */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 
-/* ── INCOME PANEL ── */
-.income-panel{margin-top:0}
 .filter-chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
 .chip{padding:6px 12px;border-radius:20px;font-size:10px;font-weight:800;cursor:pointer;border:1.5px solid var(--border2);color:var(--muted);background:var(--bg2);transition:all .2s;font-family:'Nunito',sans-serif;white-space:nowrap}
 .chip.on{background:linear-gradient(135deg,var(--pink-l),var(--pink));border-color:var(--pink);color:#fff;box-shadow:0 3px 10px rgba(232,116,154,.3)}
 .custom-dates{display:flex;gap:8px;margin-bottom:10px}
-.custom-dates input{flex:1;font-size:12px;padding:8px 10px}
-.inc-list-item{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border2);font-size:12px;font-weight:600}
-.inc-list-item:last-child{border-bottom:none}
-.inc-total{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:linear-gradient(135deg,rgba(109,191,141,.08),rgba(109,191,141,.04));border-radius:14px;border:1px solid rgba(109,191,141,.2);margin-bottom:8px}
 
-/* ── STAT BOXES ── */
 .stat{background:var(--bg2);border:1px solid var(--border2);border-radius:16px;padding:12px;text-align:center}
 .stat .v{font-size:17px;font-weight:900;color:var(--pink);margin-bottom:3px}
 .stat .l{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:700}
 
-/* ── PROGRESS ── */
 .prog-track{height:8px;background:var(--bg2);border-radius:99px;overflow:hidden;margin:7px 0 4px}
 .prog-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--pink-l),var(--pink));transition:width .6s cubic-bezier(.4,0,.2,1)}
 .prog-meta{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);font-weight:600}
 
-/* ── TX LOG ── */
 .log-row{padding:9px 2px;border-bottom:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;gap:8px}
 .log-row:last-child{border-bottom:none}
 .log-meta{font-size:10px;color:var(--muted);margin-top:2px}
@@ -135,19 +92,15 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 .amt.i{color:var(--green)}.amt.e{color:var(--red)}
 .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:9px;font-weight:800;background:rgba(232,116,154,.1);color:var(--pink);letter-spacing:.4px}
 .del-btn{background:none;border:1.5px solid #f0c0c0;border-radius:10px;color:#f0a0a0;font-size:13px;padding:3px 9px;cursor:pointer;flex-shrink:0;line-height:1;font-family:'Nunito',sans-serif}
-.del-btn:active{color:var(--red);border-color:var(--red)}
 
-/* ── B-ROW ── */
 .b-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border2);font-size:12px}
 .b-row:last-child{border-bottom:none}
 .b-key{color:var(--muted);font-size:11px;font-weight:600}
 .b-val{font-weight:800;color:var(--text)}
 
-/* ── GOAL CARD ── */
 .goal-mini{margin-bottom:13px}
 .goal-mini-title{display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;align-items:center;font-weight:700}
 
-/* ── ALIGNER ── */
 .aligner-num{font-family:'Dancing Script',cursive;font-size:64px;font-weight:700;color:var(--pink);line-height:1;text-align:center}
 .aligner-sub{text-align:center;font-size:11px;color:var(--muted);font-weight:600;margin-top:2px}
 .aligner-badge{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,var(--pink),var(--pink-d));color:#fff;padding:7px 16px;border-radius:22px;font-size:11px;font-weight:800;box-shadow:0 3px 12px rgba(232,116,154,.4)}
@@ -162,57 +115,26 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 .pair-row.current{background:linear-gradient(90deg,rgba(232,116,154,.12),rgba(212,160,199,.1));color:var(--pink);border:1.5px solid var(--border)}
 .pair-row.future{background:var(--bg2);color:var(--muted);font-weight:600}
 
-/* ── COLOR DOTS ── */
 .color-dot{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .2s;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,.1)}
 .color-dot.selected{border-color:var(--text);transform:scale(1.15)}
 
-/* ── RECIPE ── */
-.recipe{background:var(--card);border:1.5px solid var(--border2);border-radius:18px;padding:14px;margin-bottom:10px;cursor:pointer;transition:all .2s}
-.recipe:active{background:var(--bg2)}
-.recipe-name{font-size:12px;font-weight:800;color:var(--text)}
-.recipe-meta{font-size:10px;color:var(--muted);margin-top:3px}
-.recipe-body{display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border2);font-size:11px;color:var(--text2);line-height:1.75}
-.recipe-body.open{display:block}
-.recipe-body ol{margin:5px 0 0;padding-left:18px}
-.recipe-body li{margin-bottom:4px}
-
-/* ── ALIGNER ── */
-.aligner-card{background:linear-gradient(135deg,#fff5f8,#fdf0ff);border:2px solid var(--border);border-radius:24px;padding:18px;margin-bottom:14px;box-shadow:0 6px 24px rgba(232,116,154,.15)}
-.aligner-num{font-family:'Dancing Script',cursive;font-size:52px;font-weight:700;color:var(--pink);line-height:1;text-align:center}
-.aligner-sub{text-align:center;font-size:11px;color:var(--muted);font-weight:600;margin-top:2px}
-.aligner-badge{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,var(--pink),var(--pink-d));color:#fff;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:800;box-shadow:0 3px 12px rgba(232,116,154,.4)}
-.notify-box{background:rgba(255,200,200,.12);border:1.5px solid rgba(224,112,112,.3);border-radius:16px;padding:12px;margin-bottom:10px;font-size:12px;color:var(--red);line-height:1.6}
-.notify-box.green{background:rgba(109,191,141,.1);border-color:rgba(109,191,141,.3);color:var(--green)}
-.notify-box.pink{background:rgba(232,116,154,.08);border-color:var(--border);color:var(--pink)}
-.pair-row{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-radius:12px;font-size:12px;margin-bottom:4px;font-weight:600}
-.pair-row.done{background:rgba(109,191,141,.08);color:var(--green)}
-.pair-row.current{background:linear-gradient(90deg,rgba(232,116,154,.1),rgba(212,160,199,.1));color:var(--pink);font-weight:800;border:1px solid var(--border)}
-.pair-row.future{background:var(--bg2);color:var(--muted)}
-
-/* ── DETAILS ── */
 details{margin-top:8px}
 details summary{font-size:11px;color:var(--muted);cursor:pointer;user-select:none;padding:5px 0;font-weight:700;list-style:none}
 details summary::before{content:'›';margin-right:5px;display:inline-block;transition:transform .2s;color:var(--pink-l)}
 details[open] summary::before{transform:rotate(90deg)}
 
-/* ── SEARCH ROW ── */
 .search-row{display:flex;gap:8px;margin-bottom:12px}
 .search-row input{flex:1}
 .search-row select{flex:0 0 auto;width:auto;min-width:110px}
 
-/* ── FREE CASH ── */
 .free-cash{margin-top:9px;font-size:11px;color:var(--green);background:rgba(109,191,141,.08);padding:8px 12px;border-radius:12px;border:1px solid rgba(109,191,141,.25);font-weight:700}
 
-/* ── CANVAS ── */
 .canvas-wrap{border-radius:16px;overflow:hidden;background:var(--bg2);margin-top:8px}
 .canvas-wrap canvas{display:block;width:100%}
-
-/* ── CHART LEGEND ── */
 .chart-legend{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:10px}
 .chart-legend span{display:inline-flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);font-weight:600}
 .chart-legend .ld{display:inline-block;width:9px;height:9px;border-radius:3px;flex-shrink:0}
 
-/* ── BAR CHART ── */
 .bar-chart{display:flex;flex-direction:column;gap:6px;margin-top:8px}
 .bar-row{display:flex;align-items:center;gap:8px}
 .bar-label{width:38px;text-align:right;color:var(--muted);font-size:9px;font-weight:700;flex-shrink:0}
@@ -224,24 +146,28 @@ details[open] summary::before{transform:rotate(90deg)}
 .bar-legend span{display:flex;align-items:center;gap:5px}
 .bar-legend .dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
 
-/* ── PAYDAY TAG ── */
-.payday-tag{display:inline-block;padding:4px 14px;border-radius:20px;font-size:10px;font-weight:800;background:rgba(212,160,199,.15);border:1px solid #e8d0f0;color:var(--lilac)}
-
-/* ── HIST ── */
 .hist-list{max-height:180px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
-
-/* ── REMINDER ── */
 .reminder{background:rgba(255,179,179,.08);border:1.5px solid rgba(224,112,112,.25);border-radius:16px;padding:11px;margin-bottom:10px;font-size:12px;color:var(--red);line-height:1.65;font-weight:600}
-.reminder.pink{background:rgba(232,116,154,.07);border-color:var(--border2);color:var(--pink)}
-.reminder.ok{background:rgba(109,191,141,.07);border-color:rgba(109,191,141,.25);color:var(--green)}
+
+/* Стили для Списка покупок */
+.shop-item { display:flex; align-items:center; justify-content:space-between; padding:10px 12px; border:1px solid var(--border2); border-radius:14px; background:var(--bg2); margin-bottom:8px; transition:all 0.2s; }
+.shop-item.needed { background:linear-gradient(135deg, #fff, #fff5f8); border-color:var(--pink-l); }
+.shop-item.bought { opacity: 0.6; text-decoration: line-through; background:rgba(109,191,141,.1); border-color:rgba(109,191,141,.3); }
+.shop-item.mandatory { border-left: 4px solid var(--pink); }
+.shop-content { display:flex; align-items: center; gap:10px; flex:1; min-width:0; }
+.shop-text { font-size:13px; font-weight:700; color:var(--text); word-break: break-word; white-space: normal; }
+.shop-check { width:22px; height:22px; border-radius:6px; border:2px solid var(--pink); display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; background:#fff; transition:all 0.2s; }
+.shop-check.checked { background:var(--pink); color:#fff; }
+.shop-meta { font-size:9px; color:var(--pink-d); font-weight:800; text-transform:uppercase; letter-spacing:0.5px; margin-top:2px; }
+.qty-ctrl { display:flex; align-items:center; gap:4px; }
+.qty-ctrl button { width:22px; height:22px; border-radius:50%; border:1px solid var(--border); background:#fff; font-weight:800; font-size:14px; line-height:1; padding:0; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--pink); }
+.qty-ctrl .qty-val { font-weight:800; font-size:13px; min-width:18px; text-align:center; color:var(--text); }
 </style>
 </head>
 <body>
 
-<!-- Background decorations -->
 <div id="bg-decor">
 <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0">
-  <!-- Scattered hearts -->
   <text x="5%" y="8%" font-size="18" opacity=".07" fill="#e8749a">♥</text>
   <text x="82%" y="5%" font-size="24" opacity=".06" fill="#d4a0c7">♥</text>
   <text x="70%" y="18%" font-size="14" opacity=".07" fill="#e8749a">♥</text>
@@ -249,27 +175,13 @@ details[open] summary::before{transform:rotate(90deg)}
   <text x="90%" y="35%" font-size="20" opacity=".05" fill="#d4a0c7">♥</text>
   <text x="3%" y="45%" font-size="16" opacity=".06" fill="#e8749a">♥</text>
   <text x="75%" y="55%" font-size="12" opacity=".06" fill="#f4a7c0">♥</text>
-  <text x="50%" y="8%" font-size="8" opacity=".07" fill="#e8749a">♥</text>
-  <text x="40%" y="70%" font-size="16" opacity=".05" fill="#d4a0c7">♥</text>
-  <text x="88%" y="72%" font-size="10" opacity=".06" fill="#e8749a">♥</text>
-  <text x="20%" y="85%" font-size="22" opacity=".05" fill="#f4a7c0">♥</text>
-  <text x="60%" y="90%" font-size="14" opacity=".06" fill="#d4a0c7">♥</text>
-  <!-- Stars / sparkles -->
   <text x="30%" y="15%" font-size="12" opacity=".08" fill="#d4a0c7">✦</text>
   <text x="55%" y="38%" font-size="8" opacity=".07" fill="#e8749a">✦</text>
   <text x="8%" y="60%" font-size="14" opacity=".07" fill="#f4a7c0">✦</text>
-  <text x="95%" y="50%" font-size="10" opacity=".07" fill="#d4a0c7">✦</text>
-  <text x="65%" y="80%" font-size="12" opacity=".06" fill="#e8749a">✦</text>
-  <!-- Flowers -->
   <text x="45%" y="25%" font-size="16" opacity=".07" fill="#f4a7c0">✿</text>
   <text x="10%" y="75%" font-size="14" opacity=".07" fill="#d4a0c7">✿</text>
-  <text x="80%" y="88%" font-size="18" opacity=".06" fill="#f4a7c0">✿</text>
-  <text x="25%" y="50%" font-size="10" opacity=".06" fill="#e8749a">✿</text>
-  <!-- Bows (text) -->
   <text x="58%" y="12%" font-size="12" opacity=".08" fill="#d4a0c7">🎀</text>
-  <text x="2%" y="30%" font-size="12" opacity=".07" fill="#f4a7c0">🎀</text>
-  <text x="85%" y="62%" font-size="12" opacity=".07" fill="#e8749a">🎀</text>
-  <text x="35%" y="92%" font-size="12" opacity=".07" fill="#d4a0c7">🎀</text>
+  <text x="2%" y="30%" font-size="12" opacity=".07" fill="#f4a0c7">🎀</text>
 </svg>
 </div>
 
@@ -283,6 +195,7 @@ details[open] summary::before{transform:rotate(90deg)}
   </div>
   <div class="tabs" id="tabs">
     <div class="tab active" data-tab="finance">💰 Финансы</div>
+    <div class="tab" data-tab="shopping">🛒 Покупки</div>
     <div class="tab" data-tab="goals">🎯 Цели</div>
     <div class="tab" data-tab="aligners">🦷 Элайнеры</div>
     <div class="tab" data-tab="stats">📊 Статистика</div>
@@ -298,25 +211,23 @@ details[open] summary::before{transform:rotate(90deg)}
    КОНФИГ
 ═══════════════════════════════════ */
 const DB_NAME = 'RosePlannerV1';
-const DB_VER  = 2;   // bumped → seed pair 3
-const S = { TX:'transactions', CFG:'settings', GOALS:'goals', ALIGNERS:'aligners' };
+const DB_VER  = 4;
+const S = { TX:'transactions', CFG:'settings', GOALS:'goals', ALIGNERS:'aligners', SHOP:'shopping' };
 
-const ALIGNER_START = new Date('2026-03-12T22:00:00'); // Первая капа
+const ALIGNER_START = new Date('2026-03-12T22:00:00');
 const ALIGNER_INTERVAL_DAYS = 14;
 const ALIGNER_UPPER_TOTAL = 26;
 const ALIGNER_LOWER_TOTAL = 23;
-const ALIGNER_CHANGE_HOUR = 22; // 22:00
+const ALIGNER_CHANGE_HOUR = 22; 
 
 const DEFAULTS = {
   balance: 0, monthlyBudgetCap: 30000,
-  // Элайнеры — хранится текущий номер пары и дата подтверждения
   alignerCurrentPair: 1,
   alignerLastConfirmedDate: '2026-03-12',
 };
 
 const CAT_EXP = ['Еда 🍽','Быт 🏠','Маркетплейсы 🛍','Развлечения 🎉','Уход за собой 💅','Здоровье 💊','Аренда 🏡','Коммуналка 💡','WiFi 📶','Моб. интернет 📱','Налог 📋','Другое ✨'];
 const CAT_INC = ['Зарплата 💸','Другое ✨'];
-
 const GOAL_COLORS = ['#e8749a','#d4a0c7','#ff8fb1','#ffb5a7','#6dbf8d','#79b8f5','#f4c430','#c45a7e'];
 
 /* ═══════════════════════════════════
@@ -339,6 +250,7 @@ class DB {
         mk(S.CFG,   {keyPath:'key'});
         mk(S.GOALS, {keyPath:'id',autoIncrement:true});
         mk(S.ALIGNERS,{keyPath:'id',autoIncrement:true},[['pair','pair']]);
+        mk(S.SHOP,  {keyPath:'id',autoIncrement:true});
       };
       req.onsuccess = e => { this.db=e.target.result; this._seed().then(res).catch(rej); };
       req.onerror   = e => rej(e.target.error);
@@ -348,7 +260,6 @@ class DB {
     for(const [k,v] of Object.entries(DEFAULTS)){
       if(await this.get(S.CFG,k)===null) await this.set(S.CFG,{key:k,value:v});
     }
-    // Ensure known confirmed pairs exist (idempotent — checks each before adding)
     const existing = await this.all(S.ALIGNERS);
     const doneKey = new Set(existing.map(p=>p.pair+'_'+p.type));
     const seedData = [
@@ -389,15 +300,11 @@ function confirmDel(btn,cb){
   setTimeout(()=>{if(!btn._ok){btn._c=false;btn.textContent=orig;btn.style.color='';btn.style.borderColor='';btn.onclick=()=>confirmDel(btn,cb);}},3000);
 }
 
-// ── Aligner schedule constants ──
-const ALIGNER_PAIR2_BASE  = new Date(2026, 2, 25, 22, 0, 0); // March 25
+const ALIGNER_PAIR2_BASE  = new Date(2026, 2, 25, 22, 0, 0); 
 const ALIGNER_INTERVAL_MS = 14 * 86400000;
-const ALIGNER_BTN_LEAD_MS = 2 * 3600000; // 2 hours before = 20:00
+const ALIGNER_BTN_LEAD_MS = 2 * 3600000; 
 
-// Aligner logic
 function getAlignerSchedule(){
-  // Pair 1 = March 12 2026, Pair 2 = March 25 2026
-  // Pair N (N≥3) = March 25 + (N-2)*14 days at 22:00
   const schedule = [];
   schedule.push({pair:1, date:new Date(2026,2,12,22,0,0)});
   schedule.push({pair:2, date:new Date(2026,2,25,22,0,0)});
@@ -410,7 +317,6 @@ function getAlignerSchedule(){
 }
 
 function getAlignerStatus(schedule){
-  // wearingPair = last scheduled pair whose date has already passed
   const now = new Date();
   let wearingPair = 1, wearingEntry = schedule[0];
   for(const s of schedule){
@@ -418,7 +324,6 @@ function getAlignerStatus(schedule){
   }
   const nextPair  = wearingPair + 1;
   const nextEntry = schedule.find(s=>s.pair===nextPair)||null;
-  // Button visible 2h before next scheduled change (from 20:00)
   const btnAvailAt = nextEntry ? new Date(nextEntry.date.getTime()-ALIGNER_BTN_LEAD_MS) : null;
   const isBtnVisible = btnAvailAt ? now >= btnAvailAt : false;
   const isOverdue    = nextEntry ? now > nextEntry.date : false;
@@ -430,9 +335,6 @@ function getAlignerStatus(schedule){
   return {wearingPair, wearingEntry, nextPair, nextEntry, isBtnVisible, isOverdue, daysLeft, hoursLeft, minsLeft};
 }
 
-/* ═══════════════════════════════════
-   NOTIFICATIONS
-═══════════════════════════════════ */
 async function requestNotifPerms(){
   if(!('Notification' in window)) return false;
   if(Notification.permission==='granted') return true;
@@ -442,7 +344,6 @@ async function requestNotifPerms(){
 function scheduleAlignerNotif(nextDate){
   if(!('Notification' in window)||Notification.permission!=='granted') return;
   const now = new Date();
-  // Notify at 20:00 (2h before 22:00) and at 22:00 on the change day
   const at20 = new Date(nextDate.getTime()-ALIGNER_BTN_LEAD_MS);
   const at22 = new Date(nextDate);
   [[at20,'Через 2 часа нужно поменять элайнеры! Готовься 🌸'],[at22,'Время менять элайнеры на следующую пару! 🦷']].forEach(([t,msg])=>{
@@ -454,7 +355,7 @@ function scheduleAlignerNotif(nextDate){
 /* ═══════════════════════════════════
    APP
 ═══════════════════════════════════ */
-const TABS = ['finance','goals','aligners','stats'];
+const TABS = ['finance','shopping','goals','aligners','stats'];
 
 class App {
   constructor(){
@@ -464,7 +365,7 @@ class App {
     this._swipeDir = null;
     this._incFilter = 'month';
     this._incCustomS = null; this._incCustomE = null;
-  this._incOpen = false;
+    this._incOpen = false;
     this._schedShowAll = false;
     this.db.ready.then(()=>this._init()).catch(e=>console.error('[Rosé]',e));
   }
@@ -483,8 +384,7 @@ class App {
     this._initSwipe();
     this._render();
     requestNotifPerms();
-    // Schedule notification for next aligner change
-    const info = getCurrentAlignerInfo();
+    const info = getAlignerStatus(getAlignerSchedule());
     if(info.nextEntry) scheduleAlignerNotif(info.nextEntry.date);
   }
   _scrollTab(t){
@@ -516,10 +416,156 @@ class App {
     if(this._swipeDir==='left') wrap.className='page-in-l';
     else if(this._swipeDir==='right') wrap.className='page-in-r';
     this._swipeDir=null; c.appendChild(wrap);
-    const map={finance:()=>this._finance(wrap),goals:()=>this._goals(wrap),aligners:()=>this._aligners(wrap),stats:()=>this._stats(wrap)};
+    const map={
+      finance:()=>this._finance(wrap),
+      shopping:()=>this._shopping(wrap),
+      goals:()=>this._goals(wrap),
+      aligners:()=>this._aligners(wrap),
+      stats:()=>this._stats(wrap)
+    };
     (map[this.tab]||map.finance)();
   }
   _card(extra=''){const el=document.createElement('div');el.className='card'+extra;return el;}
+
+  /* ═══ SHOPPING LIST ═══ */
+  async _shopping(c) {
+    const items = await this.db.all(S.SHOP);
+    const toBuy = items.filter(i => !i.isAtHome && !i.isBought);
+    const bought = items.filter(i => !i.isAtHome && i.isBought);
+    const atHome = items.filter(i => i.isAtHome);
+
+    const addCard = this._card(' lilac-card');
+    addCard.innerHTML = `
+      <div class="card-title">📝 Что нужно?</div>
+      <div class="search-row">
+        <input type="text" id="shop-text" placeholder="Название (напр. Молоко, Паста...)">
+      </div>
+      <div style="display:flex; gap:10px; align-items:center; margin-bottom:12px;">
+        <div style="display:flex; align-items:center; gap:4px;">
+          <span style="font-size:11px; font-weight:700; color:var(--muted)">Кол-во:</span>
+          <input type="number" id="shop-qty" value="1" min="1" style="width:60px; padding:8px;">
+        </div>
+        <label style="font-size:11px;font-weight:700;display:flex;align-items:center;gap:6px;color:var(--text2)">
+          <input type="checkbox" id="shop-home" style="width:16px;height:16px;"> Уже есть дома
+        </label>
+        <label style="font-size:11px;font-weight:800;display:flex;align-items:center;gap:6px;color:var(--pink)">
+          <input type="checkbox" id="shop-req" style="width:16px;height:16px;"> ⭐ Обязательно
+        </label>
+      </div>
+      <button class="btn p full" id="shop-add">Добавить в список ✨</button>
+    `;
+    c.appendChild(addCard);
+
+    addCard.querySelector('#shop-add').onclick = async () => {
+      const text = addCard.querySelector('#shop-text').value.trim();
+      if (!text) return;
+      const isAtHome = addCard.querySelector('#shop-home').checked;
+      const isMandatory = addCard.querySelector('#shop-req').checked;
+      const qty = parseInt(addCard.querySelector('#shop-qty').value) || 1;
+      
+      await this.db.add(S.SHOP, { 
+        text, 
+        isAtHome, 
+        isMandatory, 
+        isBought: false,
+        quantity: qty,
+        dateAdded: new Date().toISOString()
+      });
+      this._render();
+    };
+
+    const renderList = (listTitle, listArray, isToBuyMode = false, isAtHomeMode = false) => {
+      if(listArray.length === 0) return '';
+      
+      let html = `<div style="margin-top:16px"><div style="font-size:12px; font-weight:800; color:var(--text2); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">${listTitle} (${listArray.length})</div>`;
+      
+      listArray.sort((a,b) => (b.isMandatory ? 1 : 0) - (a.isMandatory ? 1 : 0)).forEach(item => {
+        const qty = item.quantity || 1;
+        const classes = ['shop-item'];
+        if(isToBuyMode) classes.push('needed');
+        if(item.isBought) classes.push('bought');
+        if(item.isMandatory) classes.push('mandatory');
+
+        html += `
+          <div class="${classes.join(' ')}" data-id="${item.id}">
+            <div class="shop-content">
+              ${isToBuyMode || item.isBought ? `<div class="shop-check ${item.isBought ? 'checked' : ''}" data-action="toggle-buy" data-id="${item.id}">${item.isBought ? '✓' : ''}</div>` : ''}
+              <div style="flex:1; min-width:0;">
+                <div class="shop-text">${item.text} ${qty > 1 ? `<span style="font-weight:800; color:var(--pink-d);">x${qty}</span>` : ''}</div>
+                ${item.isMandatory ? `<div class="shop-meta">⭐ Обязательно</div>` : ''}
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; flex-shrink:0;">
+              ${!item.isBought ? `<div class="qty-ctrl">
+                <button data-action="qty-dec" data-id="${item.id}">−</button>
+                <span class="qty-val">${qty}</span>
+                <button data-action="qty-inc" data-id="${item.id}">+</button>
+              </div>` : `<span style="font-size:12px; color:var(--muted);">x${qty}</span>`}
+              <button class="btn p2" style="padding:4px 8px; font-size:10px; border-radius:10px; white-space:nowrap;" data-action="toggle-home" data-id="${item.id}">${item.isAtHome ? 'Закончилось' : 'Куплено'}</button>
+              <button class="del-btn" data-action="del" data-id="${item.id}">×</button>
+            </div>
+          </div>
+        `;
+      });
+      html += '</div>';
+      return html;
+    };
+
+    if(toBuy.length > 0 || bought.length > 0 || atHome.length > 0) {
+      const listCard = this._card(' pink-card');
+      listCard.innerHTML = `
+        <div class="card-title">🛍 Мои списки</div>
+        ${renderList('🛒 Надо купить', toBuy, true)}
+        ${renderList('✅ В корзине (куплено)', bought, true)}
+        ${renderList('🏠 Есть дома', atHome, false, true)}
+      `;
+      c.appendChild(listCard);
+
+      listCard.addEventListener('click', async (e) => {
+        const btn = e.target.closest('button') || e.target.closest('.shop-check');
+        if(!btn) return;
+        
+        const action = btn.dataset.action;
+        const id = Number(btn.dataset.id);
+        const item = await this.db.get(S.SHOP, id);
+        
+        if(!item) return;
+
+        if (action === 'del') {
+          confirmDel(btn, async () => {
+            await this.db.del(S.SHOP, id);
+            this._render();
+          });
+        } 
+        else if (action === 'toggle-buy') {
+          item.isBought = !item.isBought;
+          await this.db.set(S.SHOP, item);
+          this._render();
+        }
+        else if (action === 'toggle-home') {
+          item.isAtHome = !item.isAtHome;
+          if(item.isAtHome) item.isBought = false;
+          await this.db.set(S.SHOP, item);
+          this._render();
+        }
+        else if (action === 'qty-inc') {
+          item.quantity = (item.quantity || 1) + 1;
+          await this.db.set(S.SHOP, item);
+          this._render();
+        }
+        else if (action === 'qty-dec') {
+          const newQty = (item.quantity || 1) - 1;
+          if (newQty <= 0) {
+            await this.db.del(S.SHOP, id);
+          } else {
+            item.quantity = newQty;
+            await this.db.set(S.SHOP, item);
+          }
+          this._render();
+        }
+      });
+    }
+  }
 
   /* ═══ FINANCE ═══ */
   async _finance(c){
@@ -542,10 +588,9 @@ class App {
     const exceeded=remainToday<0;
     const freeCash=Math.max(0,balance-budRem);
 
-      // Balance card с кнопкой свернуть/развернуть для доходов
     const balCard = this._card(' pink-card');
     const bCol = balance <= 0 ? 'bad' : balance < budRem ? 'warn' : 'ok';
-        balCard.innerHTML = `<div class="card-title">💳 Мой баланс</div>
+    balCard.innerHTML = `<div class="card-title">💳 Мой баланс</div>
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
         <div class="big ${bCol}">${fmt(balance)} ₽</div>
         <button class="btn p2" id="set-bal">✏ Изменить</button>
@@ -562,10 +607,8 @@ class App {
       </div>`;
     c.appendChild(balCard);
 
-    // Рендерим панель доходов (упрощённую)
     this._renderIncomePanel(balCard.querySelector('#income-panel'), txs);
 
-    // Обработчик кнопки сворачивания
     balCard.querySelector('#inc-toggle').onclick = () => {
       this._incOpen = !this._incOpen;
       balCard.querySelector('#inc-toggle').textContent = this._incOpen ? '▲ Свернуть' : '▼ Развернуть';
@@ -581,7 +624,6 @@ class App {
       ed.querySelector('#bs').onclick = async () => { const v = parseFloat(ed.querySelector('#bi').value); if (!isNaN(v)) { await this.db.setCfg('balance', v); this._render(); } };
     };
 
-    // Budget card
     const dayCol=remainToday<0?'var(--red)':remainToday<200?'var(--peach)':'var(--green)';
     const budCard=this._card();
     budCard.innerHTML=`<div class="card-title">📊 Бюджет месяца</div>
@@ -598,7 +640,6 @@ class App {
       if(cap>0){await this.db.setCfg('monthlyBudgetCap',cap);this._render();}
     };
 
-    // Goals mini
     if(goals.length){
       const gCard=this._card(' lilac-card');
       gCard.innerHTML='<div class="card-title">🎯 Мои цели</div>';
@@ -616,7 +657,6 @@ class App {
       c.appendChild(gCard);
     }
 
-    // Add tx
     const txCard=this._card();
     const allGoals=(await this.db.all(S.GOALS)).filter(g=>g.active);
     txCard.innerHTML=`<div class="card-title">➕ Новая запись</div>
@@ -654,7 +694,6 @@ class App {
       this._render();
     };
 
-    // History
     const sorted=[...txs].sort((a,b)=>new Date(b.date)-new Date(a.date));
     const histCard=this._card();
     histCard.innerHTML=`<div class="card-title">📋 История</div>
@@ -681,8 +720,6 @@ class App {
     histCard.querySelector('#tx-fc').onchange=e=>renderList(histCard.querySelector('#tx-q').value.toLowerCase(),e.target.value);
   }
 
-
-    // ── Панель доходов: только фильтры, обновляет основную строку ──
   _renderIncomePanel(panel, txs) {
     const now = new Date();
     const f = this._incFilter || 'month';
@@ -697,14 +734,12 @@ class App {
     const incTxs = txs.filter(t => { const d = new Date(t.date); return t.type === 'income' && d >= s0 && d <= e0; });
     const total = incTxs.reduce((s, t) => s + t.amount, 0);
 
-    // Обновляем основную строку с суммой доходов
     const incomeSpan = document.getElementById('income-total-amount');
     if (incomeSpan) incomeSpan.innerHTML = `+${fmt(total)} ₽`;
 
     const chips = [{ id: 'today', l: 'Сегодня' }, { id: 'month', l: 'Месяц' }, { id: 'year', l: 'Год' }, { id: 'all', l: 'Всё время' }, { id: 'custom', l: 'Свой период' }];
     let html = `<div class="filter-chips">${chips.map(ch => `<div class="chip${f === ch.id ? ' on' : ''}" data-f="${ch.id}">${ch.l}</div>`).join('')}</div>`;
     if (f === 'custom') html += `<div class="custom-dates"><input type="date" id="ics" value="${this._incCustomS || today()}"><input type="date" id="ice" value="${this._incCustomE || today()}"></div>`;
-    // Без inc-total — никакой второй строки "Итого доходов"
     panel.innerHTML = html;
 
     panel.querySelectorAll('.chip').forEach(el => {
@@ -718,6 +753,7 @@ class App {
     if (ics) ics.oninput = () => { this._incCustomS = ics.value; if (this._incCustomE) this._renderIncomePanel(panel, txs); };
     if (ice) ice.oninput = () => { this._incCustomE = ice.value; if (this._incCustomS) this._renderIncomePanel(panel, txs); };
   }
+
   /* ═══ GOALS ═══ */
   async _goals(c){
     const txs=await this.db.all(S.TX);
@@ -727,7 +763,7 @@ class App {
     if(!goals.length){
       const empty=this._card(' lilac-card');
       empty.innerHTML=`<div style="text-align:center;padding:20px">
-        <div style="font-size:40px;margin-bottom:10px">🌸</div>
+        <div style="font-size:40px;margin-bottom:10px">💖</div>
         <div style="font-family:'Dancing Script',cursive;font-size:20px;color:var(--pink);margin-bottom:8px">Пока нет целей</div>
         <div style="font-size:12px;color:var(--muted)">Добавь свою первую цель ниже ✨</div>
       </div>`;
@@ -828,10 +864,9 @@ class App {
       };
     }
 
-    // Add goal
     const nc=this._card(' lilac-card');
     let newColor=GOAL_COLORS[0];
-    nc.innerHTML=`<div class="card-title">✨ Новая цель</div>
+    nc.innerHTML=`<div class="card-title">💖 Новая цель</div>
       <div class="ig"><label class="lbl">Мечта / цель</label><input id="ng-n" placeholder="Путешествие, телефон, курс..."></div>
       <div class="g2">
         <div class="ig"><label class="lbl">Сумма (₽)</label><input type="number" id="ng-t" placeholder="50000"></div>
@@ -864,14 +899,13 @@ class App {
     const maxConfL = confLSet.size>0?Math.max(...confLSet):0;
 
     const st = getAlignerStatus(schedule);
-    const {wearingPair,nextPair,nextEntry,isBtnVisible,isOverdue,daysLeft,hoursLeft,minsLeft} = st;
+    const {wearingPair, wearingEntry, nextPair, nextEntry, isBtnVisible, isOverdue, daysLeft, hoursLeft, minsLeft} = st;
 
     const upperDone = Math.min(maxConfU,ALIGNER_UPPER_TOTAL);
     const lowerDone = Math.min(maxConfL,ALIGNER_LOWER_TOTAL);
     const upperPct  = Math.round((upperDone/ALIGNER_UPPER_TOTAL)*100);
     const lowerPct  = Math.round((lowerDone/ALIGNER_LOWER_TOTAL)*100);
 
-    // Does the current wearing pair need confirmation?
     const needConfirmU = !confUSet.has(wearingPair);
     const needConfirmL = !confLSet.has(wearingPair);
     const pairConfirmed = !needConfirmU && !needConfirmL;
@@ -908,65 +942,68 @@ class App {
       if(isTodayChange && before20){
         ac.insertAdjacentHTML('beforeend',`<div class="notify-box pink" style="margin-top:14px">🌸 Сегодня день замены! С 20:00 появится кнопка подтверждения. Надевай пару ${nextPair} в 22:00 🕙</div>`);
       } else if(isTodayChange && !before20){
-        // button should appear for NEXT pair — handled below
+        // next pair confirm button logic handled below
       } else {
         ac.insertAdjacentHTML('beforeend',`<div class="notify-box ok" style="margin-top:14px">✅ Пара ${wearingPair} установлена! Следующая смена — ${dStr(nextEntry.date)} в 22:00 🌸</div>`);
       }
     } else if(!pairConfirmed){
-      if(isBtnVisible||isOverdue){
-        ac.insertAdjacentHTML('beforeend',`<div class="notify-box warn" style="margin-top:14px">${isOverdue?'⚠️ Время смены уже прошло! Подтверди, что поменяла пару '+wearingPair+' 👇':'🌸 Время менять элайнеры на пару '+wearingPair+'! Подтверди ниже 👇'}</div>`);
+      const nowAfterWearingStart = now >= wearingEntry.date;
+      if(nowAfterWearingStart){
+        ac.insertAdjacentHTML('beforeend',`<div class="notify-box warn" style="margin-top:14px">⚠️ Пара ${wearingPair} ещё не подтверждена! Подтверди её ниже 👇</div>`);
       } else {
-        ac.insertAdjacentHTML('beforeend',`<div class="notify-box info" style="margin-top:14px">ℹ️ Кнопка подтверждения появится с 20:00 в день замены</div>`);
+        ac.insertAdjacentHTML('beforeend',`<div class="notify-box info" style="margin-top:14px">ℹ️ Ношение пары ${wearingPair} начнётся ${dStr(wearingEntry.date)} в 22:00</div>`);
       }
     }
 
-    // Also show confirm button when pairConfirmed but today IS the day and it's after 20:00 for NEXT pair
     const todayIsNextChangeDay = nextEntry && nextEntry.date.toDateString()===now.toDateString();
     const isAfter20ForNext = nextEntry && now >= new Date(nextEntry.date.getTime()-ALIGNER_BTN_LEAD_MS);
-    const needConfNextU = !confUSet.has(nextPair);
-    const needConfNextL = !confLSet.has(nextPair);
+    const needConfNextU = nextEntry ? !confUSet.has(nextPair) : false;
+    const needConfNextL = nextEntry ? !confLSet.has(nextPair) : false;
     const showNextConfirm = pairConfirmed && todayIsNextChangeDay && isAfter20ForNext && (needConfNextU||needConfNextL);
 
-    // Show confirmation buttons
-    const showConfirmCurrent = (!pairConfirmed) && (isBtnVisible||isOverdue);
+    const showConfirmCurrent = !pairConfirmed && now >= wearingEntry.date;
+
     if(showConfirmCurrent){
       const confPair = wearingPair;
       ac.insertAdjacentHTML('beforeend',`<div style="background:rgba(232,116,154,.06);border:1.5px solid var(--border);border-radius:18px;padding:14px;margin-top:14px">
         <div style="font-size:11px;color:var(--text2);font-weight:800;margin-bottom:10px;text-align:center">Подтверди — пара ${confPair} надета:</div>
         <div class="btn-row" style="justify-content:center">
-          ${needConfirmU?`<button class="btn p" id="conf-upper">🔼 Верхние надела</button>`:'<button class="btn g" disabled style="font-size:11px">✓ Верхние ок</button>'}
-          ${needConfirmL?`<button class="btn li" id="conf-lower">🔽 Нижние надела</button>`:'<button class="btn g" disabled style="font-size:11px">✓ Нижние ок</button>'}
+          ${needConfirmU?`<button class="btn p" id="conf-upper">🔼 Верхние надела</button>`:'<button class="btn g" disabled style="font-size:11px">✅ Верхние ок</button>'}
+          ${needConfirmL?`<button class="btn li" id="conf-lower">🔽 Нижние надела</button>`:'<button class="btn g" disabled style="font-size:11px">✅ Нижние ок</button>'}
         </div>
       </div>`);
     } else if(showNextConfirm){
       ac.insertAdjacentHTML('beforeend',`<div style="background:rgba(232,116,154,.06);border:1.5px solid var(--border);border-radius:18px;padding:14px;margin-top:14px">
         <div style="font-size:11px;color:var(--text2);font-weight:800;margin-bottom:10px;text-align:center">Подтверди — пара ${nextPair} надета:</div>
         <div class="btn-row" style="justify-content:center">
-          ${needConfNextU?`<button class="btn p" id="conf-upper-n">🔼 Верхние надела</button>`:'<button class="btn g" disabled style="font-size:11px">✓ Верхние ок</button>'}
-          ${needConfNextL?`<button class="btn li" id="conf-lower-n">🔽 Нижние надела</button>`:'<button class="btn g" disabled style="font-size:11px">✓ Нижние ок</button>'}
+          ${needConfNextU?`<button class="btn p" id="conf-upper-n">🔼 Верхние надела</button>`:'<button class="btn g" disabled style="font-size:11px">✅ Верхние ок</button>'}
+          ${needConfNextL?`<button class="btn li" id="conf-lower-n">🔽 Нижние надела</button>`:'<button class="btn g" disabled style="font-size:11px">✅ Нижние ок</button>'}
         </div>
       </div>`);
     }
 
     c.appendChild(ac);
 
-    // Confirmation handlers
-    const cU  = ac.querySelector('#conf-upper');
-    const cL  = ac.querySelector('#conf-lower');
-    const cUn = ac.querySelector('#conf-upper-n');
-    const cLn = ac.querySelector('#conf-lower-n');
-    const doConfirm = async (pair, type) => {
+    const doConfirm = async (btn, pair, type) => {
+      if(!btn || btn.disabled) return;
+      btn.disabled = true;
+      btn.innerHTML = '⏳ Сохраняю...';
       await this.db.add(S.ALIGNERS,{pair,type,confirmedAt:new Date().toISOString(),note:''});
       if(Notification.permission==='granted') new Notification('🦷 Отлично!',{body:`${type==='upper'?'Верхние':'Нижние'} элайнеры пары ${pair} подтверждены 🌸`,icon:'icon.svg'});
       if(nextEntry) scheduleAlignerNotif(nextEntry.date);
       this._render();
     };
-    if(cU)  cU.onclick  = ()=>doConfirm(wearingPair,'upper');
-    if(cL)  cL.onclick  = ()=>doConfirm(wearingPair,'lower');
-    if(cUn) cUn.onclick = ()=>doConfirm(nextPair,'upper');
-    if(cLn) cLn.onclick = ()=>doConfirm(nextPair,'lower');
 
-    // Notification permission
+    const cU  = ac.querySelector('#conf-upper');
+    const cL  = ac.querySelector('#conf-lower');
+    const cUn = ac.querySelector('#conf-upper-n');
+    const cLn = ac.querySelector('#conf-lower-n');
+    
+    if(cU)  cU.onclick  = ()=>doConfirm(cU, wearingPair,'upper');
+    if(cL)  cL.onclick  = ()=>doConfirm(cL, wearingPair,'lower');
+    if(cUn) cUn.onclick = ()=>doConfirm(cUn, nextPair,'upper');
+    if(cLn) cLn.onclick = ()=>doConfirm(cLn, nextPair,'lower');
+
     if(Notification.permission!=='granted'){
       const nCard=this._card();
       nCard.innerHTML=`<div class="card-title">🔔 Уведомления</div>
@@ -980,7 +1017,6 @@ class App {
       };
     }
 
-    // Schedule card — all pairs with show more/less
     const showAll = this._schedShowAll||false;
     const schedCard=this._card();
     schedCard.innerHTML=`<div class="card-title">📅 Расписание замен</div>`;
@@ -996,15 +1032,29 @@ class App {
       if(s.pair<=ALIGNER_UPPER_TOTAL&&s.pair<=ALIGNER_LOWER_TOTAL) pInfo+=' (верх. + ниж.)';
       else if(s.pair<=ALIGNER_UPPER_TOTAL) pInfo+=' (только верхние)';
       else pInfo+=' (только нижние)';
-      schedCard.insertAdjacentHTML('beforeend',`<div class="pair-row ${cls}"><span>${icon} ${pInfo}</span><span style="font-size:10px">${dStr(s.date)}</span></div>`);
+      const canConfirm = (isPast || isCurr) && (!cu || !cl) && now >= s.date;
+      const confirmBtnHtml = canConfirm ? 
+        `<button class="btn p2" style="padding:2px 8px; font-size:9px; margin-left:6px;" data-action="confirm-pair" data-pair="${s.pair}" data-type="${!cu?'upper':'lower'}">✔</button>` : '';
+      schedCard.insertAdjacentHTML('beforeend',`<div class="pair-row ${cls}"><span>${icon} ${pInfo}${confirmBtnHtml}</span><span style="font-size:10px">${dStr(s.date)}</span></div>`);
     }
     if(schedule.length>wearingPair+5){
       schedCard.insertAdjacentHTML('beforeend',`<div style="text-align:center;margin-top:10px"><button class="btn p2" id="sched-more" style="font-size:10px;padding:6px 16px">${showAll?'▲ Свернуть':'▼ Показать все ('+schedule.length+' пар)'}</button></div>`);
       schedCard.querySelector('#sched-more').onclick=()=>{this._schedShowAll=!this._schedShowAll;this._render();};
     }
+
+    schedCard.addEventListener('click', async (e) => {
+      const btn = e.target.closest('button[data-action="confirm-pair"]');
+      if(!btn) return;
+      const pair = parseInt(btn.dataset.pair);
+      const type = btn.dataset.type;
+      btn.disabled = true;
+      btn.textContent = '...';
+      await this.db.add(S.ALIGNERS,{pair, type, confirmedAt: new Date().toISOString(), note:''});
+      this._render();
+    });
+
     c.appendChild(schedCard);
 
-    // History
     if(confirmedPairs.length>0){
       const histCard=this._card();
       histCard.innerHTML=`<div class="card-title">📜 История подтверждений</div>`;
@@ -1016,7 +1066,6 @@ class App {
       c.appendChild(histCard);
     }
 
-    // Tips
     const tipCard=this._card();
     tipCard.innerHTML=`<div class="card-title">💡 Памятка</div>
       <div style="font-size:12px;color:var(--text2);line-height:1.8;font-weight:600">
@@ -1070,7 +1119,6 @@ class App {
     const totalExp=pTxs.filter(t=>t.type==='expense').reduce((s,t)=>s+t.amount,0);
     const saldo=totalInc-totalExp;
 
-    // Summary
     const sumCard=this._card(' pink-card');
     sumCard.innerHTML=`<div class="card-title">✨ Итоги</div>
       <div class="g3">
@@ -1080,7 +1128,6 @@ class App {
       </div>`;
     c.appendChild(sumCard);
 
-    // Monthly bar chart
     const monthlyData={};
     txs.forEach(t=>{
       const d=new Date(t.date);
@@ -1106,7 +1153,6 @@ class App {
       c.appendChild(barCard);
     }
 
-    // Expense pie
     const expByCat={};
     pTxs.filter(t=>t.type==='expense'&&t.category!=='Цель').forEach(t=>{expByCat[t.category]=(expByCat[t.category]||0)+t.amount;});
     const cats=Object.keys(expByCat).sort((a,b)=>expByCat[b]-expByCat[a]);
@@ -1143,7 +1189,6 @@ class App {
     }
     c.appendChild(pieCard);
 
-    // Balance line chart
     const sorted=[...pTxs].sort((a,b)=>new Date(a.date)-new Date(b.date));
     const pts=[];let run=0;
     sorted.forEach(t=>{run=t.type==='income'?run+t.amount:run-t.amount;pts.push(run);});
@@ -1176,7 +1221,8 @@ class App {
   async _export(){
     const data={version:1,exportedAt:new Date().toISOString(),
       transactions:await this.db.all(S.TX),goals:await this.db.all(S.GOALS),
-      aligners:await this.db.all(S.ALIGNERS),settings:await this.db.all(S.CFG)};
+      aligners:await this.db.all(S.ALIGNERS),settings:await this.db.all(S.CFG),
+      shopping:await this.db.all(S.SHOP)};
     const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
     const url=URL.createObjectURL(blob);
     const a=document.createElement('a');a.href=url;a.download=`rose-planner-backup-${today()}.json`;
@@ -1187,19 +1233,17 @@ class App {
     const text=await file.text();let data;
     try{data=JSON.parse(text);}catch{alert('Неверный файл 🌸');return;}
     if(!confirm(`Загрузить бэкап от ${data.exportedAt||'?'}?\nВсе данные заменятся!`))return;
-    const map={transactions:S.TX,goals:S.GOALS,aligners:S.ALIGNERS,settings:S.CFG};
+    const map={transactions:S.TX,goals:S.GOALS,aligners:S.ALIGNERS,settings:S.CFG,shopping:S.SHOP};
     for(const [k,sn] of Object.entries(map)){
       if(!data[k])continue;
       const ex=await this.db.all(sn);
-      for(const r of ex)await this.db.del(sn,r.id||r.key);
-      for(const r of data[k])await this.db.set(sn,r);
+      for(const o of ex)await this.db.del(sn,o.key||o.id);
+      for(const o of data[k])await this.db.add(sn,o);
     }
-    this._render();
+    this._render(); alert('Данные восстановлены ✨');
   }
 }
-
 new App();
-if('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js').catch(()=>{});
 </script>
 </body>
 </html>
