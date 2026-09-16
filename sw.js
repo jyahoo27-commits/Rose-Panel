@@ -1,5 +1,5 @@
 // sw.js
-const CACHE = 'sentinel-v1';
+const CACHE = 'sentinel-v2';
 const FILES = ['./index.html', './manifest.json', './icon.svg'];
 
 const BACKUP_TAG = 'rose-backup-weekly';
@@ -8,13 +8,18 @@ const ALIGNER_TAG = 'rose-aligner';
 // Установка и кэширование
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)));
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', e => {
+  e.waitUntil(clients.claim());
 });
 
 self.addEventListener('fetch', e => {
   e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
 });
 
-// Обработка клика по уведомлениям (бэкап и элайнеры)
+// Обработка клика по уведомлениям
 self.addEventListener('notificationclick', event => {
   event.notification.close();
 
@@ -28,12 +33,10 @@ self.addEventListener('notificationclick', event => {
             return client.focus();
           }
         }
-        // Если окно не найдено — открываем новое с параметром, который запустит бэкап
         return clients.openWindow(`${self.registration.scope}?backup=1`);
       })
     );
   } else if (event.notification.tag === ALIGNER_TAG) {
-    // При клике на уведомление элайнеров — просто открываем приложение
     event.waitUntil(
       clients.matchAll({ type: 'window', includeUncontrolled: true }).then(clientList => {
         for (const client of clientList) {
@@ -47,40 +50,17 @@ self.addEventListener('notificationclick', event => {
   }
 });
 
-// Получение сообщений от основного скрипта для планирования уведомлений элайнеров
+// Service Worker на iOS не может держать setTimeout днями.
+// Поэтому мы просто слушаем, не нужно ли показать локальное уведомление ПРЯМО СЕЙЧАС (если приложение было открыто).
+// Для отложенных напоминаний используем новую кнопку "Добавить в календарь" в приложении.
 self.addEventListener('message', event => {
-  if (event.data && event.data.action === 'scheduleAlignerNotifs') {
-    const { at20, at22 } = event.data;
-    const now = Date.now();
-    
-    // Планируем уведомление за 2 часа до замены (20:00)
-    if (at20 && at20 > now) {
-      const delay20 = at20 - now;
-      setTimeout(() => {
-        self.registration.showNotification('🦷 Rosé Planner', {
-          body: 'Через 2 часа нужно поменять элайнеры! Готовься 🌸',
-          icon: 'icon.svg',
-          badge: 'icon.svg',
-          tag: ALIGNER_TAG,
-          requireInteraction: true,
-          vibrate: [200, 100, 200]
-        });
-      }, delay20);
-    }
-
-    // Планируем основное уведомление в 22:00
-    if (at22 && at22 > now) {
-      const delay22 = at22 - now;
-      setTimeout(() => {
-        self.registration.showNotification('🦷 Rosé Planner', {
-          body: 'Время менять элайнеры на следующую пару! 🦷',
-          icon: 'icon.svg',
-          badge: 'icon.svg',
-          tag: ALIGNER_TAG,
-          requireInteraction: true,
-          vibrate: [200, 100, 200]
-        });
-      }, delay22);
-    }
+  if (event.data && event.data.action === 'showImmediateNotif') {
+    self.registration.showNotification(event.data.title || '🦷 Rosé Planner', {
+      body: event.data.body || 'Время проверить элайнеры!',
+      icon: 'icon.svg',
+      badge: 'icon.svg',
+      tag: ALIGNER_TAG,
+      requireInteraction: true
+    });
   }
 });
