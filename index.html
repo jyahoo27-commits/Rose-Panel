@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -75,7 +75,6 @@ input:focus,select:focus{border-color:var(--pink)}
 .filter-chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
 .chip{padding:6px 12px;border-radius:20px;font-size:10px;font-weight:800;cursor:pointer;border:1.5px solid var(--border2);color:var(--muted);background:var(--bg2);transition:all .2s;font-family:'Nunito',sans-serif;white-space:nowrap}
 .chip.on{background:linear-gradient(135deg,var(--pink-l),var(--pink));border-color:var(--pink);color:#fff;box-shadow:0 3px 10px rgba(232,116,154,.3)}
-.custom-dates{display:flex;gap:8px;margin-bottom:10px}
 
 .stat{background:var(--bg2);border:1px solid var(--border2);border-radius:16px;padding:12px;text-align:center}
 .stat .v{font-size:17px;font-weight:900;color:var(--pink);margin-bottom:3px}
@@ -104,6 +103,7 @@ input:focus,select:focus{border-color:var(--pink)}
 .aligner-num{font-family:'Dancing Script',cursive;font-size:64px;font-weight:700;color:var(--pink);line-height:1;text-align:center}
 .aligner-sub{text-align:center;font-size:11px;color:var(--muted);font-weight:600;margin-top:2px}
 .aligner-badge{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,var(--pink),var(--pink-d));color:#fff;padding:7px 16px;border-radius:22px;font-size:11px;font-weight:800;box-shadow:0 3px 12px rgba(232,116,154,.4)}
+
 .notify-box{border-radius:16px;padding:12px;margin-bottom:10px;font-size:12px;line-height:1.65;font-weight:600}
 .notify-box.warn{background:rgba(255,179,179,.1);border:1.5px solid rgba(224,112,112,.3);color:var(--red)}
 .notify-box.pink{background:rgba(232,116,154,.07);border:1.5px solid var(--border2);color:var(--pink)}
@@ -124,9 +124,12 @@ details summary{font-size:11px;color:var(--muted);cursor:pointer;user-select:non
 details summary::before{content:'›';margin-right:5px;display:inline-block;transition:transform .2s;color:var(--pink-l)}
 details[open] summary::before{transform:rotate(90deg)}
 
+.search-row{display:flex;gap:8px;margin-bottom:12px}
+.search-row input{flex:1}
+.search-row select{flex:0 0 auto;width:auto;min-width:110px}
+
 .free-cash{margin-top:9px;font-size:11px;color:var(--green);background:rgba(109,191,141,.08);padding:8px 12px;border-radius:12px;border:1px solid rgba(109,191,141,.25);font-weight:700}
 
-/* Стили для Списка покупок */
 .shop-item { display:flex; align-items:center; justify-content:space-between; padding:10px 12px; border:1px solid var(--border2); border-radius:14px; background:var(--bg2); margin-bottom:8px; transition:all 0.2s; }
 .shop-item.needed { background:linear-gradient(135deg, #fff, #fff5f8); border-color:var(--pink-l); }
 .shop-item.bought { opacity: 0.6; text-decoration: line-through; background:rgba(109,191,141,.1); border-color:rgba(109,191,141,.3); }
@@ -145,103 +148,44 @@ details[open] summary::before{transform:rotate(90deg)}
 .chart-legend{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:10px}
 .chart-legend span{display:inline-flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);font-weight:600}
 .chart-legend .ld{display:inline-block;width:9px;height:9px;border-radius:3px;flex-shrink:0}
-.bar-chart{display:flex;flex-direction:column;gap:6px;margin-top:8px}
-.bar-row{display:flex;align-items:center;gap:8px}
-.bar-label{width:38px;text-align:right;color:var(--muted);font-size:9px;font-weight:700;flex-shrink:0}
-.bar-track{flex:1;height:14px;background:var(--bg2);border-radius:7px;overflow:hidden}
-.bar-inc{height:100%;border-radius:7px;background:linear-gradient(90deg,rgba(109,191,141,.5),rgba(109,191,141,.8))}
-.bar-exp{height:100%;border-radius:7px;background:linear-gradient(90deg,rgba(232,116,154,.4),rgba(232,116,154,.7));margin-top:2px}
-.bar-val{width:70px;font-size:9px;flex-shrink:0;text-align:right;font-weight:700}
-.bar-legend{display:flex;gap:14px;margin-bottom:8px;font-size:10px;font-weight:700}
-.bar-legend span{display:flex;align-items:center;gap:5px}
-.bar-legend .dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
-.hist-list{max-height:180px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 
-/* Стили для Календаря Цикла */
+.cycle-ring-wrap { position:relative; width:180px; height:180px; margin: 10px auto 20px; display:flex; justify-content:center; align-items:center; border-radius:50%; box-shadow: 0 4px 20px rgba(232,116,154,0.15); background: #fff; border: 5px solid var(--bg2); transition: all 0.3s;}
+.cycle-ring-inner { text-align:center; z-index: 2; padding: 10px; }
+.cycle-ring-day { font-size: 38px; font-weight: 900; color: var(--pink); line-height:1; font-family:'Nunito',sans-serif; letter-spacing: -1.5px; }
+.cycle-ring-phase { font-size: 11px; font-weight: 800; color: var(--muted); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.qa-btn { display:block; width: 100%; padding: 16px; border-radius: 20px; font-size: 15px; font-weight: 800; text-align:center; border: none; cursor:pointer; transition: transform 0.1s; margin-bottom:14px; font-family:'Nunito',sans-serif; }
+.qa-btn:active { transform: scale(0.97); }
+.qa-btn.start { background: linear-gradient(135deg, var(--pink), var(--pink-d)); color: #fff; box-shadow: 0 6px 16px rgba(232,116,154,0.3); }
+.qa-btn.end { background: linear-gradient(135deg, #fff, var(--bg2)); color: var(--text); border: 2px solid var(--border2); box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+.qa-btn.cancel { background: transparent; color: var(--muted); border: 1.5px dashed var(--border); box-shadow: none; font-size:13px; padding:12px; }
+
+.symp-group { margin-bottom: 14px; }
+.symp-title { font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.symp-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.symp-chip { padding: 8px 14px; border-radius: 16px; border: 1.5px solid var(--border2); font-size: 13px; font-weight: 700; color: var(--text2); background: #fff; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+.symp-chip.active { border-color: var(--pink); background: linear-gradient(135deg, #fff, var(--bg2)); color: var(--pink-d); transform: scale(1.05); box-shadow: 0 4px 10px rgba(232,116,154,0.15); }
+
 .cal-wrap { border:1px solid var(--border2); border-radius:18px; overflow:hidden; margin:8px 0 16px; background:var(--bg2); }
 .cal-hdr { display:flex; justify-content:space-between; align-items:center; padding:10px 14px; font-weight:900; color:var(--text); font-size:14px; text-transform:capitalize; }
 .cal-btn { background:none; border:none; color:var(--pink); font-size:18px; cursor:pointer; padding:2px 10px; border-radius:8px; font-family:'Nunito',sans-serif; }
 .cal-btn:active { background:rgba(232,116,154,0.15); }
 .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:1px; background:var(--border2); }
 .cal-day-hdr { background:var(--bg2); text-align:center; padding:6px 0; font-size:9px; font-weight:900; color:var(--pink-d); text-transform:uppercase; }
-.cal-day { background:#fff; aspect-ratio:1; padding:4px; display:flex; flex-direction:column; justify-content:flex-start; align-items:center; font-size:12px; font-weight:700; position:relative; cursor:pointer; color:var(--text); transition:background 0.2s; }
+.cal-day { background:#fff; aspect-ratio:1; padding:4px; display:flex; flex-direction:column; justify-content:flex-start; align-items:center; font-size:12px; font-weight:700; position:relative; cursor:pointer; color:var(--text); transition:all 0.2s; }
 .cal-day.other-mo { color:#d0b8c0; background:#fffcfd; }
 .cal-day.today { font-weight:900; color:var(--pink-d); }
 .cal-day.today::after { content:''; position:absolute; bottom:4px; left:50%; transform:translateX(-50%); width:4px; height:4px; border-radius:50%; background:var(--pink-d); }
 .cal-day.period { background:linear-gradient(135deg, var(--pink), #d95e86); color:#fff; font-weight:800; }
-.cal-day.period-pred { background:repeating-linear-gradient(45deg, #fbd0e0, #fbd0e0 4px, #fff 4px, #fff 8px); color:var(--pink-d); }
-.cal-day.fertile { background:rgba(186,130,196,0.22); color:var(--text2); }
+.cal-day.period-pred { background:repeating-linear-gradient(45deg, var(--bg2), var(--bg2) 4px, #fff 4px, #fff 8px); color:var(--pink-d); }
+.cal-day.fertile { background:rgba(212,160,199,0.15); color:var(--text2); }
+.cal-day.selected { border: 2.5px solid var(--pink-d); transform: scale(1.05); z-index: 2; box-shadow: 0 4px 10px rgba(232,116,154,.3); border-radius:8px;}
 .cal-icon { font-size:11px; position:absolute; top:-2px; right:1px; line-height:1; }
-.cal-emoji-list { display:flex; gap:1px; position:absolute; bottom:2px; font-size:8px; }
-.cal-legend { display:flex; flex-wrap:wrap; gap:8px 12px; font-size:10px; font-weight:700; color:var(--muted); justify-content:center; padding:10px 8px; }
+.cal-cyc-num { font-size:8px; font-weight:900; color:var(--muted); position:absolute; bottom:2px; right:3px; opacity:0.6; }
+.cal-day.period .cal-cyc-num { color:#fff; opacity:0.9; }
+.cal-emoji-list { display:flex; gap:1px; position:absolute; bottom:2px; left:2px; font-size:8px; letter-spacing:-2px;}
+.cal-legend { display:flex; flex-wrap:wrap; gap:8px 12px; font-size:10px; font-weight:700; color:var(--muted); justify-content:center; padding:0 8px 10px; }
 .cal-legend span { display:flex; align-items:center; gap:5px; }
-.cal-legend .dot { width:12px; height:12px; border-radius:4px; border:1px solid var(--border2); flex-shrink:0; }
-/* Раньше легенда была невидимой: стили висели на .cal-day.period, а не на .dot */
-.cal-legend .dot.d-period { background:linear-gradient(135deg, var(--pink), #d95e86); border-color:var(--pink-d); }
-.cal-legend .dot.d-pred { background:repeating-linear-gradient(45deg, var(--pink-l), var(--pink-l) 2px, #fff 2px, #fff 4px); border-color:var(--pink-l); }
-.cal-legend .dot.d-fert { background:rgba(186,130,196,.4); border-color:var(--lilac); }
-.cal-legend .dot.d-pms { background:rgba(255,164,140,.5); border-color:var(--peach); }
-
-.cal-day.selected { outline:2.5px solid var(--pink-d); outline-offset:-2.5px; z-index:2; }
-.cal-day.pms { background:rgba(255,164,140,.3); }
-.cal-day.period-live { background:linear-gradient(135deg, var(--pink), #d95e86); color:#fff; }
-.cal-day.ovu::before { content:''; position:absolute; inset:3px; border-radius:50%; border:1.5px dashed var(--lilac); }
-.cal-day.fut { opacity:.75; }
-
-/* Новые стили для вкладки Цикл (Кольцо, Кнопки, Симптомы) */
-.cycle-ring-wrap { position:relative; width:190px; height:190px; margin: 6px auto 16px; display:flex; justify-content:center; align-items:center; border-radius:50%; box-shadow: 0 6px 24px rgba(232,116,154,0.15); background: #fff; border: 5px solid var(--bg2); transition: all 0.3s;}
-.cycle-ring-inner { text-align:center; z-index: 2; padding: 10px; }
-.cycle-ring-day { font-size: 40px; font-weight: 900; color: var(--pink); line-height:1; font-family:'Nunito',sans-serif; letter-spacing: -1.5px; }
-.cycle-ring-phase { font-size: 11px; font-weight: 800; color: var(--muted); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
-.cycle-ring-sub { font-size:10px; font-weight:700; color:var(--muted); margin-top:5px; }
-.qa-btn { display:block; width: 100%; padding: 16px; border-radius: 20px; font-size: 15px; font-weight: 800; text-align:center; border: none; cursor:pointer; transition: transform 0.1s; margin-bottom:10px; font-family:'Nunito',sans-serif; }
-.qa-btn:active { transform: scale(0.97); }
-.qa-btn.start { background: linear-gradient(135deg, var(--pink), var(--pink-d)); color: #fff; box-shadow: 0 6px 16px rgba(232,116,154,0.3); }
-.qa-btn.end { background: linear-gradient(135deg, #fff, var(--bg2)); color: var(--text); border: 2px solid var(--border2); box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
-.qa-hint { text-align:center; font-size:10px; font-weight:700; color:var(--muted); margin-bottom:4px; }
-.symp-group { margin-bottom: 14px; }
-.symp-title { font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
-.symp-chips { display: flex; flex-wrap: wrap; gap: 7px; }
-.symp-chip { padding: 8px 13px; border-radius: 16px; border: 1.5px solid var(--border2); font-size: 12.5px; font-weight: 700; color: var(--text2); background: #fff; cursor: pointer; transition: all 0.15s; box-shadow: 0 2px 5px rgba(0,0,0,0.02); user-select:none; }
-.symp-chip:active { transform: scale(0.94); }
-.symp-chip.active { border-color: var(--pink); background: linear-gradient(135deg, #fff, var(--bg2)); color: var(--pink-d); box-shadow: 0 4px 10px rgba(232,116,154,0.15); }
-
-.day-pick { display:flex; gap:6px; align-items:center; justify-content:space-between; background:var(--bg2); border:1px solid var(--border2); border-radius:14px; padding:7px 10px; margin-bottom:12px; }
-.day-pick-lbl { font-size:11px; font-weight:800; color:var(--pink-d); }
-.mini-btn { background:#fff; border:1px solid var(--border); color:var(--pink); border-radius:12px; padding:5px 10px; font-size:10px; font-weight:800; cursor:pointer; font-family:'Nunito',sans-serif; white-space:nowrap; }
-
-.fc-row { display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px dashed var(--border2); }
-.fc-row:last-child { border-bottom:none; }
-.fc-ic { width:34px; height:34px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; background:var(--bg2); }
-.fc-t { font-size:12.5px; font-weight:800; color:var(--text); }
-.fc-s { font-size:10px; font-weight:700; color:var(--muted); margin-top:1px; }
-.fc-badge { margin-left:auto; font-size:10px; font-weight:800; color:var(--pink); background:rgba(232,116,154,.1); padding:4px 10px; border-radius:12px; white-space:nowrap; }
-
-.phase-bar { display:flex; height:10px; border-radius:99px; overflow:hidden; margin:10px 0 6px; background:var(--bg2); }
-.phase-bar i { display:block; height:100%; }
-.phase-marks { display:flex; justify-content:space-between; font-size:9px; font-weight:700; color:var(--muted); }
-
-.sheet-back { position:fixed; inset:0; background:rgba(74,37,53,.45); z-index:300; display:flex; align-items:flex-end; justify-content:center; backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px); animation:fadein .18s ease; }
-@keyframes fadein{from{opacity:0}to{opacity:1}}
-@keyframes sheetup{from{transform:translateY(40px);opacity:.4}to{transform:none;opacity:1}}
-.sheet { background:var(--card); width:100%; max-width:520px; border-radius:26px 26px 0 0; padding:16px 16px calc(20px + env(safe-area-inset-bottom)); max-height:88vh; overflow-y:auto; animation:sheetup .22s cubic-bezier(.3,1,.5,1); box-shadow:0 -10px 40px rgba(0,0,0,.18); }
-.sheet-grab { width:42px; height:4px; border-radius:99px; background:var(--border2); margin:0 auto 12px; }
-.sheet-hdr { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
-.sheet-ttl { font-family:'Dancing Script',cursive; font-size:20px; font-weight:700; color:var(--pink); }
-.sheet-x { background:var(--bg2); border:none; width:30px; height:30px; border-radius:50%; font-size:16px; color:var(--muted); cursor:pointer; line-height:1; font-family:'Nunito',sans-serif; }
-
-#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(14px);z-index:400;background:rgba(74,37,53,.94);color:#fff;font-size:12.5px;font-weight:800;padding:11px 20px;border-radius:99px;box-shadow:0 8px 26px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:88vw;text-align:center}
-#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-
-.insight-row { display:flex; align-items:center; gap:8px; font-size:12px; font-weight:700; color:var(--text2); padding:7px 0; }
-.insight-bar { flex:1; height:7px; background:var(--bg2); border-radius:99px; overflow:hidden; }
-.insight-bar i { display:block; height:100%; background:linear-gradient(90deg,var(--pink-l),var(--pink)); border-radius:99px; }
-
-/* .search-row и .reminder использовались в разметке, но не были описаны в CSS */
-.search-row{display:flex;gap:8px;margin-bottom:10px;align-items:center}
-.search-row input,.search-row select{flex:1;min-width:0}
-.search-row button{flex:0 0 auto}
-.reminder{background:rgba(255,179,179,.12);border:1.5px solid rgba(224,112,112,.3);color:var(--red);border-radius:14px;padding:10px 12px;font-size:11.5px;font-weight:700;line-height:1.5}
+.cal-legend .dot { width:12px; height:12px; border-radius:4px; }
 </style>
 </head>
 <body>
@@ -283,16 +227,12 @@ details[open] summary::before{transform:rotate(90deg)}
 </div>
 
 <div id="app-content"></div>
-<div id="toast" role="status" aria-live="polite"></div>
 
 <script>
 'use strict';
 
-/* ═══════════════════════════════════
-   КОНФИГ
-═══════════════════════════════════ */
 const DB_NAME = 'RosePlannerV1';
-const DB_VER  = 7; // Увеличено для новой таблицы Симптомов
+const DB_VER  = 8; // Увеличен номер версии для новой таблицы Симптомов
 const S = { TX:'transactions', CFG:'settings', GOALS:'goals', ALIGNERS:'aligners', SHOP:'shopping', CYCLES:'cycles', SYMPTOMS:'symptoms' };
 const ALIGNER_UPPER_TOTAL = 26;
 const ALIGNER_LOWER_TOTAL = 23;
@@ -307,16 +247,16 @@ const DEFAULTS = {
     "2": "2026-03-25T22:00:00",
     "11": "2026-08-06T22:00:00",
     "14": "2026-09-16T22:00:00"
-  }
+  },
+  // Настройки цикла по умолчанию
+  cycleAvgDays: 28,
+  cycleBleedingDays: 5
 };
 
 const CAT_EXP = ['Еда 🍽','Быт 🏠','Маркетплейсы 🛍','Развлечения 🎉','Уход за собой 💅','Здоровье 💊','Аренда 🏡','Коммуналка 💡','WiFi 📶','Моб. интернет 📱','Налог 📋','Другое ✨'];
 const CAT_INC = ['Зарплата 💸','Другое ✨'];
 const GOAL_COLORS = ['#e8749a','#d4a0c7','#ff8fb1','#ffb5a7','#6dbf8d','#79b8f5','#f4c430','#c45a7e'];
 
-/* ═══════════════════════════════════
-   INDEXEDDB
-═══════════════════════════════════ */
 class DB {
   constructor(){ this.ready = this._open(); }
   _open(){
@@ -336,7 +276,7 @@ class DB {
         mk(S.ALIGNERS,{keyPath:'id',autoIncrement:true},[['pair','pair']]);
         mk(S.SHOP,  {keyPath:'id',autoIncrement:true});
         mk(S.CYCLES,{keyPath:'id',autoIncrement:true});
-        mk(S.SYMPTOMS,{keyPath:'date'}); // Новая таблица для симптомов (ключ - дата YYYY-MM-DD)
+        mk(S.SYMPTOMS,{keyPath:'date'}); // Таблица для симптомов (ключ - дата YYYY-MM-DD)
       };
       req.onsuccess = e => { this.db=e.target.result; this._seed().then(res).catch(rej); };
       req.onerror   = e => rej(e.target.error);
@@ -366,76 +306,11 @@ class DB {
   async setCfg(k,v){await this.set(S.CFG,{key:k,value:v});}
 }
 
-/* ═══════════════════════════════════
-   УТИЛИТЫ & ВСПОМОГАТЕЛЬНЫЕ
-═══════════════════════════════════ */
 const fmt   = n => Number(n||0).toLocaleString('ru-RU',{minimumFractionDigits:2,maximumFractionDigits:2});
 const fmtI  = n => Number(n||0).toLocaleString('ru-RU');
 const dStr  = d => new Date(d).toLocaleDateString('ru-RU');
-
-/* Ключ даты YYYY-MM-DD в ЛОКАЛЬНОМ часовом поясе (без сдвига на день) */
-const dKey  = d => { const x = new Date(d); return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}-${String(x.getDate()).padStart(2,'0')}`; };
-const today = () => dKey(new Date());
-/* Парсинг YYYY-MM-DD в локальную полночь */
-const dParse = s => { const [y,m,d] = String(s).split('-').map(Number); return new Date(y, m-1, d); };
-/* Прибавление дней без проблем с переходом на летнее время */
-const dAdd  = (d,n) => new Date(d.getFullYear(), d.getMonth(), d.getDate()+n);
-/* Разница в календарных днях (a - b) */
-const dDiff = (a,b) => Math.round((new Date(a.getFullYear(),a.getMonth(),a.getDate()) - new Date(b.getFullYear(),b.getMonth(),b.getDate()))/86400000);
-const dShort = d => d.toLocaleDateString('ru-RU',{day:'numeric',month:'short'});
-/* Склонение: 1 день / 2 дня / 5 дней */
-const plural = (n,a,b,c) => { const n1=Math.abs(n)%100, n2=n1%10; if(n1>10&&n1<20) return c; if(n2>1&&n2<5) return b; if(n2===1) return a; return c; };
-const days = n => `${n} ${plural(n,'день','дня','дней')}`;
-
-/* Экранирование пользовательского текста — иначе символы < > & ломают вёрстку */
-const esc = s => String(s==null?'':s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-
-/* Каталог симптомов для вкладки Цикл */
-const FLOW_OPTS = [
-  {id:'spot',   e:'🫧', l:'Мажет'},
-  {id:'light',  e:'💧', l:'Лёгкие'},
-  {id:'medium', e:'🩸', l:'Средние'},
-  {id:'heavy',  e:'🌊', l:'Обильные'}
-];
-const PAIN_OPTS = [
-  {id:'none',   e:'✨', l:'Нет боли'},
-  {id:'mild',   e:'🤏', l:'Тянет'},
-  {id:'medium', e:'😖', l:'Заметная'},
-  {id:'severe', e:'😫', l:'Сильная'}
-];
-const MOOD_OPTS = [
-  {id:'happy',  e:'🥰', l:'Отличное'},
-  {id:'calm',   e:'😌', l:'Спокойное'},
-  {id:'sad',    e:'🥺', l:'Плаксивое'},
-  {id:'angry',  e:'😡', l:'Бесит всё'},
-  {id:'anxious',e:'😰', l:'Тревожное'},
-  {id:'tired',  e:'🥱', l:'Усталость'}
-];
-const TAG_OPTS = [
-  {id:'headache',e:'🤕', l:'Голова'},
-  {id:'back',    e:'🌡', l:'Поясница'},
-  {id:'bloat',   e:'🎈', l:'Вздутие'},
-  {id:'nausea',  e:'🤢', l:'Тошнота'},
-  {id:'breast',  e:'💗', l:'Грудь болит'},
-  {id:'acne',    e:'🌋', l:'Высыпания'},
-  {id:'sweet',   e:'🍫', l:'Тянет на сладкое'},
-  {id:'insomnia',e:'🌙', l:'Плохо сплю'},
-  {id:'energy',  e:'⚡', l:'Много энергии'},
-  {id:'dizzy',   e:'💫', l:'Кружится голова'}
-];
-const mkMap = arr => arr.reduce((m,o)=>(m[o.id]=o,m),{});
-const FLOW_MAP = mkMap(FLOW_OPTS), PAIN_MAP = mkMap(PAIN_OPTS), MOOD_MAP = mkMap(MOOD_OPTS), TAG_MAP = mkMap(TAG_OPTS);
-
-const PHASES = {
-  menses:     {l:'Менструация',   e:'🩸', c:'var(--pink)',  tip:'Организм обновляется, уровень гормонов на минимуме. Усталость и желание никуда не идти — это физиология, а не лень. Помогают тепло, вода, еда с железом и нормальный сон.'},
-  follicular: {l:'Фолликулярная', e:'🌱', c:'#4fae86',      tip:'Эстроген растёт: энергия, ясная голова, кожа лучше, настроение ровнее. Лучшее время для сложных задач, тренировок и новых начинаний.'},
-  fertile:    {l:'Окно овуляции', e:'✨', c:'var(--lilac)', tip:'Самые фертильные дни цикла. Обычно это пик энергии, общительности и либидо. Если беременность не в планах — это дни, когда нужна защита.'},
-  ovu:        {l:'Овуляция',      e:'💫', c:'var(--lilac)', tip:'Сегодня наиболее вероятный день овуляции. Может слегка тянуть с одной стороны живота и меняться характер выделений — это нормально.'},
-  luteal:     {l:'Лютеиновая',    e:'☁️', c:'#e09a7e',      tip:'Прогестерон растёт, энергия плавно идёт вниз. Хочется уюта, еды поплотнее и меньше суеты. Планируй нагрузку помягче.'},
-  pms:        {l:'ПМС',           e:'🌧', c:'#e09a7e',      tip:'Месячные уже близко. Настроение может скакать, грудь наливаться, тянуть на сладкое. Побольше сна, поменьше самокритики — ты не «сложная», у тебя гормоны 🌸'},
-  delay:      {l:'Задержка',      e:'⏳', c:'var(--red)',   tip:'Месячные пока не пришли. Частые причины — стресс, недосып, болезнь, перелёты, смена веса или нагрузок. Если задержка больше недели, стоит сделать тест и показаться врачу.'},
-  none:       {l:'Нет данных',    e:'🌸', c:'var(--muted)', tip:''}
-};
+// Корректное получение текущей даты YYYY-MM-DD с учетом часового пояса
+const today = () => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().split('T')[0]; };
 
 function confirmDel(btn,cb){
   if(btn._c){cb();return;}
@@ -447,38 +322,10 @@ function confirmDel(btn,cb){
 
 function downloadICS(pair, dateObj) {
   const formatICS = (dt) => dt.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
-  const start = formatICS(dateObj);
-  const end   = formatICS(new Date(dateObj.getTime() + 30 * 60000));
-  const uid   = `rose-aligner-${pair}-${dateObj.getTime()}@rose.planner`;
-
-  // Раньше не хватало PRODID / UID / DTSTAMP и строки склеивались через \n —
-  // часть календарей из-за этого отказывалась открывать файл.
-  const ics = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Rose Planner//Aligners//RU',
-    'CALSCALE:GREGORIAN',
-    'METHOD:PUBLISH',
-    'BEGIN:VEVENT',
-    `UID:${uid}`,
-    `DTSTAMP:${formatICS(new Date())}`,
-    `DTSTART:${start}`,
-    `DTEND:${end}`,
-    `SUMMARY:Смена элайнеров — пара ${pair}`,
-    `DESCRIPTION:Пора надеть пару ${pair}. Почисти зубы и промой капы.`,
-    'BEGIN:VALARM',
-    'TRIGGER:-PT2H',
-    'ACTION:DISPLAY',
-    'DESCRIPTION:Через 2 часа менять элайнеры',
-    'END:VALARM',
-    'BEGIN:VALARM',
-    'TRIGGER:PT0M',
-    'ACTION:DISPLAY',
-    'DESCRIPTION:Пора менять элайнеры!',
-    'END:VALARM',
-    'END:VEVENT',
-    'END:VCALENDAR'
-  ].join('\r\n');
+  const start = formatICS(new Date(dateObj.getTime() - 2 * 3600000)); 
+  const end = formatICS(dateObj);
+  
+  const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:🦷 Смена элайнеров (Пара ${pair})\nDESCRIPTION:Пора менять элайнеры на пару ${pair}! Надеваем в 22:00.\nDTSTART:${start}\nDTEND:${end}\nBEGIN:VALARM\nTRIGGER:-PT0M\nACTION:DISPLAY\nDESCRIPTION:Пора менять элайнеры!\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR`;
 
   const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
   const url = URL.createObjectURL(blob);
@@ -491,9 +338,6 @@ function downloadICS(pair, dateObj) {
   URL.revokeObjectURL(url);
 }
 
-/* ═══════════════════════════════════
-   APP CORE
-═══════════════════════════════════ */
 const TABS = ['finance','shopping','goals','aligners','cycles','stats'];
 
 class App {
@@ -506,17 +350,15 @@ class App {
     this._incCustomS = null; this._incCustomE = null;
     this._incOpen = false;
     this._schedShowAll = false;
+    // Date for cycle symptom tracking, defaults to today
+    this._cycSelectedDate = today();
+    
     this.db.ready.then(()=>this._init()).catch(e=>console.error('[Rosé]',e));
   }
   
   async _init(){
-    // Браузер не должен сам восстанавливать скролл — мы делаем это точнее
-    if('scrollRestoration' in history) history.scrollRestoration = 'manual';
-
     document.getElementById('tabs').addEventListener('click',e=>{
-      const tabEl = e.target.closest('.tab');
-      const t = tabEl && tabEl.dataset.tab;
-      if(!t||t===this.tab) return;
+      const t=e.target.dataset.tab; if(!t||t===this.tab) return;
       const oi=TABS.indexOf(this.tab),ni=TABS.indexOf(t);
       this._swipeDir=ni>oi?'left':'right';
       this.tab=t;
@@ -524,71 +366,50 @@ class App {
       this._scrollTab(t);
       this._render();
     });
-
+    
     document.getElementById('exp-btn').onclick=()=>this._export();
     document.getElementById('imp-file').onchange=e=>this._import(e.target.files[0]);
     this._initSwipe();
     this._render();
-
-    // Разрешение на уведомления просим только после первого касания:
-    // iOS игнорирует запрос без жеста пользователя.
-    const askOnce = () => {
-      document.removeEventListener('click', askOnce);
-      this._requestNotifPerms();
-    };
-    document.addEventListener('click', askOnce, {once:true});
+    this._requestNotifPerms();
 
     if ('serviceWorker' in navigator) {
-      // scope:'/' ломался, если приложение лежит в подпапке (GitHub Pages и т.п.)
-      navigator.serviceWorker.register('sw.js')
-        .then(() => {
+      navigator.serviceWorker.register('sw.js', { scope: '/' })
+        .then(reg => {
           navigator.serviceWorker.addEventListener('message', event => {
             if (event.data && event.data.action === 'backup-now') this._export(true);
           });
         })
         .catch(err => console.warn('SW failed', err));
     }
-
-    // Если приложение висело в фоне и наступил новый день — пересчитываем
-    document.addEventListener('visibilitychange', () => {
-      if(document.visibilityState !== 'visible') return;
-      const t = today();
-      if(this._lastDay && this._lastDay !== t) this._render();
-      this._lastDay = t;
-    });
-    this._lastDay = today();
   }
 
   async _requestNotifPerms(){
-    try{
-      if(!('Notification' in window)) return false;
-      if(Notification.permission!=='default') return Notification.permission==='granted';
-      const p = await Notification.requestPermission();
-      return p==='granted';
-    }catch(e){ return false; }
+    if(!('Notification' in window)) return false;
+    if(Notification.permission==='granted') return true;
+    const p = await Notification.requestPermission();
+    return p==='granted';
   }
 
   async _getAlignerSchedule() {
-    const overrides = (await this.db.cfg('alignerOverrides')) || {};
-    const intervalDays = Number(await this.db.cfg('alignerIntervalDays')) || 14;
+    const overrides = await this.db.cfg('alignerOverrides');
+    const intervalDays = await this.db.cfg('alignerIntervalDays') || 14;
     const intervalMs = intervalDays * 86400000;
     const maxPair = Math.max(ALIGNER_UPPER_TOTAL, ALIGNER_LOWER_TOTAL);
-
-    // битые значения игнорируем, иначе весь график превращался в Invalid Date
-    const ov = n => {
-      const raw = overrides[n] ?? overrides[String(n)];
-      if(!raw) return null;
-      const d = new Date(raw);
-      return isNaN(d.getTime()) ? null : d;
-    };
-
+    
     const schedule = [];
-    let lastDate = ov(1) || new Date("2026-03-12T22:00:00");
+    let lastDate = new Date(overrides["1"] || "2026-03-12T22:00:00");
 
     for (let n = 1; n <= maxPair; n++) {
-      const fixed = ov(n);
-      const d = fixed ? fixed : (n > 1 ? new Date(lastDate.getTime() + intervalMs) : lastDate);
-      schedule.push({ pair: n, date: d, manual: !!fixed });
+      let d;
+      if (overrides[n]) {
+        d = new Date(overrides[n]);
+      } else if (n > 1) {
+        d = new Date(lastDate.getTime() + intervalMs);
+      } else {
+        d = lastDate; 
+      }
+      schedule.push({ pair: n, date: d });
       lastDate = d;
     }
     return schedule;
@@ -642,18 +463,8 @@ class App {
     },{passive:true});
   }
   
-  /* Перерисовка страницы.
-     Главный фикс: раньше любое нажатие пересобирало DOM и экран отбрасывало наверх.
-     Теперь позиция скролла и открытые «details» сохраняются. */
-  async _render(opts = {}){
-    const isTabSwitch = !!this._swipeDir;
-    const keepScroll  = opts.toTop ? false : !isTabSwitch;
-    const sy = window.scrollY || window.pageYOffset || 0;
-
-    const c=document.getElementById('app-content');
-    // Минимальная высота на время перерисовки — чтобы страница не «схлопнулась» и скролл не слетел
-    if(keepScroll) c.style.minHeight = c.offsetHeight + 'px';
-    c.innerHTML='';
+  _render(){
+    const c=document.getElementById('app-content'); c.innerHTML='';
     const wrap=document.createElement('div');
     if(this._swipeDir==='left') wrap.className='page-in-l';
     else if(this._swipeDir==='right') wrap.className='page-in-r';
@@ -666,870 +477,460 @@ class App {
       cycles:()=>this._cycles(wrap),
       stats:()=>this._stats(wrap)
     };
-    try { await (map[this.tab]||map.finance)(); }
-    catch(err){ console.error('[Rosé] render',err); }
-
-    this._restoreDetails(wrap);
-    c.style.minHeight = '';
-
-    if(keepScroll){
-      const maxY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-      const target = Math.min(sy, maxY);
-      window.scrollTo(0, target);
-      requestAnimationFrame(()=>window.scrollTo(0, Math.min(sy, Math.max(0, document.documentElement.scrollHeight - window.innerHeight))));
-    } else {
-      window.scrollTo(0,0);
-    }
-  }
-
-  /* Запоминаем, какие раскрывающиеся блоки открыты, чтобы они не захлопывались */
-  _restoreDetails(root){
-    if(!this._openDetails) this._openDetails = new Set();
-    root.querySelectorAll('details[data-dk]').forEach(d=>{
-      if(this._openDetails.has(d.dataset.dk)) d.open = true;
-      d.addEventListener('toggle', ()=>{
-        if(d.open) this._openDetails.add(d.dataset.dk);
-        else this._openDetails.delete(d.dataset.dk);
-      });
-    });
+    (map[this.tab]||map.finance)();
   }
   _card(extra=''){const el=document.createElement('div');el.className='card'+extra;return el;}
 
-  /* Ненавязчивое уведомление вместо alert() — alert на iOS блокирует всё окно */
-  _toast(msg){
-    const t = document.getElementById('toast');
-    if(!t){ console.log(msg); return; }
-    t.textContent = msg;
-    t.classList.add('on');
-    clearTimeout(this._toastT);
-    this._toastT = setTimeout(()=>t.classList.remove('on'), 2100);
-  }
-
-  /* ═══════════════════════════════════
-     CYCLES — ЖЕНСКИЙ КАЛЕНДАРЬ
-  ═══════════════════════════════════ */
-
-  /* --- Загрузка и нормализация данных --- */
-  async _cycleData(){
+  async _cycles(c) {
     let cycles = await this.db.all(S.CYCLES);
-    // выбрасываем битые записи, приводим формат, сортируем свежие сверху
-    cycles = cycles
-      .filter(c => c && /^\d{4}-\d{2}-\d{2}$/.test(c.startDate || ''))
-      .map(c => ({...c, endDate: /^\d{4}-\d{2}-\d{2}$/.test(c.endDate || '') ? c.endDate : null}))
-      .sort((a,b) => b.startDate.localeCompare(a.startDate));
+    const symptomsList = await this.db.all(S.SYMPTOMS);
+    const symptomsMap = {};
+    symptomsList.forEach(s => symptomsMap[s.date] = s);
 
-    // если конец раньше начала — чиним на лету
-    cycles.forEach(c => { if(c.endDate && c.endDate < c.startDate) c.endDate = c.startDate; });
+    cycles.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
 
-    const symptoms = await this.db.all(S.SYMPTOMS);
-    const sMap = {};
-    symptoms.forEach(s => {
-      if(!s || !s.date) return;
-      if(!Array.isArray(s.tags)) s.tags = [];
-      sMap[s.date] = s;
-    });
-    return { cycles, symptoms, sMap };
-  }
-
-  /* --- Статистика по истории --- */
-  _cycleStats(cycles){
-    // длины циклов = расстояние между началами соседних месячных
-    const lens = [];
-    for(let i = 0; i < cycles.length - 1; i++){
-      const d = dDiff(dParse(cycles[i].startDate), dParse(cycles[i+1].startDate));
-      if(d >= 15 && d <= 60) lens.push(d); // явные опечатки игнорируем
-    }
-    const recent = lens.slice(0, 6); // считаем по последним 6 циклам — так точнее
-    const avgCycle = recent.length
-      ? Math.min(45, Math.max(20, Math.round(recent.reduce((a,b)=>a+b,0) / recent.length)))
-      : 28;
-    const minLen = recent.length ? Math.min(...recent) : null;
-    const maxLen = recent.length ? Math.max(...recent) : null;
-    const spread = recent.length > 1 ? maxLen - minLen : null;
-
-    // длительность кровотечения — только по закрытым записям
-    const durs = [];
-    cycles.forEach(c => {
-      if(!c.endDate) return;
-      const d = dDiff(dParse(c.endDate), dParse(c.startDate)) + 1;
-      if(d >= 1 && d <= 14) durs.push(d);
-    });
-    const rd = durs.slice(0, 6);
-    const avgDur = rd.length
-      ? Math.min(12, Math.max(2, Math.round(rd.reduce((a,b)=>a+b,0) / rd.length)))
-      : 5;
-
-    let regularity = null;
-    if(spread !== null){
-      if(spread <= 3)      regularity = {l:'Регулярный',   e:'💚', c:'var(--green)', d:'Цикл стабильный, прогноз точный'};
-      else if(spread <= 7) regularity = {l:'Почти ровный', e:'💛', c:'var(--peach)', d:'Небольшой разброс — это нормально'};
-      else                 regularity = {l:'Плавающий',    e:'🩷', c:'var(--lilac)', d:'Разброс большой, прогноз примерный'};
-    }
-
-    return { avgCycle, avgDur, minLen, maxLen, spread, regularity,
-             samples: recent.length, durSamples: rd.length, known: recent.length > 0 };
-  }
-
-  /* --- Где мы находимся прямо сейчас --- */
-  _cycleState(cycles, stats){
-    const todayD = today();
-    const now = dParse(todayD);
-    const st = { now, todayD, cur:null, cDay:0, phase:'none', bleeding:false,
-                 delay:0, unclosed:false, daysToNext:null, preds:[], bleedEnd:null };
-
-    // текущий цикл — последний, начавшийся не позже сегодняшнего дня
-    const cur = cycles.find(c => c.startDate <= todayD) || null;
-    if(!cur) return st;
-
-    st.cur = cur;
-    const start = dParse(cur.startDate);
-    st.cDay = dDiff(now, start) + 1;
-
-    if(cur.endDate){
-      st.bleeding = todayD <= cur.endDate;
-      st.bleedEnd = dParse(cur.endDate);
-    } else {
-      // Раньше было так: нет даты окончания → «менструация» навсегда.
-      // Теперь предполагаем среднюю длительность и мягко напоминаем закрыть запись.
-      const assumed = Math.max(stats.avgDur, 3);
-      st.bleeding  = st.cDay <= assumed;
-      st.unclosed  = st.cDay > assumed + 1;
-      st.bleedEnd  = dAdd(start, assumed - 1);
-    }
-
-    const A = stats.avgCycle;
-    for(let i = 1; i <= 9; i++){
-      const ps = dAdd(start, A * i);
-      const ov = dAdd(ps, -14);
-      st.preds.push({
-        start: ps,
-        end:   dAdd(ps, stats.avgDur - 1),
-        ovu:   ov,
-        fertS: dAdd(ov, -5),
-        fertE: dAdd(ov,  1),
-        pmsS:  dAdd(ps, -5),
-        pmsE:  dAdd(ps, -1)
-      });
-    }
-
-    const p0 = st.preds[0];
-    st.next       = p0;
-    st.daysToNext = dDiff(p0.start, now);
-    st.delay      = Math.max(0, -st.daysToNext);
-
-    if(st.bleeding)                                 st.phase = 'menses';
-    else if(st.delay > 0)                           st.phase = 'delay';
-    else if(dDiff(now, p0.ovu) === 0)               st.phase = 'ovu';
-    else if(now >= p0.fertS && now <= p0.fertE)     st.phase = 'fertile';
-    else if(now >= p0.pmsS)                         st.phase = 'pms';
-    else if(now <  p0.fertS)                        st.phase = 'follicular';
-    else                                            st.phase = 'luteal';
-
-    return st;
-  }
-
-  /* --- Главный рендер вкладки --- */
-  async _cycles(c){
-    const { cycles, sMap } = await this._cycleData();
-    const stats = this._cycleStats(cycles);
-    const st    = this._cycleState(cycles, stats);
-    this._cyc   = { cycles, sMap, stats, st };
-
-    // день, за который редактируем самочувствие (по умолчанию — сегодня, в будущее нельзя)
-    if(!this._sympDate || this._sympDate > st.todayD) this._sympDate = st.todayD;
-
-    this._cycHero(c);
-    this._cycSymptoms(c);
-
-    const calBox = document.createElement('div');
-    c.appendChild(calBox);
-    this._calBox = calBox;
-    this._renderCalendar();
-
-    this._cycForecast(c);
-    this._cycStats(c);
-    this._cycInsights(c);
-    this._cycGuide(c);
-    this._cycHistory(c);
-  }
-
-  /* --- Карточка №1: кольцо, фаза, быстрые кнопки --- */
-  _cycHero(c){
-    const { stats, st } = this._cyc;
-    const ph = PHASES[st.phase] || PHASES.none;
-    const card = this._card(' pink-card');
-
-    let ring;
-    if(st.cur){
-      const pct = st.phase === 'delay' ? 100 : Math.max(4, Math.min(100, (st.cDay / stats.avgCycle) * 100));
-      const bigNum = st.phase === 'delay' ? `+${st.delay}` : st.cDay;
-      const sub = st.phase === 'delay'
-        ? `задержка ${days(st.delay)}`
-        : (st.daysToNext === 0 ? 'месячные ждём сегодня'
-          : `до месячных ~${days(st.daysToNext)}`);
-      ring = `
-        <div class="cycle-ring-wrap" style="border-color:${ph.c}33">
-          <svg viewBox="0 0 36 36" style="position:absolute;width:100%;height:100%;transform:rotate(-90deg)" aria-hidden="true">
-            <path d="M18 2.0845a15.9155 15.9155 0 0 1 0 31.831a15.9155 15.9155 0 0 1 0-31.831"
-                  fill="none" stroke="var(--bg2)" stroke-width="3"/>
-            <path d="M18 2.0845a15.9155 15.9155 0 0 1 0 31.831a15.9155 15.9155 0 0 1 0-31.831"
-                  fill="none" stroke="${ph.c}" stroke-width="3" stroke-linecap="round"
-                  stroke-dasharray="${pct.toFixed(1)} 100"/>
-          </svg>
-          <div class="cycle-ring-inner">
-            <div class="cycle-ring-day" style="color:${ph.c}">${bigNum}<span style="font-size:15px;letter-spacing:0"> ${st.phase==='delay'?plural(st.delay,'день','дня','дней'):'день'}</span></div>
-            <div class="cycle-ring-phase" style="color:${ph.c}">${ph.e} ${ph.l}</div>
-            <div class="cycle-ring-sub">${sub}</div>
-          </div>
-        </div>`;
-    } else {
-      ring = `<div style="text-align:center;padding:26px 10px;color:var(--muted);font-weight:700;line-height:1.7">
-                <div style="font-size:40px;margin-bottom:8px">🌸</div>
-                Отметь первый день месячных —<br>и я посчитаю всё остальное сама
-              </div>`;
-    }
-
-    // кнопки быстрых действий
-    let acts = '';
-    if(st.cur && !st.cur.endDate && st.bleeding){
-      acts = `<button class="qa-btn end" data-act="end">🛑 Закончились сегодня</button>`;
-    } else if(st.cur && st.cur.startDate === st.todayD){
-      acts = `<button class="qa-btn end" data-act="end">🛑 Закончились сегодня</button>`;
-    } else {
-      acts = `<button class="qa-btn start" data-act="start">🩸 Начались сегодня!</button>`;
-    }
-    acts += `<div class="qa-hint">Начались не сегодня? Нажми нужный день в календаре 👇</div>`;
-
-    // предупреждение о незакрытой записи
-    let warn = '';
-    if(st.unclosed){
-      warn = `<div class="notify-box warn" style="margin-bottom:12px">
-        ⚠️ Ты не отметила, когда месячные закончились (идут уже ${days(st.cDay)}).
-        <div class="btn-row" style="margin-top:8px">
-          <button class="btn p2" data-act="end-guess">Закончились ${dShort(st.bleedEnd)}</button>
-          <button class="btn p2" data-act="end">Закончились сегодня</button>
+    // ОНБОРДИНГ (Если нет данных)
+    if (cycles.length === 0) {
+      const obCard = this._card(' pink-card');
+      obCard.innerHTML = `
+        <div style="text-align:center; padding:10px 0;">
+          <div style="font-size:40px; margin-bottom:10px;">🌸</div>
+          <div style="font-family:'Dancing Script',cursive; font-size:24px; color:var(--pink); margin-bottom:8px; font-weight:700;">Привет!</div>
+          <div style="font-size:13px; color:var(--text2); line-height:1.5; font-weight:600; margin-bottom:16px;">Давай настроим твой женский календарь. Ответь на пару вопросов, и я рассчитаю фазы на полгода вперед ✨</div>
         </div>
-      </div>`;
-    } else if(st.phase === 'delay' && st.delay >= 3){
-      warn = `<div class="notify-box warn" style="margin-bottom:12px">
-        ⏳ Задержка ${days(st.delay)}. Чаще всего виноваты стресс, недосып, болезнь или смена режима.
-        Если больше недели — имеет смысл сделать тест и сходить к врачу 💗
-      </div>`;
+        <div class="ig"><label class="lbl">Когда начались последние месячные?</label><input type="date" id="ob-date" value="${today()}"></div>
+        <div class="g2">
+          <div class="ig"><label class="lbl">Длина цикла (дней)</label><input type="number" id="ob-cyc" value="28"></div>
+          <div class="ig"><label class="lbl">Сколько идут (дней)</label><input type="number" id="ob-dur" value="5"></div>
+        </div>
+        <button class="btn p full" id="ob-start" style="margin-top:16px; font-size:14px; padding:14px;">Создать календарь 💖</button>
+      `;
+      c.appendChild(obCard);
+      obCard.querySelector('#ob-start').onclick = async () => {
+        const sd = obCard.querySelector('#ob-date').value;
+        const cyc = parseInt(obCard.querySelector('#ob-cyc').value) || 28;
+        const dur = parseInt(obCard.querySelector('#ob-dur').value) || 5;
+        if (!sd) { alert('Пожалуйста, выбери дату 🌸'); return; }
+        await this.db.setCfg('cycleAvgDays', cyc);
+        await this.db.setCfg('cycleBleedingDays', dur);
+        await this.db.add(S.CYCLES, { startDate: sd, endDate: null });
+        this._render();
+      };
+      return;
     }
 
-    const stripe = stats.known
-      ? `<div style="display:flex;justify-content:center;flex-wrap:wrap;gap:4px 12px;font-size:10px;font-weight:800;color:var(--muted);margin-bottom:14px;text-align:center">
-           <span style="white-space:nowrap">ЦИКЛ ~${stats.avgCycle} ДН.</span>
-           <span style="white-space:nowrap">КРОВЬ ~${stats.avgDur} ДН.</span>
-           ${stats.regularity ? `<span style="white-space:nowrap;color:${stats.regularity.c}">${stats.regularity.e} ${stats.regularity.l.toUpperCase()}</span>` : ''}
-         </div>`
-      : `<div style="text-align:center;font-size:10.5px;font-weight:800;color:var(--muted);margin-bottom:14px">
-           ПОКА СЧИТАЮ ПО СРЕДНИМ: 28 / 5 ДН.
-         </div>`;
-
-    card.innerHTML = `<div class="card-title">🌸 Мой цикл</div>${ring}${stripe}${warn}${acts}`;
-    c.appendChild(card);
-
-    card.addEventListener('click', async e => {
-      const b = e.target.closest('[data-act]');
-      if(!b) return;
-      const act = b.dataset.act;
-      if(act === 'start')          await this._cycStart(st.todayD);
-      else if(act === 'end')       await this._cycEnd(st.todayD);
-      else if(act === 'end-guess') await this._cycEnd(dKey(st.bleedEnd));
-    });
-
-    // подсказка по текущей фазе
-    if(st.cur && ph.tip){
-      const tip = this._card();
-      tip.style.borderLeft = `4px solid ${ph.c}`;
-      tip.innerHTML = `<div style="font-size:12px;font-weight:900;color:${ph.c};margin-bottom:6px">${ph.e} ${ph.l.toUpperCase()} — ЧТО ЭТО ЗНАЧИТ</div>
-        <div style="font-size:12.5px;line-height:1.7;color:var(--text2);font-weight:600">${ph.tip}</div>`;
-      c.appendChild(tip);
+    // МАТЕМАТИКА ЦИКЛОВ
+    let avgCycle = await this.db.cfg('cycleAvgDays') || 28; 
+    let avgDur = await this.db.cfg('cycleBleedingDays') || 5;    
+    
+    // Пересчет средних значений на основе реальных данных (если их больше 1)
+    if (cycles.length >= 2) {
+      let totalDiff = 0;
+      for (let i = 0; i < cycles.length - 1; i++) {
+        totalDiff += (new Date(cycles[i].startDate) - new Date(cycles[i+1].startDate)) / 86400000;
+      }
+      avgCycle = Math.round(totalDiff / (cycles.length - 1));
+      if(avgCycle < 20) avgCycle = 20; 
+      if(avgCycle > 45) avgCycle = 45;
     }
-  }
+    
+    if (cycles.length >= 1) {
+      let totalDur = 0, count = 0;
+      cycles.forEach(cy => {
+        if (cy.endDate) {
+          totalDur += (new Date(cy.endDate) - new Date(cy.startDate)) / 86400000 + 1;
+          count++;
+        }
+      });
+      if (count > 0) avgDur = Math.round(totalDur / count);
+      if(avgDur < 1) avgDur = 1;
+      if(avgDur > 10) avgDur = 10;
+    }
 
-  /* --- Карточка №2: самочувствие за выбранный день --- */
-  _cycSymptoms(c){
-    const card = this._card(' lilac-card');
-    card.id = 'symp-card';
-    this._sympCard = card;
-    c.appendChild(card);
-    this._paintSympCard();
-  }
+    const todayD = today();
+    const now = new Date(todayD + 'T00:00:00');
 
-  _paintSympCard(){
-    const card = this._sympCard;
-    if(!card) return;
-    const { sMap, st } = this._cyc;
-    const key = this._sympDate;
-    const d   = dParse(key);
-    const rec = sMap[key] || { date:key, flow:'', pain:'', mood:'', tags:[], note:'' };
-    const isToday = key === st.todayD;
-    const label = isToday ? 'Сегодня' : d.toLocaleDateString('ru-RU',{weekday:'short', day:'numeric', month:'long'});
-    const canFwd = key < st.todayD;
+    const preds = [];
+    const fertile = [];
+    let isBleedingNow = false;
+    let latestCycle = cycles[0];
 
-    card.innerHTML = `
-      <div class="card-title">☁️ Как ты себя чувствуешь?</div>
-      <div class="day-pick">
-        <button class="mini-btn" data-nav="-1">‹</button>
-        <div class="day-pick-lbl">${esc(label)}</div>
-        <div style="display:flex;gap:6px">
-          ${isToday ? '' : '<button class="mini-btn" data-nav="today">Сегодня</button>'}
-          <button class="mini-btn" data-nav="1" ${canFwd ? '' : 'disabled style="opacity:.35"'}>›</button>
+    // Вычисляем статус последнего цикла и прогнозы
+    const lastStart = new Date(latestCycle.startDate + 'T00:00:00');
+    let lastEnd = latestCycle.endDate ? new Date(latestCycle.endDate + 'T00:00:00') : new Date(lastStart.getTime() + (avgDur-1)*86400000);
+    if (now >= lastStart && (!latestCycle.endDate || now <= lastEnd)) isBleedingNow = true;
+
+    let baseStart = lastStart;
+    for (let i = 1; i <= 6; i++) {
+      let pStart = new Date(baseStart.getTime() + avgCycle * 86400000);
+      let pEnd = new Date(pStart.getTime() + (avgDur - 1) * 86400000);
+      preds.push({ start: pStart, end: pEnd });
+      
+      let ovuDate = new Date(pStart.getTime() - 14 * 86400000);
+      let fStart = new Date(ovuDate.getTime() - 4 * 86400000);
+      let fEnd = new Date(ovuDate.getTime() + 1 * 86400000);   
+      fertile.push({ start: fStart, end: fEnd, ovu: ovuDate });
+      baseStart = pStart; 
+    }
+
+    // РАСЧЕТ ДЛЯ КОЛЬЦА НА СЕГОДНЯ
+    let cDay = Math.floor((now - lastStart) / 86400000) + 1;
+    let phaseName = "Нет данных";
+    let phaseColor = "var(--border2)";
+    let strokeColor = "var(--border2)";
+    let isDelay = false;
+
+    if (cDay <= avgDur || isBleedingNow) {
+        phaseName = "Менструация 🩸";
+        phaseColor = "var(--pink)";
+        strokeColor = "var(--pink)";
+    } else if (cDay > avgCycle) {
+        isDelay = true;
+        phaseName = "Задержка ⚠️";
+        phaseColor = "var(--red)";
+        strokeColor = "var(--red)";
+    } else {
+        let ovuDay = Math.max(1, avgCycle - 14);
+        if (cDay >= ovuDay - 4 && cDay <= ovuDay + 1) {
+            phaseName = cDay === ovuDay ? "Овуляция ✨" : "Окно овуляции ✨";
+            phaseColor = "var(--lilac)";
+            strokeColor = "var(--lilac)";
+        } else if (cDay < ovuDay - 4) {
+            phaseName = "Фолликулярная 🌱";
+            phaseColor = "var(--green)";
+            strokeColor = "#b2dfdb"; // mint
+        } else {
+            phaseName = "Лютеиновая ☁️";
+            phaseColor = "var(--peach)";
+            strokeColor = "var(--peach)";
+        }
+    }
+
+    const topCard = this._card(' pink-card');
+    const dash = isDelay ? 100 : Math.min(100, (cDay / avgCycle) * 100);
+    const dashArray = `${dash} 100`;
+    
+    let ringHTML = `
+      <div class="cycle-ring-wrap" style="border-color:${strokeColor}40">
+        <svg viewBox="0 0 36 36" style="position:absolute; width:100%; height:100%; transform: rotate(-90deg);">
+          <path stroke-dasharray="${dashArray}" stroke="${strokeColor}" stroke-width="3" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-linecap="round" />
+        </svg>
+        <div class="cycle-ring-inner">
+          <div class="cycle-ring-day" style="color:${phaseColor}">${isDelay ? `+${cDay - avgCycle}` : cDay} <span style="font-size:16px">день</span></div>
+          <div class="cycle-ring-phase">${phaseName}</div>
         </div>
       </div>
-      ${this._sympGroupsHTML(rec)}
-      <div style="font-size:10px;color:var(--muted);font-weight:700;text-align:center;margin-top:4px">
-        Сохраняется само, сразу ✨
-      </div>`;
+    `;
 
-    card.querySelectorAll('[data-nav]').forEach(b => {
-      b.onclick = () => {
-        const v = b.dataset.nav;
-        if(v === 'today') this._sympDate = st.todayD;
-        else {
-          const n = dAdd(dParse(this._sympDate), Number(v));
-          if(dKey(n) > st.todayD) return;
-          this._sympDate = dKey(n);
-        }
-        this._paintSympCard();      // перерисовываем только карточку — страница не дёргается
-        this._markSelectedDay();
-      };
-    });
-
-    this._wireSympEditor(card, key);
-  }
-
-  /* --- Разметка групп чипов (используется и в карточке, и в окне дня) --- */
-  _sympGroupsHTML(rec){
-    const tags = Array.isArray(rec.tags) ? rec.tags : [];
-    const grp = (title, id, opts, sel, multi) => `
-      <div class="symp-group">
-        <div class="symp-title">${title}</div>
-        <div class="symp-chips" data-grp="${id}" data-multi="${multi ? 1 : 0}">
-          ${opts.map(o => `<div class="symp-chip${(multi ? tags.includes(o.id) : sel === o.id) ? ' active' : ''}" data-val="${o.id}">${o.e} ${o.l}</div>`).join('')}
-        </div>
-      </div>`;
-    return grp('🩸 Выделения', 'flow', FLOW_OPTS, rec.flow, false)
-         + grp('⚡ Боль и спазмы', 'pain', PAIN_OPTS, rec.pain, false)
-         + grp('🎭 Настроение', 'mood', MOOD_OPTS, rec.mood, false)
-         + grp('💭 Что ещё чувствуешь', 'tags', TAG_OPTS, null, true)
-         + `<div class="symp-group">
-              <div class="symp-title">📝 Заметка</div>
-              <textarea data-note rows="2" placeholder="Всё, что хочется запомнить..." style="resize:vertical">${esc(rec.note || '')}</textarea>
-            </div>`;
-  }
-
-  /* --- Обработчики чипов: мгновенно, без перерисовки страницы --- */
-  _wireSympEditor(root, key){
-    const getRec = () => {
-      const r = this._cyc.sMap[key] || { date:key, flow:'', pain:'', mood:'', tags:[], note:'' };
-      if(!Array.isArray(r.tags)) r.tags = [];
-      return r;
-    };
-    const save = async rec => {
-      const empty = !rec.flow && !rec.pain && !rec.mood && !rec.tags.length && !(rec.note || '').trim();
-      if(empty){
-        delete this._cyc.sMap[key];
-        try { await this.db.del(S.SYMPTOMS, key); } catch(e){}
-      } else {
-        this._cyc.sMap[key] = rec;
-        await this.db.set(S.SYMPTOMS, rec);
+    // ЛОГИКА УМНЫХ КНОПОК
+    let quickActionBtn = '';
+    const isStartedToday = latestCycle.startDate === todayD;
+    
+    if (isBleedingNow) {
+      if (isStartedToday && !latestCycle.endDate) {
+         quickActionBtn = `
+           <button class="qa-btn end" id="qa-end">🛑 Закончились сегодня</button>
+           <button class="qa-btn cancel" id="qa-cancel" style="margin-top:-6px;">❌ Отменить случайное нажатие</button>
+         `;
+      } else if (!latestCycle.endDate) {
+         quickActionBtn = `<button class="qa-btn end" id="qa-end">🛑 Закончились сегодня</button>`;
       }
-      this._paintDayCell(key);
-    };
+    } else {
+      quickActionBtn = `<button class="qa-btn start" id="qa-start">🩸 Начались сегодня!</button>`;
+    }
 
-    root.querySelectorAll('.symp-chips').forEach(box => {
-      const grp = box.dataset.grp, multi = box.dataset.multi === '1';
-      box.querySelectorAll('.symp-chip').forEach(chip => {
-        chip.onclick = async () => {
-          const rec = getRec(), val = chip.dataset.val;
-          if(multi){
-            const i = rec.tags.indexOf(val);
-            if(i >= 0){ rec.tags.splice(i,1); chip.classList.remove('active'); }
-            else { rec.tags.push(val); chip.classList.add('active'); }
-          } else if(rec[grp] === val){
-            rec[grp] = '';
-            chip.classList.remove('active');
-          } else {
-            rec[grp] = val;
-            box.querySelectorAll('.symp-chip').forEach(x => x.classList.remove('active'));
-            chip.classList.add('active');
-          }
-          await save(rec);
-        };
-      });
-    });
+    topCard.innerHTML = `
+      <div class="card-title">🌸 Мой цикл</div>
+      ${ringHTML}
+      <div style="display:flex; justify-content:center; gap:10px; font-size:10px; font-weight:800; color:var(--muted); margin-bottom:16px;">
+        <span>ОБЫЧНЫЙ ЦИКЛ: ${avgCycle} ДН.</span> • <span>КРОВЬ: ${avgDur} ДН.</span>
+      </div>
+      ${quickActionBtn}
+    `;
+    c.appendChild(topCard);
 
-    const ta = root.querySelector('[data-note]');
-    if(ta){
-      let t;
-      ta.oninput = () => {
-        clearTimeout(t);
-        t = setTimeout(async () => { const rec = getRec(); rec.note = ta.value; await save(rec); }, 400);
+    // Обработчики умных кнопок
+    const btnStart = topCard.querySelector('#qa-start');
+    if (btnStart) {
+      btnStart.onclick = async () => {
+        // Проверка: не было ли цикла в последние 10 дней? (защита от дурака)
+        const recent = cycles.find(c => (now - new Date(c.startDate + 'T00:00:00')) / 86400000 <= 10);
+        if (recent && recent.startDate !== todayD) {
+           if (!confirm("Прошлый цикл начался совсем недавно. Уверена, что начался новый?")) return;
+        }
+        await this.db.add(S.CYCLES, { startDate: todayD, endDate: null });
+        this._render();
       };
     }
-  }
+    const btnEnd = topCard.querySelector('#qa-end');
+    if (btnEnd) {
+      btnEnd.onclick = async () => {
+        latestCycle.endDate = todayD;
+        await this.db.set(S.CYCLES, latestCycle);
+        this._render();
+      };
+    }
+    const btnCancel = topCard.querySelector('#qa-cancel');
+    if (btnCancel) {
+      btnCancel.onclick = async () => {
+        if(confirm("Удалить запись о начале месячных сегодня?")) {
+           await this.db.del(S.CYCLES, latestCycle.id);
+           this._render();
+        }
+      };
+    }
 
-  /* --- Эмодзи для клетки календаря --- */
-  _dayEmojis(rec){
-    if(!rec) return '';
-    let s = '';
-    if(rec.flow && FLOW_MAP[rec.flow])                        s += FLOW_MAP[rec.flow].e;
-    if(rec.pain && rec.pain !== 'none' && PAIN_MAP[rec.pain]) s += PAIN_MAP[rec.pain].e;
-    if(rec.mood && MOOD_MAP[rec.mood])                        s += MOOD_MAP[rec.mood].e;
-    if(rec.tags && rec.tags.length && TAG_MAP[rec.tags[0]])   s += TAG_MAP[rec.tags[0]].e;
-    return [...s].slice(0, 3).join('');
-  }
-
-  /* Обновляем эмодзи в одной клетке, не трогая остальное */
-  _paintDayCell(key){
-    if(!this._calBox) return;
-    const cell = this._calBox.querySelector(`[data-day="${key}"]`);
-    if(!cell) return;
-    const old = cell.querySelector('.cal-emoji-list');
-    if(old) old.remove();
-    const e = this._dayEmojis(this._cyc.sMap[key]);
-    if(e) cell.insertAdjacentHTML('beforeend', `<div class="cal-emoji-list">${e}</div>`);
-  }
-
-  _markSelectedDay(){
-    if(!this._calBox) return;
-    this._calBox.querySelectorAll('.cal-day.selected').forEach(el => el.classList.remove('selected'));
-    const cell = this._calBox.querySelector(`[data-day="${this._sympDate}"]`);
-    if(cell) cell.classList.add('selected');
-  }
-
-  /* --- Календарь --- */
-  _renderCalendar(){
-    const box = this._calBox;
-    if(!box) return;
-    const { cycles, sMap, stats, st } = this._cyc;
-
-    if(!this._cycView) this._cycView = new Date(st.now.getFullYear(), st.now.getMonth(), 1);
+    const calContainer = document.createElement('div');
+    c.appendChild(calContainer);
+    
+    // РЕНДЕР КАЛЕНДАРЯ
+    if (!this._cycView) this._cycView = new Date(now.getFullYear(), now.getMonth(), 1);
     const cy = this._cycView.getFullYear(), cm = this._cycView.getMonth();
     const daysInMo = new Date(cy, cm + 1, 0).getDate();
-    const firstDay = (new Date(cy, cm, 1).getDay() + 6) % 7; // неделя с понедельника
-    const MONTHS = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+    let firstDay = new Date(cy, cm, 1).getDay();
+    firstDay = (firstDay + 6) % 7; 
+    const monthNames = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
 
-    // реальные месячные: незакрытый цикл не закрашиваем в будущее
-    const inActual = d => cycles.some(c => {
-      const s = dParse(c.startDate);
-      let e;
-      if(c.endDate) e = dParse(c.endDate);
-      else {
-        const guess = dAdd(s, stats.avgDur - 1);
-        e = guess > st.now ? st.now : guess;
-      }
-      return d >= s && d <= e;
-    });
-
-    let html = `
+    let calHTML = `
       <div class="cal-wrap">
         <div class="cal-hdr">
-          <button class="cal-btn" data-mo="-1" aria-label="Предыдущий месяц">‹</button>
-          <span>${MONTHS[cm]} ${cy}</span>
-          <button class="cal-btn" data-mo="1" aria-label="Следующий месяц">›</button>
+          <button class="cal-btn" id="cal-prev">‹</button>
+          <span>${monthNames[cm]} ${cy}</span>
+          <button class="cal-btn" id="cal-next">›</button>
         </div>
         <div class="cal-grid">
           <div class="cal-day-hdr">Пн</div><div class="cal-day-hdr">Вт</div><div class="cal-day-hdr">Ср</div>
-          <div class="cal-day-hdr">Чт</div><div class="cal-day-hdr">Пт</div>
-          <div class="cal-day-hdr" style="color:var(--pink-l)">Сб</div><div class="cal-day-hdr" style="color:var(--pink-l)">Вс</div>`;
+          <div class="cal-day-hdr">Чт</div><div class="cal-day-hdr">Пт</div><div class="cal-day-hdr" style="color:var(--pink-l)">Сб</div><div class="cal-day-hdr" style="color:var(--pink-l)">Вс</div>
+    `;
 
     const prevMoDays = new Date(cy, cm, 0).getDate();
-    for(let i = 0; i < firstDay; i++)
-      html += `<div class="cal-day other-mo">${prevMoDays - firstDay + i + 1}</div>`;
+    for (let i = 0; i < firstDay; i++) { calHTML += `<div class="cal-day other-mo">${prevMoDays - firstDay + i + 1}</div>`; }
 
-    for(let d = 1; d <= daysInMo; d++){
-      const cur = new Date(cy, cm, d);
-      const key = dKey(cur);
-      const cls = ['cal-day'];
+    for (let d = 1; d <= daysInMo; d++) {
+      const curDate = new Date(cy, cm, d);
+      const curDateStr = new Date(curDate.getTime() - curDate.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+      const isToday = curDateStr === todayD;
+      const isSelected = curDateStr === this._cycSelectedDate;
+      
+      let classes = ['cal-day'];
+      if(isToday) classes.push('today');
+      if(isSelected) classes.push('selected');
+      
+      let icon = '';
+      let isActualPeriod = false;
+      let actualCycNum = null;
 
-      if(key === st.todayD) cls.push('today');
-      if(key === this._sympDate) cls.push('selected');
-      if(key > st.todayD) cls.push('fut');
+      // Вычисление дня цикла для этой клеточки
+      const refCycle = cycles.find(c => new Date(c.startDate + 'T00:00:00') <= curDate);
+      if (refCycle) {
+         const diff = Math.floor((curDate - new Date(refCycle.startDate + 'T00:00:00')) / 86400000) + 1;
+         if (diff > 0 && diff <= avgCycle + (isDelay && refCycle.id === latestCycle.id ? diff : 15)) {
+             actualCycNum = diff;
+         }
+      }
 
-      const actual = inActual(cur);
-      const pred   = !actual && st.preds.some(p => cur >= p.start && cur <= p.end);
-      const fert   = !actual && !pred && st.preds.some(p => cur >= p.fertS && cur <= p.fertE);
-      const pms    = !actual && !pred && !fert && st.preds.some(p => cur >= p.pmsS && cur <= p.pmsE);
-      const ovu    = st.preds.some(p => dDiff(cur, p.ovu) === 0);
+      cycles.forEach(cyc => {
+        const s = new Date(cyc.startDate + 'T00:00:00');
+        const e = cyc.endDate ? new Date(cyc.endDate + 'T00:00:00') : new Date(s.getTime() + (avgDur-1)*86400000);
+        if (curDate >= s && curDate <= e) isActualPeriod = true;
+      });
 
-      if(actual)    cls.push('period');
-      else if(pred) cls.push('period-pred');
-      else if(fert) cls.push('fertile');
-      else if(pms)  cls.push('pms');
-      if(ovu && !actual && !pred) cls.push('ovu');
+      const isPredPeriod = !isActualPeriod && preds.some(p => curDate >= p.start && curDate <= p.end);
+      const isFertile = !isActualPeriod && !isPredPeriod && fertile.some(f => curDate >= f.start && curDate <= f.end);
+      const isOvu = fertile.some(f => curDate.getTime() === f.ovu.getTime());
 
-      const icon = actual ? '🩸' : (ovu ? '✨' : '');
-      const em = this._dayEmojis(sMap[key]);
+      if (isActualPeriod) classes.push('period');
+      else if (isPredPeriod) classes.push('period-pred');
+      else if (isFertile) classes.push('fertile');
 
-      html += `<div class="${cls.join(' ')}" data-day="${key}">${d}`
-            + (icon ? `<span class="cal-icon">${icon}</span>` : '')
-            + (em ? `<div class="cal-emoji-list">${em}</div>` : '')
-            + `</div>`;
+      if (isActualPeriod) icon = '🩸';
+      else if (isOvu) icon = '✨';
+
+      // Отрисовка эмодзи симптомов
+      let emojisHTML = '';
+      if (symptomsMap[curDateStr]) {
+        const symp = symptomsMap[curDateStr];
+        let eStr = '';
+        if (symp.flow === 'light') eStr += '💧';
+        if (symp.flow === 'medium') eStr += '🩸';
+        if (symp.flow === 'heavy') eStr += '🌊';
+        if (symp.pain === 'mild') eStr += '🤏';
+        if (symp.pain === 'severe') eStr += '😫';
+        if (symp.mood === 'happy') eStr += '🥰';
+        if (symp.mood === 'sad') eStr += '🥺';
+        if (symp.mood === 'angry') eStr += '😡';
+        if (symp.mood === 'tired') eStr += '🥱';
+        if (eStr) emojisHTML = `<div class="cal-emoji-list">${eStr.substring(0,4)}</div>`; 
+      }
+
+      calHTML += `
+        <div class="${classes.join(' ')}" data-date="${curDateStr}">
+          ${d}
+          ${icon ? `<span class="cal-icon">${icon}</span>` : ''}
+          ${actualCycNum ? `<span class="cal-cyc-num">${actualCycNum}</span>` : ''}
+          ${emojisHTML}
+        </div>`;
     }
 
-    const rem = (firstDay + daysInMo) % 7 === 0 ? 0 : 7 - ((firstDay + daysInMo) % 7);
-    for(let i = 1; i <= rem; i++) html += `<div class="cal-day other-mo">${i}</div>`;
+    const totalCells = firstDay + daysInMo;
+    const remCells = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+    for (let i = 1; i <= remCells; i++) { calHTML += `<div class="cal-day other-mo">${i}</div>`; }
 
-    html += `</div>
-        <div class="cal-legend">
-          <span><div class="dot d-period"></div> Месячные</span>
-          <span><div class="dot d-pred"></div> Прогноз</span>
-          <span><div class="dot d-fert"></div> Фертильные (✨ овуляция)</span>
-          <span><div class="dot d-pms"></div> ПМС</span>
-        </div>
+    calHTML += `</div>
+      <div class="cal-legend" style="margin-top:12px">
+        <span><div class="dot period"></div> Месячные</span>
+        <span><div class="dot period-pred"></div> Прогноз</span>
+        <span><div class="dot fertile"></div> Фертильность</span>
       </div>
-      <div style="text-align:center;font-size:10px;color:var(--muted);font-weight:700;margin:-6px 0 14px">
-        Нажми на любой день, чтобы отметить месячные или самочувствие
-      </div>`;
+    </div>`;
+    
+    calContainer.innerHTML = calHTML;
 
-    box.innerHTML = html;
-
-    box.querySelectorAll('[data-mo]').forEach(b => {
-      b.onclick = () => {
-        this._cycView = new Date(cy, cm + Number(b.dataset.mo), 1);
-        this._renderCalendar();  // перерисовываем только календарь
+    // Кликабельность календаря
+    calContainer.querySelectorAll('.cal-day[data-date]').forEach(cell => {
+      cell.onclick = () => {
+        this._cycSelectedDate = cell.dataset.date;
+        this._render(); // Перерендер обновит выделение и блок симптомов
       };
     });
-    box.querySelectorAll('.cal-day[data-day]').forEach(cell => {
-      cell.onclick = () => this._openDaySheet(cell.dataset.day);
-    });
-  }
 
-  /* --- Окно конкретного дня --- */
-  _openDaySheet(key){
-    const { cycles, sMap, st } = this._cyc;
-    const d = dParse(key);
-    const isFuture = key > st.todayD;
+    calContainer.querySelector('#cal-prev').onclick = () => { this._cycView = new Date(cy, cm - 1, 1); this._render(); };
+    calContainer.querySelector('#cal-next').onclick = () => { this._cycView = new Date(cy, cm + 1, 1); this._render(); };
 
-    const startsHere = cycles.find(c => c.startDate === key);
-    const owner = cycles.find(c => {
-      if(c.startDate > key) return false;
-      if(c.endDate) return key <= c.endDate;
-      return true;   // открытая запись
-    });
-    const insidePeriod = !!cycles.find(c => c.startDate <= key && c.endDate && key <= c.endDate) || !!startsHere;
+    const sympCard = this._card(' lilac-card');
+    const selDateFmt = new Date(this._cycSelectedDate).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
+    let todaySymp = symptomsMap[this._cycSelectedDate] || { flow: '', pain: '', mood: '' };
 
-    let acts = '';
-    if(isFuture){
-      acts = `<div class="notify-box info" style="margin-bottom:10px">🔮 Это будущий день — отметить можно только когда он наступит.</div>`;
-    } else {
-      if(startsHere){
-        acts += `<button class="btn p2 full" data-act="del-start">🗑 Убрать «месячные начались»</button>`;
-      } else if(!insidePeriod){
-        acts += `<button class="btn p full" data-act="set-start">🩸 Месячные начались в этот день</button>`;
-      }
-      if(owner && owner.startDate < key && (!owner.endDate || owner.endDate !== key)){
-        acts += `<button class="btn p2 full" data-act="set-end">🛑 Закончились в этот день</button>`;
-      }
-      if(owner && owner.endDate === key){
-        acts += `<button class="btn p2 full" data-act="reopen">↩️ Ещё не закончились</button>`;
-      }
-    }
-
-    const rec = sMap[key] || { date:key, flow:'', pain:'', mood:'', tags:[], note:'' };
-    const back = document.createElement('div');
-    back.className = 'sheet-back';
-    back.innerHTML = `
-      <div class="sheet">
-        <div class="sheet-grab"></div>
-        <div class="sheet-hdr">
-          <div class="sheet-ttl">${esc(d.toLocaleDateString('ru-RU',{weekday:'long', day:'numeric', month:'long'}))}</div>
-          <button class="sheet-x" data-close>✕</button>
+    sympCard.innerHTML = `
+      <div class="card-title">☁️ Дневник: ${selDateFmt}</div>
+      <div style="margin-bottom:12px; font-size:11px; font-weight:700; color:var(--muted)">Отмечай симптомы, чтобы понять свой организм.</div>
+      
+      <div class="symp-group">
+        <div class="symp-title">🩸 Обильность</div>
+        <div class="symp-chips" id="chips-flow">
+          <div class="symp-chip ${todaySymp.flow === 'light' ? 'active' : ''}" data-val="light">💧 Легкие</div>
+          <div class="symp-chip ${todaySymp.flow === 'medium' ? 'active' : ''}" data-val="medium">🩸 Средние</div>
+          <div class="symp-chip ${todaySymp.flow === 'heavy' ? 'active' : ''}" data-val="heavy">🌊 Обильные</div>
         </div>
-        ${acts}
-        ${isFuture ? '' : `<div style="margin-top:14px">${this._sympGroupsHTML(rec)}</div>`}
-      </div>`;
-    document.body.appendChild(back);
-    document.body.style.overflow = 'hidden';
+      </div>
+      
+      <div class="symp-group">
+        <div class="symp-title">⚡ Боль / Спазмы</div>
+        <div class="symp-chips" id="chips-pain">
+          <div class="symp-chip ${todaySymp.pain === 'none' ? 'active' : ''}" data-val="none">✨ Нет боли</div>
+          <div class="symp-chip ${todaySymp.pain === 'mild' ? 'active' : ''}" data-val="mild">🤏 Тянет</div>
+          <div class="symp-chip ${todaySymp.pain === 'severe' ? 'active' : ''}" data-val="severe">😫 Сильная</div>
+        </div>
+      </div>
 
-    const close = () => { back.remove(); document.body.style.overflow = ''; };
-    back.addEventListener('click', async e => {
-      if(e.target === back || e.target.closest('[data-close]')) { close(); return; }
-      const b = e.target.closest('[data-act]');
-      if(!b) return;
-      const act = b.dataset.act;
-      close();
-      if(act === 'set-start')      await this._cycStart(key);
-      else if(act === 'set-end')   await this._cycEnd(key);
-      else if(act === 'del-start'){ await this.db.del(S.CYCLES, startsHere.id); this._toast('Отметка убрана'); this._render(); }
-      else if(act === 'reopen'){    owner.endDate = null; await this.db.set(S.CYCLES, owner); this._toast('Записала: ещё идут'); this._render(); }
-    });
+      <div class="symp-group">
+        <div class="symp-title">🎭 Настроение</div>
+        <div class="symp-chips" id="chips-mood">
+          <div class="symp-chip ${todaySymp.mood === 'happy' ? 'active' : ''}" data-val="happy">🥰 Отличное</div>
+          <div class="symp-chip ${todaySymp.mood === 'sad' ? 'active' : ''}" data-val="sad">🥺 Плаксивое</div>
+          <div class="symp-chip ${todaySymp.mood === 'angry' ? 'active' : ''}" data-val="angry">😡 Бесит всё</div>
+          <div class="symp-chip ${todaySymp.mood === 'tired' ? 'active' : ''}" data-val="tired">🥱 Усталость</div>
+        </div>
+      </div>
+    `;
+    c.appendChild(sympCard);
 
-    if(!isFuture){
-      this._wireSympEditor(back, key);
-      // после закрытия окна карточка внизу должна показывать тот же день
-      back.querySelectorAll('.symp-chip, [data-note]').forEach(el => {
-        el.addEventListener('click', () => { this._sympDate = key; });
+    // Логика симптомов (работает железно)
+    const updateSymptom = async (type, val) => {
+      let symp = (await this.db.get(S.SYMPTOMS, this._cycSelectedDate)) || { date: this._cycSelectedDate, flow: '', pain: '', mood: '' };
+      if (symp[type] === val) symp[type] = ''; else symp[type] = val; // toggle
+      await this.db.set(S.SYMPTOMS, symp);
+      this._render(); // Safe full re-render
+    };
+
+    const setupChips = (containerId, type) => {
+      const container = sympCard.querySelector(`#${containerId}`);
+      container.querySelectorAll('.symp-chip').forEach(chip => {
+        chip.onclick = () => updateSymptom(type, chip.dataset.val);
       });
-    }
-  }
+    };
+    setupChips('chips-flow', 'flow');
+    setupChips('chips-pain', 'pain');
+    setupChips('chips-mood', 'mood');
 
-  /* --- Операции с записями цикла --- */
-  async _cycStart(key){
-    const { cycles } = this._cyc;
-    if(cycles.some(c => c.startDate === key)){ this._toast('Этот день уже отмечен 🌸'); return; }
-    // если попадаем внутрь уже отмеченного периода — не плодим дубли
-    if(cycles.some(c => c.endDate && c.startDate < key && key <= c.endDate)){
-      this._toast('Этот день уже внутри месячных');
-      return;
-    }
-    // закрываем предыдущую незакрытую запись, чтобы не было наложений
-    const prev = cycles.find(c => c.startDate < key && !c.endDate);
-    if(prev){
-      prev.endDate = dKey(dAdd(dParse(key), -1));
-      if(prev.endDate < prev.startDate) prev.endDate = prev.startDate;
-      await this.db.set(S.CYCLES, prev);
-    }
-    await this.db.add(S.CYCLES, { startDate: key, endDate: null });
-    this._toast('Отметила начало 🩸');
-    this._render();
-  }
-
-  async _cycEnd(key){
-    const { cycles } = this._cyc;
-    const cur = cycles.find(c => c.startDate <= key && (!c.endDate || c.endDate >= key));
-    if(!cur){ this._toast('Сначала отметь начало'); return; }
-    if(key < cur.startDate){ this._toast('Конец не может быть раньше начала'); return; }
-    cur.endDate = key;
-    await this.db.set(S.CYCLES, cur);
-    this._toast('Отметила окончание ✨');
-    this._render();
-  }
-
-  /* --- Прогноз --- */
-  _cycForecast(c){
-    const { st, stats } = this._cyc;
-    if(!st.cur) return;
-    const card = this._card();
-    const p0 = st.preds[0];
-    const rows = [];
-
-    if(st.delay > 0){
-      rows.push({ e:'⏳', bg:'rgba(224,112,112,.12)', t:'Месячные ожидались',
-                  s:`${dShort(p0.start)} · задержка ${days(st.delay)}`, b:'сейчас' });
-    } else {
-      rows.push({ e:'🩸', bg:'rgba(232,116,154,.12)', t:'Следующие месячные',
-                  s:`${dShort(p0.start)} — ${dShort(p0.end)}`,
-                  b: st.daysToNext === 0 ? 'сегодня' : `через ${days(st.daysToNext)}` });
-    }
-
-    const nextFert = st.preds.find(p => p.fertE >= st.now);
-    if(nextFert){
-      const dd = dDiff(nextFert.ovu, st.now);
-      rows.push({ e:'✨', bg:'rgba(212,160,199,.15)', t:'Фертильное окно',
-                  s:`${dShort(nextFert.fertS)} — ${dShort(nextFert.fertE)}, овуляция ${dShort(nextFert.ovu)}`,
-                  b: dd === 0 ? 'сегодня' : (dd > 0 ? `через ${days(dd)}` : 'идёт') });
-    }
-
-    const nextPms = st.preds.find(p => p.pmsE >= st.now);
-    if(nextPms){
-      const dd = dDiff(nextPms.pmsS, st.now);
-      rows.push({ e:'🌧', bg:'rgba(255,181,167,.18)', t:'Возможный ПМС',
-                  s:`${dShort(nextPms.pmsS)} — ${dShort(nextPms.pmsE)}`,
-                  b: dd <= 0 ? 'идёт' : `через ${days(dd)}` });
-    }
-
-    const after = st.preds.slice(1, 4)
-      .map(p => dShort(p.start)).join(' · ');
-
-    card.innerHTML = `<div class="card-title">🔮 Что дальше</div>
-      ${rows.map(r => `
-        <div class="fc-row">
-          <div class="fc-ic" style="background:${r.bg}">${r.e}</div>
-          <div style="min-width:0;flex:1"><div class="fc-t">${r.t}</div><div class="fc-s">${r.s}</div></div>
-          <div class="fc-badge">${r.b}</div>
-        </div>`).join('')}
-      <div style="font-size:10px;color:var(--muted);font-weight:700;margin-top:10px;line-height:1.6">
-        Дальше по плану: ${after}<br>
-        ${stats.known
-          ? `Прогноз построен по твоим последним ${stats.samples} ${plural(stats.samples,'циклу','циклам','циклам')}.`
-          : 'Прогноз пока по средним значениям — отметь ещё пару циклов, и он станет точным.'}
-      </div>`;
-    c.appendChild(card);
-  }
-
-  /* --- Цифры --- */
-  _cycStats(c){
-    const { cycles, stats, st } = this._cyc;
-    if(!cycles.length) return;
-    const card = this._card(' mint-card');
-    card.innerHTML = `<div class="card-title">📈 Твои цифры</div>
-      <div class="g3">
-        <div class="stat"><div class="v">${stats.avgCycle}</div><div class="l">Средний цикл</div></div>
-        <div class="stat"><div class="v">${stats.avgDur}</div><div class="l">Дней крови</div></div>
-        <div class="stat"><div class="v">${cycles.length}</div><div class="l">Записей</div></div>
+    // Памятка
+    const guideCard = document.createElement('details');
+    guideCard.className = 'notify-box info';
+    guideCard.style.cssText = 'margin-top:14px; background:var(--bg2); border-color:var(--border2); margin-bottom:14px;';
+    guideCard.innerHTML = `
+      <summary>🌸 Как это работает и почему меняется настроение?</summary>
+      <div style="font-size:12px; margin-top:10px; line-height:1.6; color:var(--text2); font-weight:600;">
+        <b>Твой цикл — это суперсила!</b> Понимание фаз поможет тебе бережнее к себе относиться:<br><br>
+        🩸 <b>Менструация (Зима):</b> Энергия на нуле. Время отдыхать, пить теплый чай, есть шоколад и не ругать себя за лень.<br><br>
+        🌱 <b>Фолликулярная (Весна):</b> Растет эстроген. Энергия бьет ключом! Идеальное время для новых проектов, спорта и встреч с друзьями.<br><br>
+        ✨ <b>Овуляция (Лето):</b> Высшая точка энергии, красоты и либидо. Ты сияешь и можешь свернуть горы.<br><br>
+        ☁️ <b>Лютеиновая (Осень):</b> ПМС близко. Энергия падает, хочется уюта, отдыхать, много кушать и смотреть сериалы. Это абсолютно нормально!<br><br>
+        <i>* Маленькие цифры на календаре — это дни твоего цикла. Отмечай симптомы, чтобы потом легко находить закономерности!</i>
       </div>
-      ${stats.spread !== null ? `
-        <div class="phase-bar" style="margin-top:14px">
-          <i style="flex:${stats.avgDur};background:linear-gradient(90deg,var(--pink),#d95e86)"></i>
-          <i style="flex:${Math.max(1, stats.avgCycle - 14 - stats.avgDur - 2)};background:rgba(109,191,141,.5)"></i>
-          <i style="flex:6;background:rgba(212,160,199,.6)"></i>
-          <i style="flex:${Math.max(1, 14 - 5)};background:rgba(255,181,167,.55)"></i>
-          <i style="flex:5;background:rgba(255,181,167,.85)"></i>
-        </div>
-        <div class="phase-marks"><span>🩸 Месячные</span><span>🌱 Фолл.</span><span>✨ Овул.</span><span>☁️ Лют.</span><span>🌧 ПМС</span></div>
-        <div style="margin-top:12px;font-size:11.5px;font-weight:700;color:var(--text2);line-height:1.6">
-          ${stats.regularity.e} <b style="color:${stats.regularity.c}">${stats.regularity.l}</b> — ${stats.regularity.d}.<br>
-          ${stats.spread === 0 ? `Все последние циклы ровно по ${days(stats.minLen)}.` : `Разброс: от ${days(stats.minLen)} до ${days(stats.maxLen)}.`}
-        </div>` : `
-        <div style="margin-top:12px;font-size:11.5px;font-weight:700;color:var(--muted);text-align:center;line-height:1.6">
-          Отметь ещё ${cycles.length < 2 ? 'один цикл' : 'пару циклов'} — и я покажу, насколько он регулярный 💗
-        </div>`}`;
-    c.appendChild(card);
-  }
+    `;
+    c.appendChild(guideCard);
 
-  /* --- Что чаще всего беспокоит --- */
-  _cycInsights(c){
-    const { sMap } = this._cyc;
-    const recs = Object.values(sMap);
-    if(recs.length < 4) return;
-
-    const count = {};
-    recs.forEach(r => (r.tags || []).forEach(t => { count[t] = (count[t] || 0) + 1; }));
-    const moodCount = {};
-    recs.forEach(r => { if(r.mood) moodCount[r.mood] = (moodCount[r.mood] || 0) + 1; });
-
-    const top = Object.entries(count).sort((a,b) => b[1] - a[1]).slice(0, 5);
-    if(!top.length && !Object.keys(moodCount).length) return;
-
-    const max = top.length ? top[0][1] : 1;
-    const topMood = Object.entries(moodCount).sort((a,b) => b[1] - a[1])[0];
-
-    const card = this._card();
-    card.innerHTML = `<div class="card-title">🔍 Что повторяется</div>
-      <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px">
-        По ${recs.length} ${plural(recs.length,'отмеченному дню','отмеченным дням','отмеченным дням')}
-      </div>
-      ${top.map(([id, n]) => `
-        <div class="insight-row">
-          <span style="width:120px;flex-shrink:0">${TAG_MAP[id] ? TAG_MAP[id].e + ' ' + TAG_MAP[id].l : esc(id)}</span>
-          <div class="insight-bar"><i style="width:${Math.round(n / max * 100)}%"></i></div>
-          <span style="width:28px;text-align:right;color:var(--pink);font-weight:900">${n}</span>
-        </div>`).join('')}
-      ${topMood && MOOD_MAP[topMood[0]] ? `
-        <div style="margin-top:10px;font-size:11.5px;font-weight:700;color:var(--text2)">
-          Чаще всего настроение: ${MOOD_MAP[topMood[0]].e} <b>${MOOD_MAP[topMood[0]].l.toLowerCase()}</b> (${topMood[1]} ${plural(topMood[1],'день','дня','дней')})
-        </div>` : ''}`;
-    c.appendChild(card);
-  }
-
-  /* --- Памятка --- */
-  _cycGuide(c){
-    const g = document.createElement('details');
-    g.className = 'notify-box info';
-    g.dataset.dk = 'cyc-guide';
-    g.style.cssText = 'background:var(--bg2);border-color:var(--border2);margin-bottom:14px';
-    g.innerHTML = `
-      <summary>❓ Как это работает и что отмечать?</summary>
-      <div style="font-size:12px;margin-top:10px;line-height:1.7;color:var(--text2);font-weight:600">
-        <b>Цикл</b> — время от первого дня одних месячных до первого дня следующих.<br><br>
-        <b>Что нужно делать:</b><br>
-        1. Нажимать <b>«Начались сегодня»</b> и <b>«Закончились сегодня»</b>.<br>
-        2. Забыла в тот день? Нажми нужную дату в календаре — там всё можно поправить.<br>
-        3. По желанию — отмечать самочувствие. Чем чаще, тем полезнее раздел «Что повторяется».<br><br>
-        <b>Фазы:</b><br>
-        🩸 <b>Менструация</b> — организм обновляется, нормально хотеть отдыхать.<br>
-        🌱 <b>Фолликулярная</b> — энергия растёт, лучшее время для дел и спорта.<br>
-        ✨ <b>Овуляция</b> — пик энергии и фертильности.<br>
-        ☁️ <b>Лютеиновая</b> — энергия плавно падает, хочется уюта.<br>
-        🌧 <b>ПМС</b> — последние ~5 дней перед месячными, настроение может скакать.<br><br>
-        <i>Прогноз — это математика по твоей истории, а не диагноз. Он не заменяет врача и не годится как способ контрацепции 🌸</i>
-      </div>`;
-    c.appendChild(g);
-  }
-
-  /* --- История и ручное управление --- */
-  _cycHistory(c){
-    const { cycles, st } = this._cyc;
-    const card = this._card();
-    card.innerHTML = `<details data-dk="cyc-manual">
-      <summary>✏️ Ручное управление датами</summary>
+    // Добавление прошлых месяцев
+    const histCard = this._card();
+    histCard.innerHTML = `<details><summary>✏️ Добавить прошлые записи</summary>
+      <div style="font-size:10px; color:var(--muted); margin:8px 0;">Вспомни даты за последние месяцы. Это сделает прогнозы точными!</div>
       <div class="g2" style="margin-top:10px">
-        <div class="ig"><label class="lbl">Начались</label><input type="date" id="cyc-start" value="${st.todayD}" max="${st.todayD}"></div>
-        <div class="ig"><label class="lbl">Закончились</label><input type="date" id="cyc-end" max="${st.todayD}"></div>
+        <div class="ig"><label class="lbl">Начались</label><input type="date" id="cyc-start-man" value="${todayD}"></div>
+        <div class="ig"><label class="lbl">Закончились</label><input type="date" id="cyc-end-man"></div>
       </div>
-      <button class="btn p full" id="cyc-add-manual">Сохранить запись 💾</button>
-      <div class="card-title" style="margin-top:16px;font-size:14px">📜 История (${cycles.length})</div>
+      <button class="btn p full" id="cyc-add-manual" style="margin-bottom:16px;">+ Сохранить запись 💾</button>
+      
+      <div class="card-title" style="margin-top:16px; font-size:14px;">📜 Моя история</div>
       <div id="cyc-hist-list"></div>
     </details>`;
-    c.appendChild(card);
+    c.appendChild(histCard);
 
-    card.querySelector('#cyc-add-manual').onclick = async () => {
-      const s = card.querySelector('#cyc-start').value;
-      const e = card.querySelector('#cyc-end').value || null;
-      if(!s){ this._toast('Укажи дату начала'); return; }
-      if(s > st.todayD){ this._toast('Нельзя отметить будущее'); return; }
-      if(e && s > e){ this._toast('Конец раньше начала 🤔'); return; }
-      if(cycles.some(c2 => c2.startDate === s)){ this._toast('Такая запись уже есть'); return; }
+    histCard.querySelector('#cyc-add-manual').onclick = async () => {
+      const s = histCard.querySelector('#cyc-start-man').value;
+      const e = histCard.querySelector('#cyc-end-man').value || null;
+      if (!s) { alert('Укажи дату начала!'); return; }
+      if (e && s > e) { alert('Дата конца не может быть раньше начала!'); return; }
+      
+      // Проверка на пересечения
+      const overlap = cycles.some(cyc => {
+         const cycE = cyc.endDate || todayD; // если нет конца, берем сегодня для грубой проверки
+         return (s <= cycE && (!e || e >= cyc.startDate));
+      });
+      if (overlap && !confirm("Эта дата пересекается с уже существующим циклом! Точно добавить?")) return;
+
       await this.db.add(S.CYCLES, { startDate: s, endDate: e });
-      this._toast('Сохранила 💾');
       this._render();
     };
 
-    const list = card.querySelector('#cyc-hist-list');
-    if(!cycles.length){
-      list.innerHTML = '<div style="color:var(--muted);text-align:center;padding:14px;font-weight:600">Записей пока нет ✨</div>';
-      return;
-    }
-
+    const histList = histCard.querySelector('#cyc-hist-list');
     cycles.forEach((cyc, idx) => {
-      const durStr = cyc.endDate
-        ? days(dDiff(dParse(cyc.endDate), dParse(cyc.startDate)) + 1)
-        : 'идут сейчас';
-      let lenStr = '—';
-      if(idx < cycles.length - 1){
-        lenStr = `цикл ${days(dDiff(dParse(cyc.startDate), dParse(cycles[idx+1].startDate)))}`;
+      let durStr = 'Идут сейчас';
+      if (cyc.endDate) {
+        const d = Math.round((new Date(cyc.endDate) - new Date(cyc.startDate)) / 86400000) + 1;
+        durStr = `${d} дн.`;
+      }
+      let cycleLen = '—';
+      if (idx < cycles.length - 1) {
+        const prev = cycles[idx+1];
+        const len = Math.round((new Date(cyc.startDate) - new Date(prev.startDate)) / 86400000);
+        cycleLen = `Цикл: ${len} дн.`;
       }
       const row = document.createElement('div');
       row.className = 'log-row';
-      row.style.flexWrap = 'wrap';
       row.innerHTML = `
         <div style="min-width:0;flex:1">
           <div style="font-weight:800;color:var(--text)">${dStr(cyc.startDate)} — ${cyc.endDate ? dStr(cyc.endDate) : '...'}</div>
-          <div class="log-meta">Кровь: ${durStr} · ${lenStr}</div>
+          <div class="log-meta">Кровь: ${durStr} · ${cycleLen}</div>
         </div>
-        <div style="display:flex;gap:6px;flex-shrink:0">
-          <button class="mini-btn" data-edit="${cyc.id}">✏️</button>
-          <button class="del-btn" data-del="${cyc.id}">×</button>
-        </div>
-        <div data-ed="${cyc.id}" style="display:none;width:100%;margin-top:8px">
-          <div class="g2">
-            <div class="ig"><label class="lbl">Начались</label><input type="date" data-s="${cyc.id}" value="${cyc.startDate}" max="${st.todayD}"></div>
-            <div class="ig"><label class="lbl">Закончились</label><input type="date" data-e="${cyc.id}" value="${cyc.endDate || ''}" max="${st.todayD}"></div>
-          </div>
-          <button class="btn p2 full" data-save="${cyc.id}" style="margin-top:0">Сохранить</button>
-        </div>`;
-
-      row.querySelector(`[data-edit="${cyc.id}"]`).onclick = () => {
-        const ed = row.querySelector(`[data-ed="${cyc.id}"]`);
-        ed.style.display = ed.style.display === 'none' ? 'block' : 'none';
+        <button class="del-btn" data-cid="${cyc.id}">×</button>
+      `;
+      row.querySelector('.del-btn').onclick = (e) => {
+        confirmDel(e.target, async () => { await this.db.del(S.CYCLES, cyc.id); this._render(); });
       };
-      row.querySelector(`[data-save="${cyc.id}"]`).onclick = async () => {
-        const s = row.querySelector(`[data-s="${cyc.id}"]`).value;
-        const e = row.querySelector(`[data-e="${cyc.id}"]`).value || null;
-        if(!s){ this._toast('Нужна дата начала'); return; }
-        if(e && s > e){ this._toast('Конец раньше начала 🤔'); return; }
-        await this.db.set(S.CYCLES, { ...cyc, startDate: s, endDate: e });
-        this._toast('Обновила ✨');
-        this._render();
-      };
-      row.querySelector(`[data-del="${cyc.id}"]`).onclick = e => {
-        confirmDel(e.target, async () => {
-          e.target._ok = true;
-          await this.db.del(S.CYCLES, cyc.id);
-          this._render();
-        });
-      };
-      list.appendChild(row);
+      histList.appendChild(row);
     });
   }
 
-
-  /* ═══ SHOPPING LIST ═══ */
   async _shopping(c) {
     const items = await this.db.all(S.SHOP);
     const toBuy = items.filter(i => !i.isAtHome && !i.isBought);
@@ -1591,7 +992,7 @@ class App {
             <div class="shop-content">
               ${isToBuyMode || item.isBought ? `<div class="shop-check ${item.isBought ? 'checked' : ''}" data-action="toggle-buy" data-id="${item.id}">${item.isBought ? '✓' : ''}</div>` : ''}
               <div style="flex:1; min-width:0;">
-                <div class="shop-text">${esc(item.text)} ${qty > 1 ? `<span style="font-weight:800; color:var(--pink-d);">x${qty}</span>` : ''}</div>
+                <div class="shop-text">${item.text} ${qty > 1 ? `<span style="font-weight:800; color:var(--pink-d);">x${qty}</span>` : ''}</div>
                 ${item.isMandatory ? `<div class="shop-meta">⭐ Обязательно</div>` : ''}
               </div>
             </div>
@@ -1647,7 +1048,6 @@ class App {
     }
   }
 
-  /* ═══ FINANCE ═══ */
   async _finance(c){
     const balance=await this.db.cfg('balance');
     const budgetCap=await this.db.cfg('monthlyBudgetCap');
@@ -1710,7 +1110,7 @@ class App {
       <div class="b-row"><div class="b-key">Остаток на сегодня</div><div class="b-val" style="color:${dayCol}">${fmt(remainToday)} ₽ <span style="opacity:.5;font-size:10px">/ ${fmt(dailyBudget)}</span></div></div>
       <div class="b-row"><div class="b-key">Потрачено сегодня</div><div class="b-val">${fmt(todaySpent)} ₽</div></div>
       <div class="b-row"><div class="b-key">За этот месяц</div><div class="b-val" style="color:${spentMonth>budgetCap?'var(--red)':'var(--pink-d)'}">${fmt(spentMonth)} / ${fmtI(budgetCap)} ₽</div></div>
-      <details data-dk="bud-settings"><summary>⚙ Настройки бюджета</summary>
+      <details><summary>⚙ Настройки бюджета</summary>
         <div class="ig" style="margin-top:8px"><label class="lbl">Бюджет на месяц (₽)</label><input type="number" id="budcap" value="${budgetCap}"></div>
         <button class="btn p full" id="bud-save">Сохранить 💾</button>
       </details>`;
@@ -1723,15 +1123,14 @@ class App {
     if(goals.length){
       const gCard=this._card(' lilac-card');
       gCard.innerHTML='<div class="card-title">🎯 Мои цели</div>';
-      [...goals].sort((a,b)=>(a.priority||2)-(b.priority||2)).forEach(goal=>{
+      goals.sort((a,b)=>a.priority-b.priority).forEach(goal=>{
         const saved=txs.filter(t=>t.type==='expense'&&t.category==='Цель'&&t.comment===goal.name).reduce((s,t)=>s+t.amount,0);
-        const tgt=Number(goal.targetAmount)||0;
-        const pct=tgt>0?Math.min(100,(saved/tgt)*100):0;
-        const left=Math.max(0,tgt-saved);
+        const pct=Math.min(100,(saved/goal.targetAmount)*100);
+        const left=Math.max(0,goal.targetAmount-saved);
         const dLeft=Math.ceil((new Date(goal.deadline)-now)/86400000);
         const col=goal.color||'#e8749a';
         gCard.insertAdjacentHTML('beforeend',`<div class="goal-mini">
-          <div class="goal-mini-title"><span style="color:${col}">${esc(goal.name)}</span><span style="font-size:10px;color:var(--muted)">${pct.toFixed(0)}% · ост. ${fmt(left)} ₽${dLeft>0?' · '+dLeft+' дн.':' · ⏰'}</span></div>
+          <div class="goal-mini-title"><span style="color:${col}">${goal.name}</span><span style="font-size:10px;color:var(--muted)">${pct.toFixed(0)}% · ост. ${fmt(left)} ₽${dLeft>0?' · '+dLeft+' дн.':' · ⏰'}</span></div>
           <div class="prog-track"><div class="prog-fill" style="width:${pct}%;background:linear-gradient(90deg,${col}88,${col})"></div></div>
         </div>`);
       });
@@ -1757,7 +1156,7 @@ class App {
       if(typeEl.value==='income'){catEl.innerHTML=CAT_INC.map(x=>`<option value="${x}">${x}</option>`).join('');}
       else{
         let html=CAT_EXP.map(x=>`<option value="${x}">${x}</option>`).join('');
-        if(allGoals.length){html+='<option disabled>── Копим на ──</option>';allGoals.forEach(g=>{html+=`<option value="ЦЕЛЬ:${esc(g.name)}">🎯 ${esc(g.name)}</option>`;});}
+        if(allGoals.length){html+='<option disabled>── Копим на ──</option>';allGoals.forEach(g=>{html+=`<option value="ЦЕЛЬ:${g.name}">🎯 ${g.name}</option>`;});}
         catEl.innerHTML=html;
       }
     };
@@ -1778,7 +1177,7 @@ class App {
     const sorted=[...txs].sort((a,b)=>new Date(b.date)-new Date(a.date));
     const histCard=this._card();
     histCard.innerHTML=`<div class="card-title">📋 История</div>
-      <div class="search-row"><input type="text" id="tx-q" placeholder="🔍 Поиск..."><select id="tx-fc"><option value="">Все</option>${[...CAT_EXP,...CAT_INC,'Цель'].map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('')}</select></div>
+      <div class="search-row"><input type="text" id="tx-q" placeholder="🔍 Поиск..."><select id="tx-fc"><option value="">Все</option>${[...CAT_EXP,...CAT_INC,'Цель'].map(x=>`<option value="${x}">${x}</option>`).join('')}</select></div>
       <div id="tx-list"></div>`;
     c.appendChild(histCard);
     const renderList=(q='',fc='')=>{
@@ -1790,7 +1189,7 @@ class App {
       fil.slice(0,30).forEach(tx=>{
         const row=document.createElement('div'); row.className='log-row';
         const del=document.createElement('button'); del.className='del-btn'; del.textContent='×';
-        row.innerHTML=`<div style="min-width:0;flex:1"><span class="badge">${esc(tx.category)}</span><div class="log-meta">${dStr(tx.date)}${tx.comment?' · '+esc(tx.comment):''}</div></div><div style="display:flex;align-items:center;gap:8px;flex-shrink:0"><span class="amt ${tx.type==='income'?'i':'e'}">${tx.type==='income'?'+':'−'}${fmt(tx.amount)} ₽</span></div>`;
+        row.innerHTML=`<div style="min-width:0;flex:1"><span class="badge">${tx.category}</span><div class="log-meta">${dStr(tx.date)}${tx.comment?' · '+tx.comment:''}</div></div><div style="display:flex;align-items:center;gap:8px;flex-shrink:0"><span class="amt ${tx.type==='income'?'i':'e'}">${tx.type==='income'?'+':'−'}${fmt(tx.amount)} ₽</span></div>`;
         row.querySelector('div:last-child').appendChild(del);
         del.onclick=()=>confirmDel(del,async()=>{del._ok=true;await this.db.del(S.TX,tx.id);let bal=await this.db.cfg('balance');await this.db.setCfg('balance',tx.type==='income'?bal-tx.amount:bal+tx.amount);this._render();});
         listEl.appendChild(row);
@@ -1853,9 +1252,8 @@ class App {
     for(const goal of goals){
       const goalTxs=txs.filter(t=>t.type==='expense'&&t.category==='Цель'&&t.comment===goal.name);
       const saved=goalTxs.reduce((s,t)=>s+t.amount,0);
-      const target=Number(goal.targetAmount)||0;
-      const left=Math.max(0,target-saved);
-      const pct=target>0?Math.min(100,(saved/target)*100):0;
+      const left=Math.max(0,goal.targetAmount-saved);
+      const pct=Math.min(100,(saved/goal.targetAmount)*100);
       const dl=new Date(goal.deadline);
       const dLeft=Math.ceil((dl-now)/86400000);
       const mLeft=Math.max(0.5,dLeft/30);
@@ -1867,7 +1265,7 @@ class App {
       const gc=this._card();
       gc.style.borderLeft=`4px solid ${col}`;
       gc.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
-          <div><div style="font-size:15px;font-weight:900;color:${col}">${esc(goal.name)}</div>
+          <div><div style="font-size:15px;font-weight:900;color:${col}">${goal.name}</div>
           <div style="font-size:10px;color:var(--muted);margin-top:2px;font-weight:600">Приоритет ${'★'.repeat(goal.priority||1)}${'☆'.repeat(3-(goal.priority||1))} · до ${dStr(goal.deadline)}</div></div>
           <button class="del-btn" data-gid="${goal.id}">×</button></div>
         <div class="g2" style="margin-bottom:10px">
@@ -1882,7 +1280,7 @@ class App {
           ${eta?` · закроешь ~${dStr(eta)}`:''}
         </div>
 
-        <details data-dk="goal-hist-${goal.id}" style="margin-top:10px">
+        <details style="margin-top:10px">
           <summary>📜 История пополнений (${goalTxs.length})</summary>
           <div class="hist-list" style="margin-top:8px">
             ${goalTxs.length===0?'<div style="color:var(--muted);font-size:11px;text-align:center;padding:10px;font-weight:600">Пополнений нет</div>':
@@ -1892,10 +1290,10 @@ class App {
           </div>
         </details>
 
-        <details data-dk="goal-edit-${goal.id}">
+        <details>
           <summary>✏ Редактировать</summary>
           <div style="margin-top:10px" class="g2">
-            <div class="ig"><label class="lbl">Название</label><input id="ge-n-${goal.id}" value="${esc(goal.name)}"></div>
+            <div class="ig"><label class="lbl">Название</label><input id="ge-n-${goal.id}" value="${goal.name}"></div>
             <div class="ig"><label class="lbl">Сумма цели (₽)</label><input type="number" id="ge-t-${goal.id}" value="${goal.targetAmount}"></div>
             <div class="ig"><label class="lbl">Дедлайн</label><input type="date" id="ge-d-${goal.id}" value="${goal.deadline}"></div>
             <div class="ig"><label class="lbl">₽/мес на цель</label><input type="number" id="ge-a-${goal.id}" value="${goal.monthlyAllocation||0}"></div>
@@ -2062,13 +1460,12 @@ class App {
       </div>`);
     }
     
-    // БЛОК РЕДАКТИРОВАНИЯ ГРАФИКА
     const maxP = Math.max(ALIGNER_UPPER_TOTAL, ALIGNER_LOWER_TOTAL);
     let pairOptions = '';
     for(let i=1; i<=maxP; i++) { pairOptions += `<option value="${i}">Пара ${i}</option>`; }
 
     ac.insertAdjacentHTML('beforeend', `
-      <details data-dk="aligner-edit" class="notify-box info" style="margin-top:14px; background:var(--bg2); border-color:var(--border2)">
+      <details class="notify-box info" style="margin-top:14px; background:var(--bg2); border-color:var(--border2)">
         <summary>⚙️ Сбился график? Редактировать даты</summary>
         <div style="margin-top:10px;">
            <p style="font-size:10px; color:var(--muted); margin-bottom:8px">Укажи дату, когда ты надела конкретную пару. Все последующие даты сдвинутся автоматически (+14 дней).</p>
@@ -2092,16 +1489,12 @@ class App {
     const saveEditBtn = ac.querySelector('#save-pair-date');
     if (saveEditBtn) {
       saveEditBtn.onclick = async () => {
-        const pNum = parseInt(ac.querySelector('#edit-pair-num').value, 10);
+        const pNum = ac.querySelector('#edit-pair-num').value;
         const pDate = ac.querySelector('#edit-pair-date').value;
-        if (!pDate || !pNum) return;
-        const overrides = (await this.db.cfg('alignerOverrides')) || {};
-        // Старые ручные правки более поздних пар «застревали» и не давали
-        // графику сдвинуться. Теперь чистим всё, что после изменённой пары.
-        Object.keys(overrides).forEach(k => { if(Number(k) > pNum) delete overrides[k]; });
+        if (!pDate) return;
+        const overrides = await this.db.cfg('alignerOverrides') || {};
         overrides[pNum] = pDate + 'T22:00:00';
         await this.db.setCfg('alignerOverrides', overrides);
-        this._toast(`Пара ${pNum}: дата обновлена, график сдвинут`);
         this._render();
       };
     }
@@ -2195,14 +1588,13 @@ class App {
     c.appendChild(tipCard);
   }
 
-  /* ═══ STATS ═══ */
   async _stats(c){
     const txs=await this.db.all(S.TX);
     const now=new Date();
     if(!this.statsStart){
       const s=new Date(now);s.setDate(now.getDate()-30);
-      this.statsStart=dKey(s);
-      this.statsEnd=today();
+      this.statsStart=s.toISOString().split('T')[0];
+      this.statsEnd=now.toISOString().split('T')[0];
     }
 
     const pCard=this._card();
@@ -2222,7 +1614,7 @@ class App {
     const upd=(s,e)=>{this.statsStart=s;this.statsEnd=e;this._render();};
     pCard.querySelector('#ap').onclick=()=>{const s=pCard.querySelector('#as').value,e=pCard.querySelector('#ae').value;if(s&&e&&s<=e)upd(s,e);};
     pCard.querySelector('#qt').onclick=()=>{const t=today();upd(t,t);};
-    pCard.querySelector('#qm').onclick=()=>upd(dKey(new Date(now.getFullYear(),now.getMonth(),1)),dKey(new Date(now.getFullYear(),now.getMonth()+1,0)));
+    pCard.querySelector('#qm').onclick=()=>upd(new Date(now.getFullYear(),now.getMonth(),1).toISOString().split('T')[0],new Date(now.getFullYear(),now.getMonth()+1,0).toISOString().split('T')[0]);
     pCard.querySelector('#qy').onclick=()=>upd(`${now.getFullYear()}-01-01`,`${now.getFullYear()}-12-31`);
     pCard.querySelector('#qa').onclick=()=>{
       if(!txs.length){upd(today(),today());return;}
@@ -2230,7 +1622,7 @@ class App {
       upd(s[0].date.split('T')[0],today());
     };
 
-    const s0=dParse(this.statsStart),e0=dParse(this.statsEnd);e0.setHours(23,59,59,999);
+    const s0=new Date(this.statsStart),e0=new Date(this.statsEnd);e0.setHours(23,59,59,999);
     const pTxs=txs.filter(t=>{const d=new Date(t.date);return d>=s0&&d<=e0;});
     const totalInc=pTxs.filter(t=>t.type==='income').reduce((s,t)=>s+t.amount,0);
     const totalExp=pTxs.filter(t=>t.type==='expense').reduce((s,t)=>s+t.amount,0);
@@ -2285,7 +1677,7 @@ class App {
       const cv=document.createElement('canvas');cv.width=420;cv.height=220;
       wrap.appendChild(cv);pieCard.appendChild(wrap);
       const leg=document.createElement('div');leg.className='chart-legend';
-      cats.forEach((cat,i)=>{leg.insertAdjacentHTML('beforeend',`<span><span class="ld" style="background:${COLORS[i%COLORS.length]}"></span>${esc(cat)}: ${fmt(vals[i])} ₽ (${((vals[i]/totalE)*100).toFixed(1)}%)</span>`);});
+      cats.forEach((cat,i)=>{leg.insertAdjacentHTML('beforeend',`<span><span class="ld" style="background:${COLORS[i%COLORS.length]}"></span>${cat}: ${fmt(vals[i])} ₽ (${((vals[i]/totalE)*100).toFixed(1)}%)</span>`);});
       pieCard.appendChild(leg);
       requestAnimationFrame(()=>{
         const ctx=cv.getContext('2d'),W=cv.width,H=cv.height,cx=W/2,cy=H/2,R=Math.min(cx,cy)-8;
@@ -2334,7 +1726,6 @@ class App {
     }
   }
 
-  /* ═══ EXPORT / IMPORT ═══ */
   async _export(forceDownload = false){
     const data = {
       version: 1,
@@ -2344,8 +1735,8 @@ class App {
       aligners: await this.db.all(S.ALIGNERS),
       settings: await this.db.all(S.CFG),
       shopping: await this.db.all(S.SHOP),
-      cycles: await this.db.all(S.CYCLES), // Сохраняем циклы
-      symptoms: await this.db.all(S.SYMPTOMS) // Сохраняем симптомы
+      cycles: await this.db.all(S.CYCLES), 
+      symptoms: await this.db.all(S.SYMPTOMS)
     };
     const text = JSON.stringify(data, null, 2);
     const filename = `rose-planner-backup-${today()}.json`;
@@ -2359,7 +1750,7 @@ class App {
             title: 'Бэкап Rosé Planner 🌸',
             text: 'Резервная копия твоих данных'
           });
-          return;
+          return; 
         }
       } catch (err) {
         console.warn('Share API failed, falling back to download:', err);
@@ -2380,43 +1771,21 @@ class App {
   }
 
   async _import(file){
-    const input=document.getElementById('imp-file');
-    if(!file){ if(input) input.value=''; return; }
-    let data;
-    try{ data=JSON.parse(await file.text()); }
-    catch{ alert('Не получилось прочитать файл — он повреждён или это не бэкап 🌸'); if(input) input.value=''; return; }
-    if(!data || typeof data!=='object' || !Object.keys(data).length){
-      alert('В файле нет данных 🌸'); if(input) input.value=''; return;
-    }
-    const when = data.exportedAt ? new Date(data.exportedAt).toLocaleString('ru-RU') : 'неизвестной даты';
-    if(!confirm(`Загрузить бэкап от ${when}?\nВсе текущие данные будут заменены!`)){ if(input) input.value=''; return; }
-
+    if(!file)return;
+    const text=await file.text();let data;
+    try{data=JSON.parse(text);}catch{alert('Неверный файл 🌸');return;}
+    if(!confirm(`Загрузить бэкап от ${data.exportedAt||'?'}?\nВсе текущие данные будут заменены!`))return;
     const map={transactions:S.TX,goals:S.GOALS,aligners:S.ALIGNERS,settings:S.CFG,shopping:S.SHOP,cycles:S.CYCLES,symptoms:S.SYMPTOMS};
-    let restored=0, skipped=0;
-    try{
-      for(const [k,sn] of Object.entries(map)){
-        if(!Array.isArray(data[k])) continue;
-        const ex=await this.db.all(sn);
-        for(const o of ex){
-          const key = o.key!==undefined?o.key : (o.id!==undefined?o.id : o.date);
-          if(key!==undefined) await this.db.del(sn,key);
-        }
-        for(const o of data[k]){
-          // put вместо add: раньше дубликат ключа обрывал весь импорт
-          try{ await this.db.set(sn,o); restored++; }catch(e){ skipped++; }
-        }
-      }
-    }catch(e){
-      console.error('[Rosé] import',e);
-      alert('Во время загрузки что-то пошло не так. Часть данных могла не восстановиться.');
+    for(const [k,sn] of Object.entries(map)){
+      if(!data[k])continue;
+      const ex=await this.db.all(sn);
+      for(const o of ex)await this.db.del(sn,o.key||o.id||o.date);
+      for(const o of data[k])await this.db.add(sn,o);
     }
-    if(input) input.value='';
-    this._cycView=null; this._sympDate=null;
-    this._render({toTop:true});
-    alert(`Готово ✨ Восстановлено записей: ${restored}${skipped?`, пропущено: ${skipped}`:''}`);
+    this._render(); alert('Данные успешно восстановлены ✨');
   }
 }
-window.__app = new App();
+new App();
 </script>
 </body>
 </html>
